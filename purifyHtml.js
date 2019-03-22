@@ -35,7 +35,11 @@ export default function(input, allowed) {
 
 function stripTags(input, allowed) {
     // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-    allowed = (((allowed !== undefined ? allowed || '' : defaultAllowed) + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
+    allowed = (
+        ((allowed !== undefined ? allowed || '' : defaultAllowed) + '')
+            .toLowerCase()
+            .match(/<[a-z][a-z0-9]*>/g) || []
+    ).join('');
 
     var before = input;
     var after = input;

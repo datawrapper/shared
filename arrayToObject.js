@@ -25,10 +25,10 @@
  * @returns {object}
  */
 export default function(o) {
-	if (Array.isArray(o)) {
-		const obj = {};
-		Object.keys(o).forEach(k => (obj[k] = o[k]));
-		return obj;
-	}
-	return o;
+    if (Array.isArray(o)) {
+        const obj = {};
+        Object.keys(o).forEach(k => (obj[k] = o[k]));
+        return obj;
+    }
+    return o;
 }

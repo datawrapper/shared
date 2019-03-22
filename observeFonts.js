@@ -1,4 +1,4 @@
-import FontFaceObserver from "fontfaceobserver";
+import FontFaceObserver from 'fontfaceobserver';
 
 /**
  * Function that returns a promise, that resolves when all fonts,
@@ -17,7 +17,7 @@ export default function observeFonts(fontsJSON, typographyJSON) {
     Object.keys(typographyJSON).forEach(key => {
         const typefaceKey = typographyJSON[key].typeface;
         if (typefaceKey) {
-            const typeFaces = typefaceKey.split(",").map(t => t.trim());
+            const typeFaces = typefaceKey.split(',').map(t => t.trim());
             typeFaces.forEach(face => fonts.add(face));
         }
     });
