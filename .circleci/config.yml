@@ -45,18 +45,18 @@ jobs:
 
             - run: npm run lint
 
-    # publish:
-    #   <<: *defaults
-    #   steps:
-    #     - checkout
-    #     - restore_cache:
-    #         <<: *cache
-    #     - run:
-    #         name: Authenticate with registry
-    #         command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-    #     - run:
-    #         name: Publish Package
-    #         command: npm publish
+    publish:
+        <<: *defaults
+        steps:
+            - checkout
+            - restore_cache:
+                  <<: *cache
+            - run:
+                  name: Authenticate with registry
+                  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            - run:
+                  name: Publish Package
+                  command: npm publish --access public
 
 workflows:
     version: 2
@@ -80,13 +80,13 @@ workflows:
                           only: /^v.*/
                   requires:
                       - install
-            # - publish:
-            #     context: Deployment Keys
-            #     requires:
-            #       - test
-            #       - lint
-            #     filters:
-            #       tags:
-            #         only: /^v.*/
-            #       branches:
-            #         ignore: /.*/
+            - publish:
+                  context: Deployment Keys
+                  requires:
+                      - test
+                      - lint
+                  filters:
+                      tags:
+                          only: /^v.*/
+                      branches:
+                          ignore: /.*/
