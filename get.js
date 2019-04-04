@@ -16,7 +16,7 @@ export default function(object, key = null, _default = null) {
     let pt = object;
 
     for (let i = 0; i < keys.length; i++) {
-        if (pt === null || pt === null) break; // break out of the loop
+        if (pt === null || pt === undefined) break; // break out of the loop
         // move one more level in
         pt = pt[keys[i]];
     }
