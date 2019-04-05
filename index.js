@@ -8,6 +8,7 @@ export { default as combinations } from './combinations.js';
 export { default as equalish } from './equalish.js';
 export { default as fetch } from './fetch.js';
 export { default as get } from './get.js';
+export { default as set } from './set.js';
 export { default as isValidUrl } from './isValidUrl.js';
 export { default as l10n } from './l10n.js';
 export { default as observeFonts } from './observeFonts.js';
