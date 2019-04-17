@@ -40,6 +40,9 @@ tracks a custom event in Matomo
 | category | <code>string</code> | the event name |
 | category | <code>string</code> \| <code>number</code> | the event value, optional |
 
+
+* * *
+
 <a name="trackPageView"></a>
 
 ### trackPageView(loadTime)
@@ -52,6 +55,9 @@ and URL are automatically detected using the window object.
 | --- | --- | --- |
 | loadTime | <code>number</code> | optional page load time, has to be measured    manually |
 
+
+* * *
+
 <a name="loadScript"></a>
 
 ### loadScript(src, callback)
@@ -63,6 +69,9 @@ injects a <script> element to the page to load a new JS script
 | src | <code>string</code> | 
 | callback | <code>function</code> | 
 
+
+* * *
+
 <a name="loadStylesheet"></a>
 
 ### loadStylesheet(src, callback)
@@ -73,6 +82,9 @@ injects a <link> element to the page to load a new stylesheet
 | --- | --- |
 | src | <code>string</code> | 
 | callback | <code>function</code> | 
+
+
+* * *
 
 <a name="get"></a>
 
@@ -97,6 +109,9 @@ get(someObject, 'key.list[2]') // returns 'c'
 get(someObject, 'missing.key') // returns undefined
 get(someObject, 'missing.key', false) // returns false
 ```
+
+* * *
+
 <a name="__"></a>
 
 ## \_\_(key, scope) ⇒ <code>string</code>
@@ -117,6 +132,9 @@ client-side translations must set `"svelte": true` in their plugin.json
 | key | <code>string</code> |  | - the key to be translated, e.g. "signup / hed" |
 | scope | <code>string</code> | <code>&quot;core&quot;</code> | - the translation scope, e.g. "core" or a plugin name |
 
+
+* * *
+
 <a name="purifyHTML"></a>
 
 ### purifyHTML(input, allowed) ⇒ <code>string</code>
@@ -128,6 +146,9 @@ Remove all html tags from the given string
 | --- | --- | --- |
 | input | <code>string</code> | dirty html input |
 | allowed | <code>string</code> | list of allowed tags, defaults to `<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>` |
+
+
+* * *
 
 <a name="toFixed"></a>
 
@@ -147,3 +168,6 @@ import toFixed from '@datawrapper/shared/toFixed';
 // returns '3.1'
 toFixed(3.100001)
 ```
+
+* * *
+
