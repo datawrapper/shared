@@ -47,6 +47,29 @@ client-side translations must set <code>&quot;svelte&quot;: true</code> in their
 </dd>
 </dl>
 
+<a name="get"></a>
+
+## get ⇒
+
+safely access object properties without throwing nasty
+&#x60;cannot access X of undefined&#x60; errors if a property along the
+way doesn&#x27;t exist.  
+**Returns**: the value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object |  | the object which properties you want to acccess |
+| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| _default | <code>\*</code> | the fallback value to be returned if key doesn't exist |
+
+**Example**  
+```js
+import get from '@datawrapper/shared/get';
+const someObject = { key: { list: ['a', 'b', 'c']}};
+get(someObject, 'key.list[2]') // returns 'c'
+get(someObject, 'missing.key') // returns undefined
+get(someObject, 'missing.key', false) // returns false
+```
 <a name="toFixed"></a>
 
 ## toFixed ⇒ <code>string</code>

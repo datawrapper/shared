@@ -1,4 +1,7 @@
 /**
+ * @exports get
+ * @kind function
+ *
  * safely access object properties without throwing nasty
  * `cannot access X of undefined` errors if a property along the
  * way doesn't exist.
@@ -8,6 +11,13 @@
  * @param {*} _default - the fallback value to be returned if key doesn't exist
  *
  * @returns the value
+ *
+ * @example
+ * import get from '@datawrapper/shared/get';
+ * const someObject = { key: { list: ['a', 'b', 'c']}};
+ * get(someObject, 'key.list[2]') // returns 'c'
+ * get(someObject, 'missing.key') // returns undefined
+ * get(someObject, 'missing.key', false) // returns false
  */
 export default function(object, key = null, _default = null) {
     if (!key) return object;
