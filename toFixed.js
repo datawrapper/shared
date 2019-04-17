@@ -23,12 +23,12 @@ function tailLength(value) {
 }
 
 /**
- * @exports toFixed
- * @kind function
- *
- * automatically converts a numeric value to a string. this is better
+ * Automatically converts a numeric value to a string. this is better
  * than the default number to string conversion in JS which sometimes
  * produces ugly strings like "3.999999998"
+ *
+ * @exports toFixed
+ * @kind function
  *
  * @example
  * import toFixed from '@datawrapper/shared/toFixed';
@@ -38,6 +38,6 @@ function tailLength(value) {
  * @param {number} value
  * @returns {string}
  */
-export default function(value) {
+export default function toFixed(value) {
     return (+value).toFixed(tailLength(value));
 }

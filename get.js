@@ -1,10 +1,11 @@
 /**
+ * Safely access object properties without throwing nasty
+ * `cannot access X of undefined` errors if a property along the
+ * way doesn't exist.
+ *
  * @exports get
  * @kind function
  *
- * safely access object properties without throwing nasty
- * `cannot access X of undefined` errors if a property along the
- * way doesn't exist.
  *
  * @param object - the object which properties you want to acccess
  * @param {String} key - dot-separated keys aka "path" to the property
@@ -19,7 +20,7 @@
  * get(someObject, 'missing.key') // returns undefined
  * get(someObject, 'missing.key', false) // returns false
  */
-export default function(object, key = null, _default = null) {
+export default function get(object, key = null, _default = null) {
     if (!key) return object;
     // expand keys
     const keys = key.split('.');

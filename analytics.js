@@ -1,6 +1,7 @@
 /**
  * tracks a custom event in Matomo
  *
+ *
  * @param {string} category - the event category
  * @param {string} category - the event action
  * @param {string} category - the event name
