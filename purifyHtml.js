@@ -1,14 +1,21 @@
-/**
- * Remove all html tags from the given string
- *
- * written by Kevin van Zonneveld et.al.
- * taken from https://github.com/kvz/phpjs/blob/master/functions/strings/strip_tags.js
- */
 const TAGS = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
 const COMMENTS_AND_PHP_TAGS = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
 const defaultAllowed = '<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>';
 
-export default function(input, allowed) {
+/**
+ * Remove all html tags from the given string
+ * @exports purifyHTML
+ * @kind function
+ *
+ * @param {string} input - dirty html input
+ * @param {string} allowed - list of allowed tags, defaults to `<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>`
+ * @return {string} - the cleaned html output
+ */
+export default function purifyHTML(input, allowed) {
+    /*
+     * written by Kevin van Zonneveld et.al.
+     * taken from https://github.com/kvz/phpjs/blob/master/functions/strings/strip_tags.js
+     */
     if (input === null) return null;
     if (input === undefined) return undefined;
     input = String(input);

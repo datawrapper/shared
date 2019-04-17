@@ -10,7 +10,7 @@
  * // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
  * combinations([1,2,3])
 
- * @param {*[]} input -- array of input objects, could be numbers, strings, etc
+ * @param {array[]} input -- array of input objects, could be numbers, strings, etc
  * @returns {array[]} -- array of combinations
  */
 export default function combinations(input) {
