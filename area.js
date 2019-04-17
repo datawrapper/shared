@@ -1,10 +1,12 @@
 /**
- * computes the polygon area
+ * Computes the area of a polygon
+ * @exports area
+ * @kind function
  *
  * @param {array[]} vertices -- polygon vertices as [[x,y], [x,y], ...] array
  * @returns {number} -- polygon area, might be negative
  */
-export default function(vertices) {
+export default function area(vertices) {
     var total = 0;
 
     for (var i = 0, l = vertices.length; i < l; i++) {

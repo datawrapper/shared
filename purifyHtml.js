@@ -3,7 +3,8 @@ const COMMENTS_AND_PHP_TAGS = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
 const defaultAllowed = '<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>';
 
 /**
- * Remove all html tags from the given string
+ * Remove all non-whitelisted html tags from the given string
+ *
  * @exports purifyHTML
  * @kind function
  *

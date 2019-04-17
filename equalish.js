@@ -1,5 +1,9 @@
 /**
  * returns true if two numeric values are close enough
+ *
+ * @exports equalish
+ * @kind function
+ *
  * @param {number} a
  * @param {number} b
  *

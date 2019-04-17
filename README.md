@@ -17,15 +17,28 @@ shared.fetchJSON();
 
 ## API reference
 
-
-* [trackEvent(category, category, category, category)](#trackEvent)
-* [trackPageView(loadTime)](#trackPageView)
+* [__(key, scope)](#__) ⇒ <code>string</code>
+* [area(vertices)](#area) ⇒ <code>number</code>
+* [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
+* [clone(object)](#clone) ⇒ <code>\*</code>
+* [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
+* [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
+* [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
+* [get(object, key, _default)](#get) ⇒
+* [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
+* [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
-* [get(object, key, _default)](#get) ⇒
-* [__(key, scope)](#__) ⇒ <code>string</code>
+* [observeFoonts(fontsJSON, typographyJSON)](#observeFoonts) ⇒ <code>Promise</code>
+* [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
+* [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
+* [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
+* [set(object, key, value)](#set) ⇒
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
+* [trackEvent(category, category, category, category)](#trackEvent)
+* [trackPageView(loadTime)](#trackPageView)
 
 <a name="trackEvent"></a>
 
@@ -54,6 +67,183 @@ and URL are automatically detected using the window object.
 | Param | Type | Description |
 | --- | --- | --- |
 | loadTime | <code>number</code> | optional page load time, has to be measured    manually |
+
+
+* * *
+
+<a name="area"></a>
+
+### area(vertices) ⇒ <code>number</code>
+Computes the area of a polygon
+
+**Returns**: <code>number</code> - -- polygon area, might be negative  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| vertices | <code>Array.&lt;array&gt;</code> | - polygon vertices as [[x,y], [x,y], ...] array |
+
+
+* * *
+
+<a name="arrayToObject"></a>
+
+### arrayToObject(o) ⇒ <code>object</code>
+This function fixes an uglyness when working with PHP backends.
+in PHP, there is no distiction between arrays and objects, so
+PHP converts an empty object {} to a empty array [].
+When this empty array then ends up in client-side JS functions which
+might start to assign values to the array using `arr.foo = "bar"`
+which results in a data structure like this:
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| o | <code>array</code> | the input |
+
+**Example**  
+```js
+console.log(arr);
+[]
+  foo: "bar"
+  length: 0
+  <prototype>: Array []
+
+console.log(arrayToObject(arr));
+Object { foo: "bar" }
+```
+
+* * *
+
+<a name="clone"></a>
+
+### clone(object) ⇒ <code>\*</code>
+Clones an object
+
+**Returns**: <code>\*</code> - - the cloned thing  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>\*</code> | the thing that should be cloned |
+
+
+* * *
+
+<a name="columnNameToVariable"></a>
+
+### columnNameToVariable(name) ⇒ <code>string</code>
+converts a column name to a variable name that can be used in the custom
+column editor. variable names can't contain spaces and special characters
+and are also converted to lowercase.
+
+**Returns**: <code>string</code> - -- variable name  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | - name of the column |
+
+
+* * *
+
+<a name="equalish"></a>
+
+### equalish(a, b) ⇒ <code>boolean</code>
+returns true if two numeric values are close enough
+
+**Export**:   
+
+| Param | Type |
+| --- | --- |
+| a | <code>number</code> | 
+| b | <code>number</code> | 
+
+**Example**  
+```js
+// returns true
+equalish(0.333333, 1/3)
+```
+**Example**  
+```js
+// returns false
+equalish(0.333, 1/3)
+```
+
+* * *
+
+<a name="fetchJSON"></a>
+
+### fetchJSON(url, method, credentials, body, callback) ⇒ <code>Promise</code>
+Download and parse a remote JSON document
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> |  |
+| method | <code>string</code> | HTTP method, either GET, POST or PUT |
+| credentials | <code>string</code> \| <code>undefined</code> | set to "include" if cookies should be passed along CORS requests |
+| body | <code>string</code> |  |
+| callback | <code>function</code> |  |
+
+
+* * *
+
+<a name="getJSON"></a>
+
+### getJSON(url, credentials, callback) ⇒ <code>Promise</code>
+Download and parse a JSON document via GET
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> |  |
+| credentials | <code>string</code> \| <code>undefined</code> | optional, set to undefined to disable credentials |
+| callback | <code>function</code> |  |
+
+
+* * *
+
+<a name="postJSON"></a>
+
+### postJSON(url, body, callback) ⇒ <code>Promise</code>
+Download and parse a remote JSON endpoint via POST. credentials
+are included automatically
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
+
+
+* * *
+
+<a name="putJSON"></a>
+
+### putJSON(url, body, callback) ⇒ <code>Promise</code>
+Download and parse a remote JSON endpoint via PUT. credentials
+are included automatically
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
+
+
+* * *
+
+<a name="deleteJSON"></a>
+
+### deleteJSON(url, callback) ⇒ <code>Promise</code>
+Download and parse a remote JSON endpoint via DELETE. credentials
+are included automatically
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| callback | <code>function</code> | 
 
 
 * * *
@@ -112,6 +302,19 @@ get(someObject, 'missing.key', false) // returns false
 
 * * *
 
+<a name="isValidUrl"></a>
+
+### isValidUrl(input) ⇒ <code>boolean</code>
+checks if a given string is a valid URL
+
+
+| Param | Type |
+| --- | --- |
+| input | <code>string</code> | 
+
+
+* * *
+
 <a name="__"></a>
 
 ## \_\_(key, scope) ⇒ <code>string</code>
@@ -135,10 +338,45 @@ client-side translations must set `"svelte": true` in their plugin.json
 
 * * *
 
+<a name="observeFoonts"></a>
+
+### observeFoonts(fontsJSON, typographyJSON) ⇒ <code>Promise</code>
+Function that returns a promise, that resolves when all fonts,
+specified in fontsJSON and typographyJSON have been loaded.
+
+
+| Param | Type |
+| --- | --- |
+| fontsJSON | <code>Object</code> \| <code>Array</code> | 
+| typographyJSON | <code>Object</code> | 
+
+
+* * *
+
+<a name="postEvent"></a>
+
+### postEvent(chartId) ⇒ <code>function</code>
+Use this function to post event messages out of Datawrapper iframe embeds
+to the parent website.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| chartId | <code>string</code> | the chart id each message should be signed with |
+
+**Example**  
+```js
+import genPostEvent from '@datawrapper/shared/postEvent';
+const postEvent = genPostEvent(chart.get('id'));
+postEvent('bar:hover', {value: 123});
+```
+
+* * *
+
 <a name="purifyHTML"></a>
 
 ### purifyHTML(input, allowed) ⇒ <code>string</code>
-Remove all html tags from the given string
+Remove all non-whitelisted html tags from the given string
 
 **Returns**: <code>string</code> - - the cleaned html output  
 
@@ -146,6 +384,24 @@ Remove all html tags from the given string
 | --- | --- | --- |
 | input | <code>string</code> | dirty html input |
 | allowed | <code>string</code> | list of allowed tags, defaults to `<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>` |
+
+
+* * *
+
+<a name="set"></a>
+
+### set(object, key, value) ⇒
+safely set object properties without throwing nasty
+`cannot access X of undefined` errors if a property along the
+way doesn't exist.
+
+**Returns**: the value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object |  | the object which properties you want to acccess |
+| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| value | <code>\*</code> | the value to be set |
 
 
 * * *

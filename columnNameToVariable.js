@@ -3,6 +3,9 @@
  * column editor. variable names can't contain spaces and special characters
  * and are also converted to lowercase.
  *
+ * @exports columnNameToVariable
+ * @kind function
+ *
  * @param {string} name -- name of the column
  * @returns {string} -- variable name
  */

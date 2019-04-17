@@ -1,8 +1,12 @@
 import clone from './clone';
+
 /**
  * safely set object properties without throwing nasty
  * `cannot access X of undefined` errors if a property along the
  * way doesn't exist.
+ *
+ * @exports set
+ * @kind function
  *
  * @param object - the object which properties you want to acccess
  * @param {String} key - dot-separated keys aka "path" to the property
@@ -10,7 +14,7 @@ import clone from './clone';
  *
  * @returns the value
  */
-export default function(object, key, value) {
+export default function set(object, key, value) {
     const keys = key.split('.');
     const lastKey = keys.pop();
     let pt = object;

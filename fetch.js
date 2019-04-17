@@ -1,3 +1,14 @@
+/**
+ * Download and parse a remote JSON document
+ *
+ * @param {string} url
+ * @param {string} method - HTTP method, either GET, POST or PUT
+ * @param {string|undefined} credentials - set to "include" if cookies should be passed along CORS requests
+ * @param {string} body
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
 export function fetchJSON(url, method, credentials, body, callback) {
     var opts = {
         method,
@@ -28,6 +39,15 @@ export function fetchJSON(url, method, credentials, body, callback) {
         });
 }
 
+/**
+ * Download and parse a JSON document via GET
+ *
+ * @param {string} url
+ * @param {string|undefined} credentials - optional, set to undefined to disable credentials
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
 export function getJSON(url, credentials, callback) {
     if (arguments.length === 2) {
         callback = credentials;
@@ -36,12 +56,44 @@ export function getJSON(url, credentials, callback) {
 
     return fetchJSON(url, 'GET', credentials, null, callback);
 }
+
+/**
+ * Download and parse a remote JSON endpoint via POST. credentials
+ * are included automatically
+ *
+ * @param {string} url
+ * @param {string} body
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
 export function postJSON(url, body, callback) {
     return fetchJSON(url, 'POST', 'include', body, callback);
 }
+
+/**
+ * Download and parse a remote JSON endpoint via PUT. credentials
+ * are included automatically
+ *
+ * @param {string} url
+ * @param {string} body
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
 export function putJSON(url, body, callback) {
     return fetchJSON(url, 'PUT', 'include', body, callback);
 }
+
+/**
+ * Download and parse a remote JSON endpoint via DELETE. credentials
+ * are included automatically
+ *
+ * @param {string} url
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
 export function deleteJSON(url, callback) {
     return fetchJSON(url, 'DELETE', 'include', null, callback);
 }
