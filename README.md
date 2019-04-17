@@ -45,12 +45,26 @@ client-side translations must set <code>&quot;svelte&quot;: true</code> in their
 <dt><a href="#purifyHTML">purifyHTML(input, allowed)</a> ⇒ <code>string</code></dt>
 <dd><p>Remove all html tags from the given string</p>
 </dd>
-<dt><a href="#tailLength">tailLength(value)</a> ⇒ <code>number</code></dt>
-<dd><p>returns the length of the &quot;tail&quot; of a number, meaning the
-number of meaningful decimal places</p>
-</dd>
 </dl>
 
+<a name="toFixed"></a>
+
+## toFixed ⇒ <code>string</code>
+
+automatically converts a numeric value to a string. this is better
+than the default number to string conversion in JS which sometimes
+produces ugly strings like &quot;3.999999998&quot;  
+
+| Param | Type |
+| --- | --- |
+| value | <code>number</code> | 
+
+**Example**  
+```js
+import toFixed from '@datawrapper/shared/toFixed';
+// returns '3.1'
+toFixed(3.100001)
+```
 <a name="trackEvent"></a>
 
 ## trackEvent(category, category, category, category)
@@ -130,24 +144,3 @@ Remove all html tags from the given string
 | input | <code>string</code> | dirty html input |
 | allowed | <code>string</code> | list of allowed tags, defaults to `<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>` |
 
-<a name="tailLength"></a>
-
-## tailLength(value) ⇒ <code>number</code>
-returns the length of the "tail" of a number, meaning the
-number of meaningful decimal places
-
-
-| Param | Type |
-| --- | --- |
-| value | <code>number</code> | 
-
-**Example**  
-```js
-// returns 3
-tailLength(3.123)
-```
-**Example**  
-```js
-// returns 2
-tailLength(3.12999999)
-```

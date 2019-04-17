@@ -1,4 +1,4 @@
-/**
+/*
  * returns the length of the "tail" of a number, meaning the
  * number of meaningful decimal places
  *
@@ -23,11 +23,15 @@ function tailLength(value) {
 }
 
 /**
+ * @exports toFixed
+ * @kind function
+ *
  * automatically converts a numeric value to a string. this is better
  * than the default number to string conversion in JS which sometimes
  * produces ugly strings like "3.999999998"
  *
  * @example
+ * import toFixed from '@datawrapper/shared/toFixed';
  * // returns '3.1'
  * toFixed(3.100001)
  *
