@@ -53,6 +53,7 @@ in the global `window.dw.backend.__messages` object. plugins that need
 client-side translations must set `"svelte": true` in their plugin.json
 
 **Returns**: <code>string</code> - -- the translated text  
+**Export**:   
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

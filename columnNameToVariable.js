@@ -6,6 +6,11 @@
  * @exports columnNameToVariable
  * @kind function
  *
+ * @example
+ * import columnNameToVariable from '@datawrapper/shared/columnNameToVariable';
+ *
+ * columnNameToVariable('GDP (per cap.)') // gdp_per_cap
+ *
  * @param {string} name -- name of the column
  * @returns {string} -- variable name
  */

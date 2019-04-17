@@ -10,7 +10,6 @@
  * in the global `window.dw.backend.__messages` object. plugins that need
  * client-side translations must set `"svelte": true` in their plugin.json
  *
- * @export
  * @param {string} key -- the key to be translated, e.g. "signup / hed"
  * @param {string} scope -- the translation scope, e.g. "core" or a plugin name
  * @returns {string} -- the translated text
