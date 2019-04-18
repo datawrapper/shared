@@ -99,7 +99,7 @@ export function deleteJSON(url, callback) {
 }
 
 /**
- * injects a <script> element to the page to load a new JS script
+ * injects a `<script>` element to the page to load a new JS script
  *
  * @param {string} src
  * @param {function} callback
@@ -114,7 +114,7 @@ export function loadScript(src, callback) {
 }
 
 /**
- * injects a <link> element to the page to load a new stylesheet
+ * injects a `<link>` element to the page to load a new stylesheet
  *
  * @param {string} src
  * @param {function} callback

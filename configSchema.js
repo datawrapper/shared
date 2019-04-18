@@ -72,7 +72,7 @@ schema.RenderServer = Joi.object({
         region: Joi.string().required(),
         access_key_id: Joi.string().required(),
         secret_access_key: Joi.string().required()
-    }).required()
+    })
 }).unknown();
 
 schema.RenderClient = Joi.object({
@@ -100,26 +100,75 @@ schema.RenderClient = Joi.object({
     })
 }).unknown();
 
+const schemaAll = {
+    frontend: schema.Frontend,
+    api: schema.API,
+    orm: schema.ORM,
+    'render-server': schema.RenderServer,
+    'render-client': schema.RenderClient,
+    plugins: Joi.object()
+};
+
 function validate(name, config) {
-    const { error, value } = Joi.validate(config, schema[name], { abortEarly: false });
+    const { error, value } = Joi.validate(config, name ? schema[name] : schemaAll, {
+        abortEarly: false
+    });
 
     if (error) {
-        process.stderr.write(chalk.red(`\n[${name}] config validation failed\n`));
+        process.stderr.write(chalk.red(`\n[${name || 'All'}] config validation failed\n`));
         error.details.forEach(err => {
             process.stderr.write(
                 `    [${err.path.join('.')}] ${err.message} | value: ${err.context.value}\n`
             );
         });
-        process.exit(1);
+        throw error;
     }
 
     return value;
 }
 
-const validateFunctions = {};
+/**
+ * `@datawrapper/shared/configSchema` provides a set of useful validation functions for service
+ * config validation.
+ *
+ * > This object is not included with `import shared from "@datawrapper/shared"`.
+ * > It has a dependency on `Joi` which is quite a big validation library for Node server projects.
+ *
+ * Each function returns the configuration object when validation succeeds.
+ * When validation fails (eg. missing or invalid key) a function will throw a `ValidationError`.
+ *
+ * Example function signature: `function validateAPI (config : object) : object`
+ *
+ * @namespace
+ * @property {function} validateAPI - Validate an API server config
+ * @property {function} validateORM - Validate an ORM initialization config
+ * @property {function} validateFrontend - Validate a frontend server config
+ * @property {function} validateRenderServer - Validate a render server config
+ * @property {function} validateRenderClient - Validate a render client config
+ * @property {function} validateAll - Validate a complete config
+ *
+ * @example
+ * // validate complete config
+ * const { validateAll } = require('@datawrapper/shared/configSchema')
+ * validateAll(config)
+ *
+ * // validate only api config
+ * const { validateAPI } = require('@datawrapper/shared/configSchema')
+ * validateAPI(config.api)
+ *
+ * // if a service relies on multiple configuration objects but not all. Validate the parts needed.
+ * const { validateAPI, validateORM } = require('@datawrapper/shared/configSchema')
+ * validateAPI(config.api)
+ * validateORM(config.orm)
+ */
+const configSchema = {
+    validateConfig: config => {
+        return validate(undefined, config);
+    }
+};
 
 Object.keys(schema).forEach(key => {
-    validateFunctions[`validate${key}`] = config => validate(key, config);
+    configSchema[`validate${key}`] = config => validate(key, config);
 });
 
-module.exports = validateFunctions;
+module.exports = configSchema;

@@ -22,6 +22,9 @@ shared.fetchJSON();
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
+* [configSchema](#configSchema) : <code>object</code>
+
+
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
@@ -141,6 +144,49 @@ columnNameToVariable('GDP (per cap.)') // gdp_per_cap
 
 * * *
 
+<a name="configSchema"></a>
+
+### configSchema : <code>object</code>
+`@datawrapper/shared/configSchema` provides a set of useful validation functions for service
+config validation.
+
+> This object is not included with `import shared from "@datawrapper/shared"`.
+> It has a dependency on `Joi` which is quite a big validation library for Node server projects.
+
+Each function returns the configuration object when validation succeeds.
+When validation fails (eg. missing or invalid key) a function will throw a `ValidationError`.
+
+Example function signature: `function validateAPI (config : object) : object`
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| validateAPI | <code>function</code> | Validate an API server config |
+| validateORM | <code>function</code> | Validate an ORM initialization config |
+| validateFrontend | <code>function</code> | Validate a frontend server config |
+| validateRenderServer | <code>function</code> | Validate a render server config |
+| validateRenderClient | <code>function</code> | Validate a render client config |
+| validateAll | <code>function</code> | Validate a complete config |
+
+**Example**  
+```js
+// validate complete config
+const { validateAll } = require('@datawrapper/shared/configSchema')
+validateAll(config)
+
+// validate only api config
+const { validateAPI } = require('@datawrapper/shared/configSchema')
+validateAPI(config.api)
+
+// if a service relies on multiple configuration objects but not all. Validate the parts needed.
+const { validateAPI, validateORM } = require('@datawrapper/shared/configSchema')
+validateAPI(config.api)
+validateORM(config.orm)
+```
+
+* * *
+
 <a name="deleteJSON"></a>
 
 ### deleteJSON(url, callback) ⇒ <code>Promise</code>
@@ -255,7 +301,7 @@ checks if a given string is a valid URL
 <a name="loadScript"></a>
 
 ### loadScript(src, callback)
-injects a <script> element to the page to load a new JS script
+injects a `<script>` element to the page to load a new JS script
 
 
 | Param | Type |
@@ -269,7 +315,7 @@ injects a <script> element to the page to load a new JS script
 <a name="loadStylesheet"></a>
 
 ### loadStylesheet(src, callback)
-injects a <link> element to the page to load a new stylesheet
+injects a `<link>` element to the page to load a new stylesheet
 
 
 | Param | Type |
