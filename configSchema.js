@@ -5,7 +5,7 @@ const schema = {};
 
 schema.API = Joi.object({
     port: Joi.number()
-        .integer()
+        .port()
         .default(3000),
     domain: Joi.string()
         .hostname()
@@ -46,7 +46,7 @@ schema.ORM = Joi.object()
                     .hostname()
                     .required(),
                 port: Joi.number()
-                    .integer()
+                    .port()
                     .default(3306),
                 user: Joi.string().required(),
                 password: Joi.string().required(),
@@ -62,7 +62,7 @@ schema.RenderServer = Joi.object({
         .ip()
         .required(),
     port: Joi.number()
-        .integer()
+        .port()
         .required(),
     tls: Joi.object({
         cert: Joi.string(),
