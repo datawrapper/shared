@@ -19,7 +19,8 @@ schema.API = Joi.object({
         .default(15),
     enableMigration: Joi.boolean(),
     authSalt: Joi.string(),
-    secretAuthSalt: Joi.string()
+    secretAuthSalt: Joi.string(),
+    localPluginRoot: Joi.string()
 }).unknown();
 
 schema.Frontend = Joi.object()
