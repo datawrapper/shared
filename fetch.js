@@ -17,7 +17,7 @@ export function fetchJSON(url, method, credentials, body, callback) {
         credentials
     };
 
-    window
+    return window
         .fetch(url, opts)
         .then(res => {
             if (res.status !== 200) return new Error(res.statusText);
