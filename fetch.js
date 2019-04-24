@@ -86,6 +86,20 @@ export function putJSON(url, body, callback) {
 }
 
 /**
+ * Download and parse a remote JSON endpoint via PATCH. credentials
+ * are included automatically
+ *
+ * @param {string} url
+ * @param {string} body
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
+export function patchJSON(url, body, callback) {
+    return fetchJSON(url, 'PATCH', 'include', body, callback);
+}
+
+/**
  * Download and parse a remote JSON endpoint via DELETE. credentials
  * are included automatically
  *

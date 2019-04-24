@@ -34,6 +34,7 @@ shared.fetchJSON();
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFoonts(fontsJSON, typographyJSON)](#observeFoonts) ⇒ <code>Promise</code>
+* [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
 * [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
@@ -337,6 +338,22 @@ specified in fontsJSON and typographyJSON have been loaded.
 | --- | --- |
 | fontsJSON | <code>Object</code> \| <code>Array</code> | 
 | typographyJSON | <code>Object</code> | 
+
+
+* * *
+
+<a name="patchJSON"></a>
+
+### patchJSON(url, body, callback) ⇒ <code>Promise</code>
+Download and parse a remote JSON endpoint via PATCH. credentials
+are included automatically
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
 
 
 * * *
