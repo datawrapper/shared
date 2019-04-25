@@ -20,6 +20,7 @@ shared.fetchJSON();
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
+* [clone(hexColor)](#clone) ⇒ <code>number</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [configSchema](#configSchema) : <code>object</code>
@@ -106,6 +107,23 @@ console.log(arr);
 console.log(arrayToObject(arr));
 Object { foo: "bar" }
 ```
+
+* * *
+
+<a name="clone"></a>
+
+### clone(hexColor) ⇒ <code>number</code>
+Returns the L*a*b lightness value of a given hexidecimal
+RGB color
+
+**Returns**: <code>number</code> - - the L*a*b lightness, between 0 (black) and 100 (white)  
+**Exampe**: import colorLightness from '@datawrapper/shared/colorLightness';
+colorLightness('#2A4858') //  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hexColor | <code>string</code> | the RGB color as hexadecimal string, e.g. "#330066" |
+
 
 * * *
 
