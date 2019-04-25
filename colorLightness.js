@@ -5,7 +5,7 @@ import rgb2lab from 'chroma-js/src/io/lab/rgb2lab';
  * Returns the L*a*b lightness value of a given hexidecimal
  * RGB color
  *
- * @exports clone
+ * @exports colorLightness
  * @kind function
  *
  * @param {string} hexColor - the RGB color as hexadecimal string, e.g. "#330066"

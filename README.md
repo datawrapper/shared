@@ -20,8 +20,8 @@ shared.fetchJSON();
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
-* [clone(hexColor)](#clone) ⇒ <code>number</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
+* [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [configSchema](#configSchema) : <code>object</code>
 
@@ -112,7 +112,21 @@ Object { foo: "bar" }
 
 <a name="clone"></a>
 
-### clone(hexColor) ⇒ <code>number</code>
+### clone(object) ⇒ <code>\*</code>
+Clones an object
+
+**Returns**: <code>\*</code> - - the cloned thing  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>\*</code> | the thing that should be cloned |
+
+
+* * *
+
+<a name="colorLightness"></a>
+
+### colorLightness(hexColor) ⇒ <code>number</code>
 Returns the L*a*b lightness value of a given hexidecimal
 RGB color
 
@@ -123,20 +137,6 @@ colorLightness('#2A4858') //
 | Param | Type | Description |
 | --- | --- | --- |
 | hexColor | <code>string</code> | the RGB color as hexadecimal string, e.g. "#330066" |
-
-
-* * *
-
-<a name="clone"></a>
-
-### clone(object) ⇒ <code>\*</code>
-Clones an object
-
-**Returns**: <code>\*</code> - - the cloned thing  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>\*</code> | the thing that should be cloned |
 
 
 * * *
