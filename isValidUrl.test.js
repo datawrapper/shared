@@ -10,7 +10,7 @@ test('some valid urls', t => {
     t.true(isValidUrl('http://www.test.com/?pageid=123&testid=1524'));
 });
 
-test('some invalud urls', t => {
+test('some invalid urls', t => {
     t.false(isValidUrl('htps://www.datawrapper.de'));
     t.false(isValidUrl('www.example.com'));
     t.false(isValidUrl('http:/www.example.com'));
