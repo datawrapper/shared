@@ -14,7 +14,7 @@
 /* globals Promise */
 
 import _ from 'underscore';
-import dataset from './dataset.js';
+import dataset from './index.js';
 import column from './column.js';
 
 export default function(opts) {
