@@ -1,29 +1,27 @@
 import test from 'ava';
-import sinon from 'sinon';
+import { fake, spy } from 'sinon';
 
 import { fetchJSON, getJSON, patchJSON, postJSON, putJSON, deleteJSON } from './fetch';
 
-const DEFAULT_RESULT = {
+const POSITIVE_RESPONSE = {
     status: 200,
+    statusText: 'OK',
     headers: { 'content-type': 'application/json' },
     text: () => '{"id": 42, "email": "ozzy@example.com", "name": "Ozzy"}'
 };
 
 test.beforeEach(t => {
-    // Create a mock global window object with a fake fetch method.
-    // Pitfall: This omits ava's built-in isolated context and prevents us from running tests concurrently.
-    // As a result, tests need to be run serially!
-    global.window = {
-        fetch: sinon.fake.resolves(DEFAULT_RESULT)
-    };
+    // Create a global window object to attach a fake fetch method to.
+    global.window = {};
 });
 
 test.afterEach.always(t => {
-    // Remove the mock global window object after each test is run.
+    // Remove the mock window object after test is run.
     delete global.window;
 });
 
-test.serial('Call `window.fetch` with given url, HTTP method, credentials, and body)', t => {
+test('Call `window.fetch` with given url, HTTP method, credentials, and body)', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'GET');
@@ -31,47 +29,52 @@ test.serial('Call `window.fetch` with given url, HTTP method, credentials, and b
     t.is(window.fetch.firstCall.args[1].credentials, 'omit');
 });
 
-test.serial('Pass response JSON through a callback upon successfull request', async t => {
-    const callback = sinon.spy();
+test('Pass response JSON through a callback when request succeeds', async t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
+    const callback = spy();
     await fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }', callback);
     t.true(callback.calledWith({ id: 42, name: 'Ozzy', email: 'ozzy@example.com' }));
 });
 
-test.serial('Return a promise that resolves upon successfull request', t => {
-    const request = fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }');
-    return request.then(result => {
-        t.deepEqual(result, { id: 42, name: 'Ozzy', email: 'ozzy@example.com' });
-    });
+test('Return a promise that resolves when request succeeds', async t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
+    const result = await fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }');
+    t.deepEqual(result, { id: 42, name: 'Ozzy', email: 'ozzy@example.com' });
 });
 
-test.serial('Call `window.fetch` with `PATCH` and the given request body', t => {
+test('Call `window.fetch` with `PATCH` and the given request body', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     patchJSON('/some/url', '{ "foo": "bar" }');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'PATCH');
     t.is(window.fetch.firstCall.args[1].body, '{ "foo": "bar" }');
 });
 
-test.serial('Call `window.fetch` with `POST` and the given request body', t => {
+test('Call `window.fetch` with `POST` and the given request body', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     postJSON('/some/url', '{ "foo": "bar" }');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'POST');
     t.is(window.fetch.firstCall.args[1].body, '{ "foo": "bar" }');
 });
 
-test.serial('Call `window.fetch` with `PUT` and the given request body', t => {
+test('Call `window.fetch` with `PUT` and the given request body', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     putJSON('/some/url', '{ "foo": "bar" }');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'PUT');
     t.is(window.fetch.firstCall.args[1].body, '{ "foo": "bar" }');
 });
 
-test.serial('Call `window.fetch` with `GET`', t => {
+test('Call `window.fetch` with `GET`', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     getJSON('/some/url');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'GET');
 });
 
-test.serial('Call `window.fetch` with `DELETE`', t => {
+test('Call `window.fetch` with `DELETE`', t => {
+    window.fetch = fake.resolves(POSITIVE_RESPONSE);
     deleteJSON('/some/url');
     t.is(window.fetch.firstCall.args[0], '/some/url');
     t.is(window.fetch.firstCall.args[1].method, 'DELETE');
