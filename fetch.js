@@ -20,11 +20,10 @@ export function fetchJSON(url, method, credentials, body, callback) {
     return window
         .fetch(url, opts)
         .then(res => {
-            if (res.status !== 200) return new Error(res.statusText);
+            if (!res.ok) throw new Error(res.statusText);
             return res.text();
         })
         .then(text => {
-            // console.log('status', res);
             try {
                 return JSON.parse(text);
             } catch (Error) {
@@ -33,7 +32,10 @@ export function fetchJSON(url, method, credentials, body, callback) {
                 return text;
             }
         })
-        .then(callback)
+        .then(res => {
+            if (callback) callback(res);
+            return res;
+        })
         .catch(err => {
             console.error(err);
         });
@@ -83,6 +85,20 @@ export function postJSON(url, body, callback) {
  */
 export function putJSON(url, body, callback) {
     return fetchJSON(url, 'PUT', 'include', body, callback);
+}
+
+/**
+ * Download and parse a remote JSON endpoint via PATCH. credentials
+ * are included automatically
+ *
+ * @param {string} url
+ * @param {string} body
+ * @param {function} callback
+ *
+ * @returns {Promise}
+ */
+export function patchJSON(url, body, callback) {
+    return fetchJSON(url, 'PATCH', 'include', body, callback);
 }
 
 /**
