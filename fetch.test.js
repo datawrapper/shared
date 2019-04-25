@@ -7,7 +7,14 @@ const POSITIVE_RESPONSE = {
     status: 200,
     statusText: 'OK',
     headers: { 'content-type': 'application/json' },
+    ok: true,
     text: () => '{"id": 42, "email": "ozzy@example.com", "name": "Ozzy"}'
+};
+
+const NEGATIVE_RESPONSE = {
+    status: 404,
+    ok: false,
+    statusText: 'Not Found'
 };
 
 test.beforeEach(t => {
@@ -29,11 +36,18 @@ test('Call `window.fetch` with given url, HTTP method, credentials, and body)', 
     t.is(window.fetch.firstCall.args[1].credentials, 'omit');
 });
 
-test('Pass response JSON through a callback when request succeeds', async t => {
+test('Pass response JSON through a callback upon positive response', async t => {
     window.fetch = fake.resolves(POSITIVE_RESPONSE);
     const callback = spy();
     await fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }', callback);
     t.true(callback.calledWith({ id: 42, name: 'Ozzy', email: 'ozzy@example.com' }));
+});
+
+test('Ignore the callback upon negative response', async t => {
+    window.fetch = fake.resolves(NEGATIVE_RESPONSE);
+    const callback = spy();
+    await fetchJSON('/some/url', 'GET', 'omit', null, callback);
+    t.is(callback.callCount, 0);
 });
 
 test('Return a promise that resolves when request succeeds', async t => {
