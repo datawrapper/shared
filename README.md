@@ -128,8 +128,12 @@ Clones an object
 <a name="colorLightness"></a>
 
 ### colorLightness(hexColor) ⇒ <code>number</code>
-Returns the L*a*b lightness value of a given hexidecimal
-RGB color
+Returns the Lab lightness value of a given hexidecimal
+RGB color. Uses chroma-js to convert from Hex to Lab, but
+only adds a few hundreds bytes to your build.
+
+To use this function, you have to manually install chroma-js using
+`npm install chroma-js`.
 
 **Returns**: <code>number</code> - - the L*a*b lightness, between 0 (black) and 100 (white)  
 
@@ -140,7 +144,7 @@ RGB color
 **Example**  
 ```js
 import colorLightness from '@datawrapper/shared/colorLightness';
-colorLightness('#2A4858')
+colorLightness('#ff3399') // 57.9
 ```
 
 * * *
