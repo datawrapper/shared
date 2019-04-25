@@ -11,9 +11,9 @@ import rgb2lab from 'chroma-js/src/io/lab/rgb2lab';
  * @param {string} hexColor - the RGB color as hexadecimal string, e.g. "#330066"
  * @returns {number} - the L*a*b lightness, between 0 (black) and 100 (white)
  *
- * @exampe
+ * @example
  * import colorLightness from '@datawrapper/shared/colorLightness';
- * colorLightness('#2A4858') //
+ * colorLightness('#2A4858')
  */
 export default function colorLightness(hexColor) {
     return rgb2lab(hex2rgb(hexColor))[0];

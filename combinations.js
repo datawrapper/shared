@@ -1,6 +1,8 @@
 /**
  * computes all combinations of input elements
- * @export
+ *
+ * @exports combinations
+ * @kind function
  *
  * @example
  * // returns [['a','b'], ['a'], ['b']]

@@ -23,6 +23,7 @@ shared.fetchJSON();
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
+* [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [configSchema](#configSchema) : <code>object</code>
 
 
@@ -131,13 +132,16 @@ Returns the L*a*b lightness value of a given hexidecimal
 RGB color
 
 **Returns**: <code>number</code> - - the L*a*b lightness, between 0 (black) and 100 (white)  
-**Exampe**: import colorLightness from '@datawrapper/shared/colorLightness';
-colorLightness('#2A4858') //  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | hexColor | <code>string</code> | the RGB color as hexadecimal string, e.g. "#330066" |
 
+**Example**  
+```js
+import colorLightness from '@datawrapper/shared/colorLightness';
+colorLightness('#2A4858')
+```
 
 * * *
 
@@ -159,6 +163,30 @@ and are also converted to lowercase.
 import columnNameToVariable from '@datawrapper/shared/columnNameToVariable';
 
 columnNameToVariable('GDP (per cap.)') // gdp_per_cap
+```
+
+* * *
+
+<a name="combinations"></a>
+
+### combinations(input) ⇒ <code>Array.&lt;array&gt;</code>
+computes all combinations of input elements
+
+**Returns**: <code>Array.&lt;array&gt;</code> - -- array of combinations  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| input | <code>Array.&lt;array&gt;</code> | - array of input objects, could be numbers, strings, etc |
+
+**Example**  
+```js
+// returns [['a','b'], ['a'], ['b']]
+combinations(['a', 'b']);
+```
+**Example**  
+```js
+// returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
+combinations([1,2,3])
 ```
 
 * * *
