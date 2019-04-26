@@ -35,6 +35,34 @@ test('nasty tsv with new lines in quoted values', async t => {
     t.deepEqual(dataset.columns().map(c => c.type()), ['text', 'number', 'number', 'number']);
 });
 
+test('german csv with quoted html umlauts', async t => {
+    const csv = `Landkreis;SPD ;CDU;"Gr&uuml;ne";Die Linke;AfD;FDP;Sonstige
+Elbe-Elster;32;16,8;14,9;23,2;2,6;4,8;5,7
+Havelland;30,7;22,2;15,3;17,6;5,6;5,3;3,3
+"M&auml;rkisch-Oderland";28,6;19,9;23,2;17,5;5,1;3,9;1,8
+Oberhavel;29,1;20,2;15,1;18,7;7,5;5;4,4
+Prignitz;25,9;26,6;16,5;17,1;7,4;3,7;2,8
+"Spree-Nei&szlig;e";30,3;16,5;14,1;26,9;2,7;5,5;4
+Uckermark;32,8;20,5;17,3;20,1;2,8;3,4;3,1
+`;
+    const dataset = await delimited({ csv }).dataset();
+    // column count
+    t.is(dataset.numColumns(), 8);
+    // row count
+    t.is(dataset.numRows(), 7);
+    // column types
+    t.deepEqual(dataset.columns().map(c => c.type()), [
+        'text',
+        'number',
+        'number',
+        'number',
+        'number',
+        'number',
+        'number',
+        'number'
+    ]);
+});
+
 test('german debt dataset, transposed', async t => {
     const csv = `"","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016"
 "New debt in Bio.","14,3","11,5","34,1","44","17,3","34,8","19,6","14,6","10,3","1,1"
