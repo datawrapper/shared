@@ -18,17 +18,17 @@ shared.fetchJSON();
 ## API reference
 
 
-* [Chart](docs/chart.md) ⇒ <code>class</code>
-* [Column](docs/column.md) ⇒ <code>class</code>
-* [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
+* [Chart](docs/chart.md) ⇒ <code>class</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
+* [Column](docs/column.md) ⇒ <code>class</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [configSchema](#configSchema) : <code>object</code>
+* [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
