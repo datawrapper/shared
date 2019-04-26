@@ -15,7 +15,7 @@
 
 import _ from 'underscore';
 import columnTypes from './columnTypes';
-import purifyHtml from '../../shared/purifyHtml';
+import purifyHtml from '../purifyHtml';
 
 /**
  * @class dw.Column
