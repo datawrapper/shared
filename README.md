@@ -17,16 +17,18 @@ shared.fetchJSON();
 
 ## API reference
 
+
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
+* [Chart](docs/chart.md) ⇒ <code>class</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
+* [Column](docs/column.md) ⇒ <code>class</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [configSchema](#configSchema) : <code>object</code>
-
-
+* [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
@@ -42,7 +44,8 @@ shared.fetchJSON();
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
 * [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
 * [set(object, key, value)](#set) ⇒
-* [toFixed(value)](#toFixed) ⇒ <code>string</code>* [trackEvent(category, category, category, category)](#trackEvent)
+* [toFixed(value)](#toFixed) ⇒ <code>string</code>
+* [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
 
 

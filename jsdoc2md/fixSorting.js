@@ -14,7 +14,8 @@ const toc =
         .shift()
         .trim()
         .split('* ')
-        .sort()
+        .map(s => s.trim() + '\n')
+        .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
         .join('* ') +
     '\n\n';
 
