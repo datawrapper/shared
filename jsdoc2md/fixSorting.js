@@ -14,6 +14,7 @@ const toc =
         .shift()
         .trim()
         .split('* ')
+        .map(s => s.trim() + '\n')
         .sort()
         .join('* ') +
     '\n\n';

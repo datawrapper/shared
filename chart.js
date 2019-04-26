@@ -26,7 +26,9 @@ const storeData = _.debounce((chart, callback) => {
 }, 1000);
 
 class Chart extends Store {
-    // load the dataset
+    /*
+     * load a csv or json dataset
+     */
     load(csv, externalData) {
         const dsopts = {
             firstRowIsHeader: this.getMetadata('data.horizontal-header', true),
