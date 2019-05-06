@@ -287,8 +287,12 @@ equalish(0.333, 1/3)
 ### estimateTextWidth(text, fontSize) ⇒ <code>number</code>
 returns the estimated width of a given text in Roboto.
 this method has proven to be a good compromise between pixel-perfect
-but expensive text measuring methods using canvas or getClientBoundingRext
+but expensive text measuring methods using canvas or getClientBoundingRect
 and just multiplying the number of characters with a fixed width.
+
+be warned that this is just a rough estimate of the text width. the
+character widths will vary from typeface to typeface and may be
+off quite a bit for some fonts (like monospace fonts).
 
 **Export**:   
 
