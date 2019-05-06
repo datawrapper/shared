@@ -31,6 +31,7 @@ shared.fetchJSON();
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [estimateTextWidth(text)](#estimateTextWidth) ⇒ <code>number</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
 * [get(object, key, _default)](#get) ⇒
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
@@ -278,6 +279,23 @@ equalish(0.333333, 1/3)
 // returns false
 equalish(0.333, 1/3)
 ```
+
+* * *
+
+<a name="estimateTextWidth"></a>
+
+### estimateTextWidth(text) ⇒ <code>number</code>
+returns the estimated width of a given text in Roboto.
+this method has proven to be a good compromise between pixel-perfect
+but expensive text measuring methods using canvas or getClientBoundingRext
+and just multiplying the number of characters with a fixed width.
+
+**Export**:   
+
+| Param | Type |
+| --- | --- |
+| text | <code>string</code> | 
+
 
 * * *
 
