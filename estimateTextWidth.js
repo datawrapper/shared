@@ -7,8 +7,8 @@
  * @exports estimateTextWidth
  * @kind function
  *
- * @param {string} text
- * @param {number} font size (defaults to 14)
+ * @param {string} text - the text to measure
+ * @param {number} fontSize - the output font size (optional, default is 14)
  *
  * @example
  * import estimateTextWidth from '@datawrapper/shared/estimateTextWidth';
