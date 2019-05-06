@@ -8,6 +8,12 @@
  * @kind function
  *
  * @param {string} text
+ * @param {number} font size (defaults to 14)
+ *
+ * @example
+ * import estimateTextWidth from '@datawrapper/shared/estimateTextWidth';
+ * // or import {estimateTextWidth} from '@datawrapper/shared';
+ * const width = estimateTextWidth('my text', 12);
  *
  * @export
  * @returns {number}

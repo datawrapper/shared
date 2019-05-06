@@ -7,6 +7,10 @@ test('test a few simple strings', t => {
     t.is(estimateTextWidth('aaa'), 27);
 });
 
+test('test a different font size', t => {
+    t.is(estimateTextWidth('aa', 7), 9);
+});
+
 test('test some more strings', t => {
     t.snapshot(estimateTextWidth('hello world'));
     t.snapshot(estimateTextWidth('1234.56'));
