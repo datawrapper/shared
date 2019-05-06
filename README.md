@@ -31,6 +31,7 @@ shared.fetchJSON();
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
 * [get(object, key, _default)](#get) ⇒
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
@@ -277,6 +278,34 @@ equalish(0.333333, 1/3)
 ```js
 // returns false
 equalish(0.333, 1/3)
+```
+
+* * *
+
+<a name="estimateTextWidth"></a>
+
+### estimateTextWidth(text, fontSize) ⇒ <code>number</code>
+returns the estimated width of a given text in Roboto.
+this method has proven to be a good compromise between pixel-perfect
+but expensive text measuring methods using canvas or getClientBoundingRect
+and just multiplying the number of characters with a fixed width.
+
+be warned that this is just a rough estimate of the text width. the
+character widths will vary from typeface to typeface and may be
+off quite a bit for some fonts (like monospace fonts).
+
+**Export**:   
+
+| Param | Type | Description |
+| --- | --- | --- |
+| text | <code>string</code> | the text to measure |
+| fontSize | <code>number</code> | the output font size (optional, default is 14) |
+
+**Example**  
+```js
+import estimateTextWidth from '@datawrapper/shared/estimateTextWidth';
+// or import {estimateTextWidth} from '@datawrapper/shared';
+const width = estimateTextWidth('my text', 12);
 ```
 
 * * *
