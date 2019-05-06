@@ -12,7 +12,7 @@ test('test a different font size', t => {
 });
 
 test('test some more strings', t => {
-    t.snapshot(estimateTextWidth('hello world'));
-    t.snapshot(estimateTextWidth('1234.56'));
-    t.snapshot(estimateTextWidth('1234.56 $'));
+    t.is(estimateTextWidth('hello world'), 78);
+    t.is(estimateTextWidth('1234.56'), 58);
+    t.is(estimateTextWidth('1234.56 $'), 71);
 });
