@@ -1,7 +1,7 @@
 /**
  * returns the estimated width of a given text in Roboto.
  * this method has proven to be a good compromise between pixel-perfect
- * but expensive text measuring methods using canvas or getClientBoundingRext
+ * but expensive text measuring methods using canvas or getClientBoundingRect
  * and just multiplying the number of characters with a fixed width.
  *
  * @exports estimateTextWidth
