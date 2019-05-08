@@ -1,5 +1,23 @@
 /* globals dw */
 
+let __messages = {};
+
+function initMessages(scope = 'core') {
+    // let's check if we're in a chart
+    if (scope === 'chart') {
+        if (window.__dw && window.__dw.vis && window.__dw.vis.meta) {
+            // use in-chart translations
+            __messages[scope] = window.__dw.vis.meta.locale || {};
+        }
+    } else {
+        // use backend translations
+        __messages[scope] =
+            scope === 'core'
+                ? dw.backend.__messages.core
+                : Object.assign({}, dw.backend.__messages.core, dw.backend.__messages[scope]);
+    }
+}
+
 /**
  * translates a message key. translations are originally stored in a
  * Google spreadsheet that we're pulling into Datawrapper using the
@@ -16,16 +34,18 @@
  */
 function __(key, scope = 'core') {
     key = key.trim();
-    if (!dw.backend.__messages[scope]) return 'MISSING:' + key;
-    var translation = dw.backend.__messages[scope][key] || dw.backend.__messages.core[key] || key;
+    if (!__messages[scope]) initMessages(scope);
+    if (!__messages[scope][key]) return 'MISSING:' + key;
+    var translation = __messages[scope][key];
 
     if (arguments.length > 2) {
-        for (var i = 2; i < arguments.length; i++) {
-            var index = i - 1;
-            translation = translation.replace('$' + index, arguments[i]);
-        }
+        // replace $0, $1 etc with remaining arguments
+        translation = translation.replace(/\$(\d)/g, (m, i) => {
+            i = 2 + Number(i);
+            if (arguments[i] === undefined) return m;
+            return arguments[i];
+        });
     }
-
     return translation;
 }
 
