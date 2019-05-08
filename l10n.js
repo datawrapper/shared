@@ -38,7 +38,7 @@ function __(key, scope = 'core') {
     if (!__messages[scope][key]) return 'MISSING:' + key;
     var translation = __messages[scope][key];
 
-    if (arguments.length > 2) {
+    if (typeof translation === 'string' && arguments.length > 2) {
         // replace $0, $1 etc with remaining arguments
         translation = translation.replace(/\$(\d)/g, (m, i) => {
             i = 2 + Number(i);
