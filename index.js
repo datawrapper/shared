@@ -15,4 +15,5 @@ export { default as observeFonts } from './observeFonts.js';
 export { default as postEvent } from './postEvent.js';
 export { default as purifyHtml } from './purifyHtml.js';
 export { default as set } from './set.js';
+export { default as tailLength } from './tailLength.js';
 export { default as toFixed } from './toFixed.js';
