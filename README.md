@@ -45,6 +45,7 @@ shared.fetchJSON();
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
 * [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
 * [set(object, key, value)](#set) ⇒
+* [tailLength(value)](#tailLength) ⇒ <code>number</code>
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
@@ -522,6 +523,30 @@ way doesn't exist.
 | key | <code>String</code> | dot-separated keys aka "path" to the property |
 | value | <code>\*</code> | the value to be set |
 
+
+* * *
+
+<a name="tailLength"></a>
+
+### tailLength(value) ⇒ <code>number</code>
+returns the length of the "tail" of a number, meaning the
+number of meaningful decimal places
+
+
+| Param | Type |
+| --- | --- |
+| value | <code>number</code> | 
+
+**Example**  
+```js
+// returns 3
+tailLength(3.123)
+```
+**Example**  
+```js
+// returns 2
+tailLength(3.12999999)
+```
 
 * * *
 
