@@ -3,6 +3,12 @@
 In order to avoid this collection of shared methods to become an absolute mess, you need to follow the contributing
 guide if you want to change or add code to this repository. 
 
+### Everything should be a pull request
+
+Please do not push any changes directly to the `master` branch (unless it's a very urgent bug fix). Instead
+make your changes in a `branch` and create a pull requests and request a review. The PR reviewer will then
+help you with the code change and check that it passes the guidelines outlined in this document.
+
 ### Document exported functions
 
 Every exported function and class must be documented using [valid JSdoc syntax](https://jsdoc.app/) or
