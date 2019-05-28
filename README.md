@@ -21,6 +21,9 @@ shared.fetchJSON();
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
+* [autoTickFormat(column)](#autoTickFormat) ⇒ <code>string</code>
+* [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
+* [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
 * [Chart](docs/chart.md) ⇒ <code>class</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
@@ -112,6 +115,63 @@ console.log(arr);
 
 console.log(arrayToObject(arr));
 Object { foo: "bar" }
+```
+
+* * *
+
+<a name="autoTickFormat"></a>
+
+### autoTickFormat(column) ⇒ <code>string</code>
+Convenient wrapper around autoTickFormatNumber and autoTickFormatDate.
+Returns either a numeral.js or day.js format, depending on the column type.
+
+**Returns**: <code>string</code> - -- a numeral|dayjs format string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | - dw.column instance that is displayed on the axis |
+
+
+* * *
+
+<a name="autoTickFormatDate"></a>
+
+### autoTickFormatDate(range, precision) ⇒ <code>string</code>
+auto-detects a nice default axis tick format for date
+columns based on the input range and precision
+
+**Returns**: <code>string</code> - - day.js compatible format string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| range | <code>array</code> | [min, max] of the data |
+| precision | <code>string</code> | the input data precision (year|quarter|month|week|day|...) |
+
+**Example**  
+```js
+import {autoTickFormatDate} from '@datawrapper/shared/autoTickFormat';
+autoTickFormatDate([new Date(2000,0,1), new Date(2002,0,1)], 'quarter'); // 'YYYY|[Q]Q'
+```
+
+* * *
+
+<a name="autoTickFormatNumber"></a>
+
+### autoTickFormatNumber(range) ⇒ <code>string</code>
+auto-detects a nice default axis tick format for numeric
+columns based on the input range
+
+**Returns**: <code>string</code> - - numeral.js compatible format string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| range | <code>array</code> | [min, max] of the data |
+
+**Example**  
+```js
+import {autoTickFormatNumber} from '@datawrapper/shared/autoTickFormat';
+autoTickFormatNumber([0,100]); // '0,0.[00]'
+autoTickFormatNumber([0.2,0.7]); // '0,0.00[00]'
 ```
 
 * * *
