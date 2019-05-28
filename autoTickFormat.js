@@ -52,6 +52,8 @@ export function autoTickFormatDate(range, precision = 'day') {
 }
 
 /**
+ * Convenient wrapper around autoTickFormatNumber and autoTickFormatDate.
+ * Returns either a numeral.js or day.js format, depending on the column type.
  *
  * @exports autoTickFormat
  * @kind function

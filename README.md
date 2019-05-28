@@ -122,6 +122,9 @@ Object { foo: "bar" }
 <a name="autoTickFormat"></a>
 
 ### autoTickFormat(column) ⇒ <code>string</code>
+Convenient wrapper around autoTickFormatNumber and autoTickFormatDate.
+Returns either a numeral.js or day.js format, depending on the column type.
+
 **Returns**: <code>string</code> - -- a numeral|dayjs format string  
 
 | Param | Type | Description |
