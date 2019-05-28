@@ -26,7 +26,7 @@ test('auto-tick format for date columns (default precision)', t => {
 
 test('auto-tick format for date columns (precision year)', t => {
     const d0 = date(2000);
-    t.is(autoTickFormatDate([d0, date(2010)], 'year'), '´YY');
+    t.is(autoTickFormatDate([d0, date(2010)], 'year'), "'YY");
     t.is(autoTickFormatDate([d0, date(2004)], 'year'), 'YYYY');
     t.is(autoTickFormatDate([d0, date(2002)], 'year'), 'YYYY|MMM');
 });
