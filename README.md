@@ -41,7 +41,7 @@ shared.fetchJSON();
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
-* [observeFoonts(fontsJSON, typographyJSON)](#observeFoonts) ⇒ <code>Promise</code>
+* [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
 * [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
@@ -470,9 +470,9 @@ injects a `<link>` element to the page to load a new stylesheet
 
 * * *
 
-<a name="observeFoonts"></a>
+<a name="observeFonts"></a>
 
-### observeFoonts(fontsJSON, typographyJSON) ⇒ <code>Promise</code>
+### observeFonts(fontsJSON, typographyJSON) ⇒ <code>Promise</code>
 Function that returns a promise, that resolves when all fonts,
 specified in fontsJSON and typographyJSON have been loaded.
 

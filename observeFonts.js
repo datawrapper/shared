@@ -4,7 +4,7 @@ import FontFaceObserver from 'fontfaceobserver';
  * Function that returns a promise, that resolves when all fonts,
  * specified in fontsJSON and typographyJSON have been loaded.
  *
- * @exports observeFoonts
+ * @exports observeFonts
  * @kind function
  *
  * @param {Object|Array} fontsJSON
