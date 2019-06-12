@@ -101,10 +101,23 @@ schema.RenderClient = Joi.object({
     })
 }).unknown();
 
+schema.Crons = Joi.object({
+    screenshots: Joi.object({
+        s3: [
+            Joi.object({
+                bucket: Joi.string(),
+                path: Joi.string()
+            }),
+            Joi.boolean().valid(false)
+        ]
+    })
+});
+
 const schemaAll = {
     frontend: schema.Frontend,
     api: schema.API,
     orm: schema.ORM,
+    crons: schema.Crons,
     'render-server': schema.RenderServer,
     'render-client': schema.RenderClient,
     plugins: Joi.object()
