@@ -3,6 +3,7 @@ import column from './column.js';
 
 const testData = '5.4\t4.2\t4\t3.6\t3.4\t4.5'.split('\t');
 const col = column('my title', testData);
+const col2 = column('my title', ['18661', '18683', '17103', '16401', '16208', '15025']);
 
 test('basic column api: returns the title', t => {
     t.is(col.name(), 'my title');
@@ -11,6 +12,7 @@ test('basic column api: returns the title', t => {
 
 test('detects column type number', t => {
     t.is(col.type(), 'number');
+    t.is(col2.type(), 'number');
 });
 
 test('num rows', t => {

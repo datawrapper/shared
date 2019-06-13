@@ -7,6 +7,7 @@ const s0 = /[ \-/.]?/.source; // optional separator
 const s1 = /[ \-/.]/.source; // mandatory separator
 const s2 = /[ \-/.;]/.source; // mandatory separator
 const s3 = /[ \-|T]/.source; // mandatory separator
+const sM = /[ \-/.m]/.source; // mandatory separator
 const rx = {
     YY: { parse: /['’‘]?(\d{2})/ },
     YYYY: { test: /([12]\d{3})/, parse: /(\d{4})/ },
@@ -14,7 +15,6 @@ const rx = {
     H: { parse: /h([12])/ },
     Q: { parse: /q([1234])/ },
     W: { parse: /w([0-5]?[0-9])/ },
-    Mm: { test: /m?(0?[1-9]|1[0-2])/, parse: /m?(0?[1-9]|1[0-2])/ },
     MM: { test: /(0?[1-9]|1[0-2])/, parse: /(0?[1-9]|1[0-2])/ },
     DD: { parse: /(0?[1-9]|[1-2][0-9]|3[01])/ },
     DOW: { parse: /([0-7])/ },
@@ -130,8 +130,8 @@ var knownFormats = {
         precision: 'quarter'
     },
     'YYYY-M': {
-        test: reg(rx.YYYY.test, s0, rx.Mm.test),
-        parse: reg(rx.YYYY.parse, s0, rx.Mm.parse),
+        test: reg(rx.YYYY.test, sM, rx.MM.test),
+        parse: reg(rx.YYYY.parse, sM, rx.MM.parse),
         precision: 'month'
     },
     'M-YYYY': {
