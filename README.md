@@ -315,6 +315,14 @@ are included automatically
 | url | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { deleteJSON } from '@datawrapper/shared/fetch';
+
+deleteJSON('http://api.example.org/chart/123').then(() => {
+    console.log('deleted!')
+});
+```
 
 * * *
 
@@ -385,6 +393,11 @@ Download and parse a remote JSON document
 | body | <code>string</code> |  |
 | callback | <code>function</code> |  |
 
+**Example**  
+```js
+import { fetchJSON } from '@datawrapper/shared/fetch';
+fetchJSON('http://api.example.org', 'GET', 'include');
+```
 
 * * *
 
@@ -426,6 +439,19 @@ Download and parse a JSON document via GET
 | credentials | <code>string</code> \| <code>undefined</code> | optional, set to undefined to disable credentials |
 | callback | <code>function</code> |  |
 
+**Example**  
+```js
+import { getJSON } from '@datawrapper/shared/fetch';
+// use it callback style
+getJSON('http://api.example.org', 'include', function(data) {
+    console.log(data);
+});
+// or promise-style
+getJSON('http://api.example.org')
+  .then(data => {
+     console.log(data);
+  });
+```
 
 * * *
 
@@ -453,6 +479,14 @@ injects a `<script>` element to the page to load a new JS script
 | src | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { loadScript } from '@datawrapper/shared/fetch';
+
+loadScript('/static/js/library.js', () => {
+    console.log('library is loaded');
+})
+```
 
 * * *
 
@@ -467,6 +501,14 @@ injects a `<link>` element to the page to load a new stylesheet
 | src | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { loadStylesheet } from '@datawrapper/shared/fetch';
+
+loadStylesheet('/static/css/library.css', () => {
+    console.log('library styles are loaded');
+})
+```
 
 * * *
 
@@ -498,6 +540,15 @@ are included automatically
 | body | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { patchJSON } from '@datawrapper/shared/fetch';
+
+patchJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
 
 * * *
 
@@ -534,6 +585,15 @@ are included automatically
 | body | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { postJSON } from '@datawrapper/shared/fetch';
+
+postJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
 
 * * *
 
@@ -565,6 +625,15 @@ are included automatically
 | body | <code>string</code> | 
 | callback | <code>function</code> | 
 
+**Example**  
+```js
+import { putJSON } from '@datawrapper/shared/fetch';
+
+putJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
 
 * * *
 

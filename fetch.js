@@ -8,6 +8,10 @@
  * @param {function} callback
  *
  * @returns {Promise}
+ *
+ * @example
+ * import { fetchJSON } from '@datawrapper/shared/fetch';
+ * fetchJSON('http://api.example.org', 'GET', 'include');
  */
 export function fetchJSON(url, method, credentials, body, callback) {
     var opts = {
@@ -49,6 +53,18 @@ export function fetchJSON(url, method, credentials, body, callback) {
  * @param {function} callback
  *
  * @returns {Promise}
+ *
+ * @example
+ * import { getJSON } from '@datawrapper/shared/fetch';
+ * // use it callback style
+ * getJSON('http://api.example.org', 'include', function(data) {
+ *     console.log(data);
+ * });
+ * // or promise-style
+ * getJSON('http://api.example.org')
+ *   .then(data => {
+ *      console.log(data);
+ *   });
  */
 export function getJSON(url, credentials, callback) {
     if (arguments.length === 2) {
@@ -68,6 +84,13 @@ export function getJSON(url, credentials, callback) {
  * @param {function} callback
  *
  * @returns {Promise}
+ * @example
+ * import { postJSON } from '@datawrapper/shared/fetch';
+ *
+ * postJSON('http://api.example.org', JSON.stringify({
+ *    query: 'foo',
+ *    page: 12
+ * }));
  */
 export function postJSON(url, body, callback) {
     return fetchJSON(url, 'POST', 'include', body, callback);
@@ -82,6 +105,13 @@ export function postJSON(url, body, callback) {
  * @param {function} callback
  *
  * @returns {Promise}
+ * @example
+ * import { putJSON } from '@datawrapper/shared/fetch';
+ *
+ * putJSON('http://api.example.org', JSON.stringify({
+ *    query: 'foo',
+ *    page: 12
+ * }));
  */
 export function putJSON(url, body, callback) {
     return fetchJSON(url, 'PUT', 'include', body, callback);
@@ -96,6 +126,13 @@ export function putJSON(url, body, callback) {
  * @param {function} callback
  *
  * @returns {Promise}
+ * @example
+ * import { patchJSON } from '@datawrapper/shared/fetch';
+ *
+ * patchJSON('http://api.example.org', JSON.stringify({
+ *    query: 'foo',
+ *    page: 12
+ * }));
  */
 export function patchJSON(url, body, callback) {
     return fetchJSON(url, 'PATCH', 'include', body, callback);
@@ -109,6 +146,13 @@ export function patchJSON(url, body, callback) {
  * @param {function} callback
  *
  * @returns {Promise}
+ *
+ * @example
+ * import { deleteJSON } from '@datawrapper/shared/fetch';
+ *
+ * deleteJSON('http://api.example.org/chart/123').then(() => {
+ *     console.log('deleted!')
+ * });
  */
 export function deleteJSON(url, callback) {
     return fetchJSON(url, 'DELETE', 'include', null, callback);
@@ -119,6 +163,13 @@ export function deleteJSON(url, callback) {
  *
  * @param {string} src
  * @param {function} callback
+ *
+ * @example
+ * import { loadScript } from '@datawrapper/shared/fetch';
+ *
+ * loadScript('/static/js/library.js', () => {
+ *     console.log('library is loaded');
+ * })
  */
 export function loadScript(src, callback) {
     const script = document.createElement('script');
@@ -134,6 +185,13 @@ export function loadScript(src, callback) {
  *
  * @param {string} src
  * @param {function} callback
+ *
+ * @example
+ * import { loadStylesheet } from '@datawrapper/shared/fetch';
+ *
+ * loadStylesheet('/static/css/library.css', () => {
+ *     console.log('library styles are loaded');
+ * })
  */
 export function loadStylesheet(src, callback) {
     const link = document.createElement('link');
