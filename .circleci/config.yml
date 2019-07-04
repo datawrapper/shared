@@ -15,7 +15,7 @@ jobs:
             - restore_cache:
                   key: v1-install-cache-{{ checksum "package-lock.json" }}
 
-            - run: npm ci && npm install --no-save @hapi/joi
+            - run: npm ci
 
             - save_cache:
                   <<: *cache

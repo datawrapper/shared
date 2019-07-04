@@ -30,7 +30,6 @@ shared.fetchJSON();
 * [Column](docs/column.md) ⇒ <code>class</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
-* [configSchema](#configSchema) : <code>object</code>
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
@@ -256,49 +255,6 @@ combinations(['a', 'b']);
 ```js
 // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
 combinations([1,2,3])
-```
-
-* * *
-
-<a name="configSchema"></a>
-
-### configSchema : <code>object</code>
-`@datawrapper/shared/configSchema` provides a set of useful validation functions for service
-config validation.
-
-> This object is not included with `import shared from "@datawrapper/shared"`.
-> It has a dependency on `Joi` which is quite a big validation library for Node server projects.
-
-Each function returns the configuration object when validation succeeds.
-When validation fails (eg. missing or invalid key) a function will throw a `ValidationError`.
-
-Example function signature: `function validateAPI (config : object) : object`
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| validateAPI | <code>function</code> | Validate an API server config |
-| validateORM | <code>function</code> | Validate an ORM initialization config |
-| validateFrontend | <code>function</code> | Validate a frontend server config |
-| validateRenderServer | <code>function</code> | Validate a render server config |
-| validateRenderClient | <code>function</code> | Validate a render client config |
-| validateAll | <code>function</code> | Validate a complete config |
-
-**Example**  
-```js
-// validate complete config
-const { validateAll } = require('@datawrapper/shared/configSchema')
-validateAll(config)
-
-// validate only api config
-const { validateAPI } = require('@datawrapper/shared/configSchema')
-validateAPI(config.api)
-
-// if a service relies on multiple configuration objects but not all. Validate the parts needed.
-const { validateAPI, validateORM } = require('@datawrapper/shared/configSchema')
-validateAPI(config.api)
-validateORM(config.orm)
 ```
 
 * * *
