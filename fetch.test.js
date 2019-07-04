@@ -17,16 +17,6 @@ const NEGATIVE_RESPONSE = {
     statusText: 'Not Found'
 };
 
-test.beforeEach(t => {
-    // Create a global window object to attach a fake fetch method to.
-    global.window = {};
-});
-
-test.afterEach.always(t => {
-    // Remove the mock window object after test is run.
-    delete global.window;
-});
-
 test('Call `window.fetch` with given url, HTTP method, credentials, and body)', t => {
     window.fetch = fake.resolves(POSITIVE_RESPONSE);
     fetchJSON('/some/url', 'GET', 'omit', '{ "foo": "bar" }');
