@@ -29,18 +29,18 @@ export default function(visualization) {
             row: originRowNameFromDataset(index)
         };
     });
-    const highlightedKeyLabels = visualization.get('metadata.visualize.highlighted-series', []);
+    const highlightedKeyLabels = visualization.get('highlighted-series', []);
     return highlightingCandidates.map(candidate =>
         highlightedKeyLabels.includes(candidate.key) ||
         highlightedKeyLabels.includes(candidate.label) ||
         highlightedKeyLabels.includes(candidate.row)
             ? {
-                  key: candidate,
-                  highlighting: true
+                  rowInfo: candidate,
+                  highlight: true
               }
             : {
-                  key: candidate,
-                  highlighting: false
+                  rowInfo: candidate,
+                  highlight: false
               }
     );
 }
