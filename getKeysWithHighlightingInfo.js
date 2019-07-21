@@ -16,17 +16,14 @@
  * was chosen by the user to be highlighted.
  *
  */
-
-// todo test.
-
 export default function(visualization) {
-    const originRowNameFromDataset = visualization.axes(true).labels.val;
+    const valuesFromDataset = visualization.axes(true).labels.val;
     const keys = visualization.keys();
     const highlightingCandidates = keys.map((key, index) => {
         return {
             key: key,
             label: visualization.keyLabel(key),
-            row: originRowNameFromDataset(index)
+            row: valuesFromDataset(index)
         };
     });
     const highlightedKeyLabels = visualization.get('highlighted-series', []);

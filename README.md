@@ -37,6 +37,7 @@ shared.fetchJSON();
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
 * [get(object, key, _default)](#get) ⇒
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
+* [getKeysWithHighlightingInfo(visualization)](#getKeysWithHighlightingInfo) ⇒ <code>array</code>
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
@@ -406,6 +407,26 @@ getJSON('http://api.example.org')
      console.log(data);
   });
 ```
+
+* * *
+
+<a name="getKeysWithHighlightingInfo"></a>
+
+### getKeysWithHighlightingInfo(visualization) ⇒ <code>array</code>
+Highlighting happens by "key", which means actually by row of the dataset, according to the
+keys()-implementation in dw.visualization.base.js.
+This method returns an array of all keys/rows, where the index is the index in the dataset
+and the value includes the key of the row and the boolean "highlighting" indicating, if that row
+was chosen by the user to be highlighted.
+
+**Returns**: <code>array</code> - - array of all keys/rows, where the index is the index in the dataset
+and the value includes the key of the row and the boolean "highlighting" indicating, if that row
+was chosen by the user to be highlighted.  
+
+| Param | Description |
+| --- | --- |
+| visualization | the visualization object (vis, me, this, whatever has been registered) |
+
 
 * * *
 
