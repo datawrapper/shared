@@ -1,7 +1,7 @@
 import test from 'ava';
-import CodedError from './codedError';
+import CodedError from './CodedError';
 
-test('api error preserves code', t => {
+test('CodedError preserves code', t => {
     const error = new CodedError('notFound', 'the chart was not found');
     t.is(error.code, 'notFound');
     t.is(error.message, 'the chart was not found');
