@@ -310,7 +310,6 @@ deleteJSON('http://api.example.org/chart/123').then(() => {
 ### equalish(a, b) ⇒ <code>boolean</code>
 returns true if two numeric values are close enough
 
-**Export**:   
 
 | Param | Type |
 | --- | --- |
@@ -342,7 +341,6 @@ be warned that this is just a rough estimate of the text width. the
 character widths will vary from typeface to typeface and may be
 off quite a bit for some fonts (like monospace fonts).
 
-**Export**:   
 
 | Param | Type | Description |
 | --- | --- | --- |
