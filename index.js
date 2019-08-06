@@ -1,4 +1,5 @@
 export { default as analytics } from './analytics.js';
+export { default as apiError } from './apiError.js';
 export { default as area } from './area.js';
 export { default as arrayToObject } from './arrayToObject.js';
 export { default as autoTickFormat } from './autoTickFormat.js';

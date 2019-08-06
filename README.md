@@ -19,6 +19,7 @@ shared.fetchJSON();
 
 
 * [__(key, scope)](#__) ⇒ <code>string</code>
+* [ApiError](#ApiError)
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
 * [autoTickFormat(column)](#autoTickFormat) ⇒ <code>string</code>
@@ -40,6 +41,7 @@ shared.fetchJSON();
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
+* [new ApiError([string], [string])](#new_ApiError_new)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
@@ -52,6 +54,12 @@ shared.fetchJSON();
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
 
+
+<a name="ApiError"></a>
+
+## ApiError
+
+* * *
 
 <a name="__"></a>
 
@@ -465,6 +473,18 @@ loadStylesheet('/static/css/library.css', () => {
     console.log('library styles are loaded');
 })
 ```
+
+* * *
+
+<a name="new_ApiError_new"></a>
+
+#### new ApiError([string], [string])
+
+| Param | Description |
+| --- | --- |
+| [string] | code    a valid @hapijs/boom error code, e.g. "notFound" |
+| [string] | message  an optional plain english message with more details |
+
 
 * * *
 
