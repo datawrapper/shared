@@ -38,6 +38,7 @@ shared.fetchJSON();
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
 * [get(object, key, _default)](#get) ⇒
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
+* [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
@@ -428,6 +429,34 @@ getJSON('http://api.example.org')
   .then(data => {
      console.log(data);
   });
+```
+
+* * *
+
+<a name="highlightTimer"></a>
+
+### highlightTimer(action, delay) ⇒ <code>object</code>
+A delayed highlight setter
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| action | <code>function</code> | the highlight action callback |
+| delay | <code>int</code> | how long something needs to be highlighted before 		the highlight triggers (in milliseconds) |
+
+**Example**  
+```js
+import {highlightTimer} from '@datawrapper/shared';
+const myTimer = highlightTimer(value => {
+    if (value) {
+        selection.style('opacity', d => d === value ? 1 : 0.3);
+    } else {
+        selection.style('opacity', 1);
+    }
+});
+
+lines.on('mouseenter', d => myTimer.set(d));
+chart.on('mouseleave', myTimer.clear);
 ```
 
 * * *
