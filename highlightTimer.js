@@ -33,14 +33,10 @@ export default function highlightTimer(action, delay = 700) {
                 setTimeout(
                     () => {
                         inactive = false;
-                        action(value);
+                        action(highlighted);
                     },
                     inactive ? delay : 0
                 );
-                if (value !== highlighted) {
-                    highlighted = value;
-                    action(value);
-                }
             }
             highlighted = value;
         },
