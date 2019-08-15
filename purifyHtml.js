@@ -33,7 +33,7 @@ export default function purifyHTML(input, allowed) {
     for (var i = 0; i < sel.length; i++) {
         if (sel[i].nodeName.toLowerCase() === 'a') {
             // special treatment for <a> elements
-            sel[i].setAttribute('target', '_blank');
+            if (sel[i].getAttribute('target') !== '_self') sel[i].setAttribute('target', '_blank');
             sel[i].setAttribute('rel', 'nofollow noopener noreferrer');
         }
         for (var j = 0; j < sel[i].attributes.length; j++) {
