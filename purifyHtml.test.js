@@ -40,10 +40,17 @@ test('links get target="_blank" and rel="" set automatically', t => {
     );
 });
 
-test('links with existing target get overwritten', t => {
+test('links with existing target != _self get overwritten', t => {
     t.is(
         purifyHtml('check out <a href="https://example.com" target="_parent">this link</a>!'),
         'check out <a href="https://example.com" target="_blank" rel="nofollow noopener noreferrer">this link</a>!'
+    );
+});
+
+test('links with existing target _self dont get overwritten', t => {
+    t.is(
+        purifyHtml('check out <a href="https://example.com" target="_self">this link</a>!'),
+        'check out <a href="https://example.com" target="_self" rel="nofollow noopener noreferrer">this link</a>!'
     );
 });
 
