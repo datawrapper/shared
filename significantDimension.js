@@ -7,6 +7,9 @@ import { uniq } from 'underscore';
  * That's the number of decimals to which we can round the numbers
  * without loosing information
  *
+ * @exports significantDimension
+ * @kind function
+ *
  * @example
  * import {significantDimension} from '@datawrapper/shared/significantDimension';
  * significantDimension([0,10,20,30]); // -1

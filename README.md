@@ -48,7 +48,10 @@ shared.fetchJSON();
 * [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
 * [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
+* [round(value, decimals)](#round) ⇒ <code>string</code>
 * [set(object, key, value)](#set) ⇒
+* [significantDimension(values, tolerance)](#significantDimension) ⇒ <code>number</code>
+* [smartRound(values, addPrecision, tolerance)](#smartRound) ⇒
 * [tailLength(value)](#tailLength) ⇒ <code>number</code>
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
 * [trackEvent(category, category, category, category)](#trackEvent)
@@ -643,6 +646,28 @@ putJSON('http://api.example.org', JSON.stringify({
 
 * * *
 
+<a name="round"></a>
+
+### round(value, decimals) ⇒ <code>string</code>
+rounds a value to a certain number of decimals
+
+**Returns**: <code>string</code> - - numeral.js compatible format string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | the value to be rounded |
+| decimals | <code>number</code> | the number of decimals |
+
+**Example**  
+```js
+import round from '@datawrapper/shared/round';
+round(1.2345); // 1
+round(1.2345, 2); // 1.23
+round(12345, -2); // 12300
+```
+
+* * *
+
 <a name="set"></a>
 
 ### set(object, key, value) ⇒
@@ -658,6 +683,51 @@ way doesn't exist.
 | key | <code>String</code> | dot-separated keys aka "path" to the property |
 | value | <code>\*</code> | the value to be set |
 
+
+* * *
+
+<a name="significantDimension"></a>
+
+### significantDimension(values, tolerance) ⇒ <code>number</code>
+computes the significant dimension for a list of numbers
+That's the number of decimals to which we can round the numbers
+without loosing information
+
+**Returns**: <code>number</code> - - number of significant dimensions (= the number of decimals)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>array</code> | list of input numbers |
+| tolerance | <code>number</code> | percent of input values that we allow to "collide" |
+
+**Example**  
+```js
+import {significantDimension} from '@datawrapper/shared/significantDimension';
+significantDimension([0,10,20,30]); // -1
+```
+
+* * *
+
+<a name="smartRound"></a>
+
+### smartRound(values, addPrecision, tolerance) ⇒
+rounds an array of numbers to the least number of decimals
+without loosing any information due to the rounding
+
+**Returns**: the rounded values  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>array</code> | the numbers to be rounded |
+| addPrecision | <code>number</code> | force more precision (=numbers of decimals) to the rounding |
+| tolerance | <code>number</code> | the percent of uniq input values that we can tolerate to lose after rounding |
+
+**Example**  
+```js
+import {smartRound} from '@datawrapper/shared/smartRound';
+smartRound([9, 10.5714, 12.1428, 13.7142); // [9, 11, 12, 14]
+smartRound([9, 10.5714, 12.1428, 12.4142); // [9, 10.6, 12.1, 12.4]
+```
 
 * * *
 

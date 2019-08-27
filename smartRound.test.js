@@ -7,6 +7,11 @@ test('simple', t => {
     t.deepEqual(smartRound(topic, 1), [9, 10.6, 12.1, 13.7, 15.3, 16.9, 18.4]);
 });
 
+test('readme', t => {
+    t.deepEqual(smartRound([9, 10.5714, 12.1428, 13.7142]), [9, 11, 12, 14]);
+    t.deepEqual(smartRound([9, 10.5714, 12.1428, 12.4142]), [9, 10.6, 12.1, 12.4]);
+});
+
 test('large numbers', t => {
     const topic = [
         1567671,

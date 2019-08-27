@@ -1,6 +1,9 @@
 /**
  * rounds a value to a certain number of decimals
  *
+ * @exports round
+ * @kind function
+ *
  * @example
  * import round from '@datawrapper/shared/round';
  * round(1.2345); // 1
