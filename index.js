@@ -19,6 +19,7 @@ export { default as postEvent } from './postEvent.js';
 export { default as purifyHtml } from './purifyHtml.js';
 export { default as round } from './round.js';
 export { default as set } from './set.js';
+export { default as smartRound } from './smartRound.js';
 export { default as significantDimension } from './significantDimension.js';
 export { default as tailLength } from './tailLength.js';
 export { default as toFixed } from './toFixed.js';
