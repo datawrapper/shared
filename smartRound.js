@@ -10,8 +10,8 @@ import round from './round';
  *
  * @example
  * import {smartRound} from '@datawrapper/shared/smartRound';
- * smartRound([9, 10.5714, 12.1428, 13.7142); // [9, 11, 12, 14]
- * smartRound([9, 10.5714, 12.1428, 12.4142); // [9, 10.6, 12.1, 12.4]
+ * smartRound([9, 10.5714, 12.1428, 13.7142]); // [9, 11, 12, 14]
+ * smartRound([9, 10.5714, 12.1428, 12.4142]); // [9, 10.6, 12.1, 12.4]
  *
  * @param {array} values - the numbers to be rounded
  * @param {number} addPrecision - force more precision (=numbers of decimals) to the rounding
