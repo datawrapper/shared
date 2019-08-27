@@ -32,7 +32,7 @@ export default function significantDimension(values, tolerance = 0.1) {
         return Math.round(
             uniqValues.reduce(function(acc, cur) {
                 if (!cur) return acc;
-                var exp = Math.log(Math.abs(cur)) / Math.LN10;
+                const exp = Math.log(Math.abs(cur)) / Math.LN10;
                 if (exp < 8 && exp > -3) {
                     // use tail length for normal numbers
                     return acc + Math.min(3, tailLength(uniqValues[0]));
