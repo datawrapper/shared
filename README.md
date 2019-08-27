@@ -697,7 +697,7 @@ without loosing information
 
 | Param | Type | Description |
 | --- | --- | --- |
-| values | <code>array</code> | list of input numbers |
+| values | <code>Array.&lt;number&gt;</code> | list of input numbers |
 | tolerance | <code>number</code> | percent of input values that we allow to "collide" |
 
 **Example**  
