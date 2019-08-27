@@ -14,7 +14,7 @@ import { uniq } from 'underscore';
  * import {significantDimension} from '@datawrapper/shared/significantDimension';
  * significantDimension([0,10,20,30]); // -1
  *
- * @param {array} values - list of input numbers
+ * @param {number[]} values - list of input numbers
  * @param {number} tolerance - percent of input values that we allow to "collide"
  * @returns {number} - number of significant dimensions (= the number of decimals)
  */
