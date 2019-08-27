@@ -12,7 +12,7 @@
  *
  * @param {number} value - the value to be rounded
  * @param {number} decimals - the number of decimals
- * @returns {string} - numeral.js compatible format string
+ * @returns {number} - rounded value
  */
 export default function round(value, decimals = 0) {
     const base = Math.pow(10, decimals);
