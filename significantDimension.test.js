@@ -48,13 +48,13 @@ const tests = [
 
 tests.forEach((testCase, i) => {
     test(`case ${i + 1}: check significant dimension`, t => {
-        t.deepEqual(significantDimension(testCase.values), testCase.dim);
+        t.is(significantDimension(testCase.values), testCase.dim);
     });
     test(`case ${i + 1}: check unique value count after rounding`, t => {
         const dim = significantDimension(testCase.values);
         const uniqueBefore = uniq(testCase.values);
         const uniqueAfter = uniq(testCase.values.map(v => round(v, dim)));
 
-        t.deepEqual(uniqueBefore.length, uniqueAfter.length);
+        t.is(uniqueBefore.length, uniqueAfter.length);
     });
 });
