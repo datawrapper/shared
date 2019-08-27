@@ -48,7 +48,7 @@ shared.fetchJSON();
 * [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
 * [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
-* [round(value, decimals)](#round) ⇒ <code>string</code>
+* [round(value, decimals)](#round) ⇒ <code>number</code>
 * [set(object, key, value)](#set) ⇒
 * [significantDimension(values, tolerance)](#significantDimension) ⇒ <code>number</code>
 * [smartRound(values, addPrecision, tolerance)](#smartRound) ⇒
@@ -648,10 +648,10 @@ putJSON('http://api.example.org', JSON.stringify({
 
 <a name="round"></a>
 
-### round(value, decimals) ⇒ <code>string</code>
+### round(value, decimals) ⇒ <code>number</code>
 rounds a value to a certain number of decimals
 
-**Returns**: <code>string</code> - - numeral.js compatible format string  
+**Returns**: <code>number</code> - - rounded value  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -725,8 +725,8 @@ without loosing any information due to the rounding
 **Example**  
 ```js
 import {smartRound} from '@datawrapper/shared/smartRound';
-smartRound([9, 10.5714, 12.1428, 13.7142); // [9, 11, 12, 14]
-smartRound([9, 10.5714, 12.1428, 12.4142); // [9, 10.6, 12.1, 12.4]
+smartRound([9, 10.5714, 12.1428, 13.7142]); // [9, 11, 12, 14]
+smartRound([9, 10.5714, 12.1428, 12.4142]); // [9, 10.6, 12.1, 12.4]
 ```
 
 * * *
