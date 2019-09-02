@@ -11,7 +11,8 @@ import equalish from './equalish';
  * import kMeans from '@datawrapper/shared/kMeans';
  *
  * const values = [1, 1.1, 1.2, 2.1, 3, 3.1, 3.2, 3.3, 7, 7.1, 10];
- * kMeans(values, 3) // == [[1, 1.1, 1.2, 2.1], [3, 3.1, 3.2, 3.3], [7, 7.1, 10]]
+ * // returns [[1, 1.1, 1.2, 2.1], [3, 3.1, 3.2, 3.3], [7, 7.1, 10]]
+ * kMeans(values, 3)
  *
  * @param {number[]} values - sorted array of numbers
  * @param {number} numCluster - the desired cluster count
