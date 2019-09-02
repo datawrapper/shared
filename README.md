@@ -491,6 +491,13 @@ numbers. Useful for finding n groups of "similar values".
 | values | <code>Array.&lt;number&gt;</code> | sorted array of numbers |
 | numCluster | <code>number</code> | the desired cluster count |
 
+**Example**  
+```js
+import kMeans from '@datawrapper/shared/kMeans';
+
+const values = [1, 1.1, 1.2, 2.1, 3, 3.1, 3.2, 3.3, 7, 7.1, 10];
+kMeans(values, 3) // == [[1, 1.1, 1.2, 2.1], [3, 3.1, 3.2, 3.3], [7, 7.1, 10]]
+```
 
 * * *
 
