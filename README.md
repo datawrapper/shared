@@ -40,6 +40,7 @@ shared.fetchJSON();
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
+* [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
@@ -474,6 +475,30 @@ checks if a given string is a valid URL
 | --- | --- |
 | input | <code>string</code> | 
 
+
+* * *
+
+<a name="kMeans"></a>
+
+### kMeans(values, numCluster) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
+Performs one-dimensional k-means clustering on an array of
+numbers. Useful for finding n groups of "similar values".
+
+**Returns**: <code>array.&lt;Array.&lt;number&gt;&gt;</code> - - array of clusters  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>Array.&lt;number&gt;</code> | sorted array of numbers |
+| numCluster | <code>number</code> | the desired cluster count |
+
+**Example**  
+```js
+import kMeans from '@datawrapper/shared/kMeans';
+
+const values = [1, 1.1, 1.2, 2.1, 3, 3.1, 3.2, 3.3, 7, 7.1, 10];
+// returns [[1, 1.1, 1.2, 2.1], [3, 3.1, 3.2, 3.3], [7, 7.1, 10]]
+kMeans(values, 3)
+```
 
 * * *
 
