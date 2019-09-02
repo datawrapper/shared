@@ -13,3 +13,7 @@ test('test clustering', t => {
     t.deepEqual(kMeans(values, 4), cluster4);
     t.deepEqual(kMeans(values, 5), cluster5);
 });
+
+test('remove empty clusters from result', t => {
+    t.deepEqual(kMeans(values, 6), cluster5);
+});
