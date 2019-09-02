@@ -4,14 +4,14 @@ import equalish from './equalish';
  * Performs one-dimensional k-means clustering on an array of
  * numbers. Useful for finding n groups of "similar values".
  *
- * @exports clone
+ * @exports kMeans
  * @kind function
  *
  * @param {number[]} values - sorted array of numbers
  * @param {number} numCluster - the desired cluster count
  * @returns {array.<number[]>} - array of clusters
  */
-export default function kmeans(values, numClusters) {
+export default function kMeans(values, numClusters) {
     let clusters = [];
     let centroids = [];
     let oldCentroids = [];

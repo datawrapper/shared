@@ -26,7 +26,6 @@ shared.fetchJSON();
 * [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
 * [Chart](docs/chart.md) ⇒ <code>class</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
-* [clone(values, numCluster)](#clone) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [Column](docs/column.md) ⇒ <code>class</code>
@@ -41,6 +40,7 @@ shared.fetchJSON();
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
+* [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
@@ -213,22 +213,6 @@ Clones an object
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>\*</code> | the thing that should be cloned |
-
-
-* * *
-
-<a name="clone"></a>
-
-### clone(values, numCluster) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
-Performs one-dimensional k-means clustering on an array of
-numbers. Useful for finding n groups of "similar values".
-
-**Returns**: <code>array.&lt;Array.&lt;number&gt;&gt;</code> - - array of clusters  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| values | <code>Array.&lt;number&gt;</code> | sorted array of numbers |
-| numCluster | <code>number</code> | the desired cluster count |
 
 
 * * *
@@ -490,6 +474,22 @@ checks if a given string is a valid URL
 | Param | Type |
 | --- | --- |
 | input | <code>string</code> | 
+
+
+* * *
+
+<a name="kMeans"></a>
+
+### kMeans(values, numCluster) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
+Performs one-dimensional k-means clustering on an array of
+numbers. Useful for finding n groups of "similar values".
+
+**Returns**: <code>array.&lt;Array.&lt;number&gt;&gt;</code> - - array of clusters  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| values | <code>Array.&lt;number&gt;</code> | sorted array of numbers |
+| numCluster | <code>number</code> | the desired cluster count |
 
 
 * * *
