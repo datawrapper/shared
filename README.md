@@ -36,6 +36,7 @@ shared.fetchJSON();
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
+* [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
 * [get(object, key, _default)](#get) ⇒
 * [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
@@ -49,6 +50,7 @@ shared.fetchJSON();
 * [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
 * [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
+* [requireConfig()](#requireConfig) ⇒ <code>Object</code>
 * [round(value, decimals)](#round) ⇒ <code>number</code>
 * [set(object, key, value)](#set) ⇒
 * [significantDimension(values, tolerance)](#significantDimension) ⇒ <code>number</code>
@@ -383,6 +385,28 @@ fetchJSON('http://api.example.org', 'GET', 'include');
 
 * * *
 
+<a name="findConfigPath"></a>
+
+### findConfigPath() ⇒ <code>String</code>
+Function to find a Datawrapper config file (`config.js`).
+It looks in the current working directory and in `/etc/datawrapper/`.
+If no config is found, the process will exit with a non zero exit code.
+
+It is possible to overwrite the config path with the env variable `DW_CONFIG_PATH`.
+Useful for tests!
+
+**This is a Node module, that will probably not work in a browser environment.**
+
+**Example**  
+```js
+const { findConfigPath } = require('@datawrapper/shared/node/findConfig')
+
+const path = findConfigPath()
+// -> /etc/datawrapper/config.js
+```
+
+* * *
+
 <a name="get"></a>
 
 ### get(object, key, _default) ⇒
@@ -667,6 +691,20 @@ putJSON('http://api.example.org', JSON.stringify({
    query: 'foo',
    page: 12
 }));
+```
+
+* * *
+
+<a name="requireConfig"></a>
+
+### requireConfig() ⇒ <code>Object</code>
+Tiny wrapper around `findConfigPath` that directly `require`s the found config.
+
+**Example**  
+```js
+const { requireConfig } = require('@datawrapper/shared/node/findConfig')
+
+const config = requireConfig()
 ```
 
 * * *
