@@ -20,11 +20,15 @@ const fs = require('fs');
  * @returns {String}
  */
 function findConfigPath() {
-    const paths = [
-        path.resolve(process.env.DW_CONFIG_PATH),
-        '/etc/datawrapper/config.js',
-        path.join(process.cwd(), 'config.js')
-    ];
+    const customPath = process.env.DW_CONFIG_PATH
+        ? path.resolve(process.env.DW_CONFIG_PATH)
+        : undefined;
+
+    const paths = ['/etc/datawrapper/config.js', path.join(process.cwd(), 'config.js')];
+
+    if (customPath) {
+        paths.unshift(customPath);
+    }
 
     for (const path of paths) {
         if (fs.existsSync(path)) return path;
