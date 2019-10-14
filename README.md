@@ -32,6 +32,7 @@ shared.fetchJSON();
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
+* [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
@@ -285,6 +286,31 @@ combinations(['a', 'b']);
 ```js
 // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
 combinations([1,2,3])
+```
+
+* * *
+
+<a name="defaultColors"></a>
+
+### defaultColors(theme) ⇒ <code>\*</code>
+defines colors for the various chart elements like axis text, gridlines,
+bar background etc. based on the theme background color, and some other optional theme parameters
+
+**Returns**: <code>\*</code> - -- object with color definitions  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| theme | <code>\*</code> | - theme data for a chart |
+
+**Example**  
+```js
+// returns {"tickText":{"secondary":"#9d9d9d","primary":"#d9d9d9"},"series":"#f1f1f1","value":"#d9d9d9","axis":"#f1f1f1","gridline":"#707070","fallbackBaseColor":"#f1f1f1"}
+defaultColors({"colors": {"background": "#333333"}});
+```
+**Example**  
+```js
+// returns {"tickText":{"secondary":"#ffffff","primary":"#ffffff"},"series":"#ffffff","value":"#fef2e4","axis":"#ffffff","gridline":"#fedeb5","fallbackBaseColor":"#ffffff"}
+defaultColors({"colors": {"bgBlendRatios": {"gridline": 0.5,"tickText": {"primary": 0,"secondary": 0}},"chartContentBaseColor": "#ffffff","background": "#FCB716"}});
 ```
 
 * * *
