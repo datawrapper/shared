@@ -1,6 +1,6 @@
 import tailLength from './tailLength';
 import round from './round';
-import { uniq } from 'underscore';
+import uniq from 'lodash-es/uniq';
 
 /**
  * computes the significant dimension for a list of numbers
