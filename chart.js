@@ -12,9 +12,14 @@ import { putJSON, loadScript } from './fetch.js';
 
 const storeChanges = _.debounce((chart, callback) => {
     const state = chart.serialize();
-    putJSON(`/api/2/charts/${state.id}`, JSON.stringify(state), () => {
-        if (callback) callback();
-    });
+
+    putJSON(
+        `/api/2/charts/${state.id}${chart.get().mode === 'print' ? '?mode=print' : ''}`,
+        JSON.stringify(state),
+        () => {
+            if (callback) callback();
+        }
+    );
 }, 1000);
 
 const storeData = _.debounce((chart, callback) => {
