@@ -172,12 +172,16 @@ export function deleteJSON(url, callback) {
  * })
  */
 export function loadScript(src, callback) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = () => {
-        if (callback) callback();
-    };
-    document.body.appendChild(script);
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => {
+            if (callback) callback();
+            resolve();
+        };
+        script.onerror = reject;
+        document.body.appendChild(script);
+    });
 }
 
 /**
@@ -194,11 +198,15 @@ export function loadScript(src, callback) {
  * })
  */
 export function loadStylesheet(src, callback) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = src;
-    link.onload = () => {
-        if (callback) callback();
-    };
-    document.head.appendChild(link);
+    return new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = src;
+        link.onload = () => {
+            if (callback) callback();
+            resolve();
+        };
+        link.onerror = reject;
+        document.head.appendChild(link);
+    });
 }
