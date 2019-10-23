@@ -210,23 +210,3 @@ export function loadStylesheet(src, callback = null) {
         document.head.appendChild(link);
     });
 }
-
-/**
- * loads a script and a stylesheet in parallel
- *
- * @param {string} scriptSrc
- * @param {string} styleSrc
- *
- * @example
- * import { loadScriptAndStyle } from '@datawrapper/shared/fetch';
- *
- * loadScriptAndStyle(
- *    '/static/js/library.js',
- *    '/static/css/library.css'
- * ).then(() => {
- *     console.log('js and styles are loaded');
- * })
- */
-export function loadScriptAndStyle(scriptSrc, styleSrc) {
-    return Promise.all([loadScript(scriptSrc), loadStylesheet(styleSrc)]);
-}

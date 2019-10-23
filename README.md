@@ -44,7 +44,6 @@ shared.fetchJSON();
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
-* [loadScriptAndStyle(scriptSrc, styleSrc)](#loadScriptAndStyle)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
@@ -570,31 +569,6 @@ import { loadScript } from '@datawrapper/shared/fetch';
 
 loadScript('/static/js/library.js', () => {
     console.log('library is loaded');
-})
-```
-
-* * *
-
-<a name="loadScriptAndStyle"></a>
-
-### loadScriptAndStyle(scriptSrc, styleSrc)
-loads a script and a stylesheet in parallel
-
-
-| Param | Type |
-| --- | --- |
-| scriptSrc | <code>string</code> | 
-| styleSrc | <code>string</code> | 
-
-**Example**  
-```js
-import { loadScriptAndStyle } from '@datawrapper/shared/fetch';
-
-loadScriptAndStyle(
-   '/static/js/library.js',
-   '/static/css/library.css'
-).then(() => {
-    console.log('js and styles are loaded');
 })
 ```
 
