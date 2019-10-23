@@ -171,7 +171,7 @@ export function deleteJSON(url, callback) {
  *     console.log('library is loaded');
  * })
  */
-export function loadScript(src, callback) {
+export function loadScript(src, callback = null) {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
@@ -197,7 +197,7 @@ export function loadScript(src, callback) {
  *     console.log('library styles are loaded');
  * })
  */
-export function loadStylesheet(src, callback) {
+export function loadStylesheet(src, callback = null) {
     return new Promise((resolve, reject) => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -209,4 +209,25 @@ export function loadStylesheet(src, callback) {
         link.onerror = reject;
         document.head.appendChild(link);
     });
+}
+
+/**
+ * loads a script and a stylesheet in parallel
+ *
+ * @param {string} scriptSrc
+ * @param {string} styleSrc
+ * @param {function} callback - optional
+ *
+ * @example
+ * import { loadScriptAndStyle } from '@datawrapper/shared/fetch';
+ *
+ * loadScriptAndStyle(
+ *    '/static/js/library.js',
+ *    '/static/css/library.css'
+ * ).then(() => {
+ *     console.log('js and styles are loaded');
+ * })
+ */
+export function loadScriptAndStyle(scriptSrc, styleSrc, callback = null) {
+    return Promise.all([loadScript(scriptSrc), loadStylesheet(styleSrc)]);
 }
