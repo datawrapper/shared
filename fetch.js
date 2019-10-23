@@ -216,7 +216,6 @@ export function loadStylesheet(src, callback = null) {
  *
  * @param {string} scriptSrc
  * @param {string} styleSrc
- * @param {function} callback - optional
  *
  * @example
  * import { loadScriptAndStyle } from '@datawrapper/shared/fetch';
@@ -228,6 +227,6 @@ export function loadStylesheet(src, callback = null) {
  *     console.log('js and styles are loaded');
  * })
  */
-export function loadScriptAndStyle(scriptSrc, styleSrc, callback = null) {
+export function loadScriptAndStyle(scriptSrc, styleSrc) {
     return Promise.all([loadScript(scriptSrc), loadStylesheet(styleSrc)]);
 }

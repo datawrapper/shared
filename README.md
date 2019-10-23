@@ -44,7 +44,7 @@ shared.fetchJSON();
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
-* [loadScriptAndStyle(scriptSrc, styleSrc, callback)](#loadScriptAndStyle)
+* [loadScriptAndStyle(scriptSrc, styleSrc)](#loadScriptAndStyle)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
@@ -577,15 +577,14 @@ loadScript('/static/js/library.js', () => {
 
 <a name="loadScriptAndStyle"></a>
 
-### loadScriptAndStyle(scriptSrc, styleSrc, callback)
+### loadScriptAndStyle(scriptSrc, styleSrc)
 loads a script and a stylesheet in parallel
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| scriptSrc | <code>string</code> |  |
-| styleSrc | <code>string</code> |  |
-| callback | <code>function</code> | optional |
+| Param | Type |
+| --- | --- |
+| scriptSrc | <code>string</code> | 
+| styleSrc | <code>string</code> | 
 
 **Example**  
 ```js
