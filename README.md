@@ -60,6 +60,7 @@ shared.fetchJSON();
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
+* [truncate(str)](#truncate) ⇒ <code>string</code>
 
 
 <a name="CodedError"></a>
@@ -893,6 +894,25 @@ and URL are automatically detected using the window object.
 | --- | --- | --- |
 | loadTime | <code>number</code> | optional page load time, has to be measured    manually |
 
+
+* * *
+
+<a name="truncate"></a>
+
+### truncate(str) ⇒ <code>string</code>
+Shorten a string by removing characters from the middle
+
+
+| Param | Type |
+| --- | --- |
+| str | <code>string</code> | 
+
+**Example**  
+```js
+import truncate from '@datawrapper/shared/truncate';
+// returns 'This is a…tring'
+truncate('This is a very very long string')
+```
 
 * * *
 
