@@ -13,6 +13,7 @@
  * @returns {string}
  */
 export default function truncate(str, start = 11, end = 7) {
+    if (typeof str !== 'string') return str;
     if (str.length < start + end + 3) return str;
     return str.substr(0, start).trim() + '…' + str.substr(str.length - end).trim();
 }

@@ -12,3 +12,7 @@ test('dont truncate short strings', t => {
 test('unless we want to', t => {
     t.is(truncate('Short enough', 3, 3), 'Sho…ugh');
 });
+
+test('dont truncate non-strings', t => {
+    t.is(truncate(42), 42);
+});
