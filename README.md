@@ -60,7 +60,7 @@ shared.fetchJSON();
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
-* [truncate(str)](#truncate) ⇒ <code>string</code>
+* [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
 
 
 <a name="CodedError"></a>
@@ -899,13 +899,15 @@ and URL are automatically detected using the window object.
 
 <a name="truncate"></a>
 
-### truncate(str) ⇒ <code>string</code>
+### truncate(str, start, end) ⇒ <code>string</code>
 Shorten a string by removing characters from the middle
 
 
-| Param | Type |
-| --- | --- |
-| str | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>string</code> |  |
+| start | <code>number</code> | characters to keep at start of string |
+| end | <code>number</code> | characters to keep at end off string |
 
 **Example**  
 ```js

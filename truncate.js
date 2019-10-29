@@ -10,6 +10,8 @@
  * truncate('This is a very very long string')
  *
  * @param {string} str
+ * @param {number} start - characters to keep at start of string
+ * @param {number} end - characters to keep at end off string
  * @returns {string}
  */
 export default function truncate(str, start = 11, end = 7) {
