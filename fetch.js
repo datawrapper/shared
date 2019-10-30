@@ -41,7 +41,11 @@ export function fetchJSON(url, method, credentials, body, callback) {
             return res;
         })
         .catch(err => {
-            console.error(err);
+            if (callback) {
+                console.error(err);
+            } else {
+                throw err;
+            }
         });
 }
 
