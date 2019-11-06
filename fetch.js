@@ -71,7 +71,7 @@ export function fetchJSON(url, method, credentials, body, callback) {
  *   });
  */
 export function getJSON(url, credentials, callback) {
-    if (arguments.length === 2) {
+    if (arguments.length === 2 && typeof credentials === 'function') {
         callback = credentials;
         credentials = 'include';
     }
