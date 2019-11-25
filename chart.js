@@ -1,3 +1,4 @@
+/* globals dw */
 import { Store } from 'svelte/store.js';
 import { observeDeep } from 'svelte-extras';
 import _ from 'underscore';
@@ -8,13 +9,15 @@ import reorderColumns from './dataset/reorderColumns.js';
 import applyChanges from './dataset/applyChanges.js';
 import addComputedColumns from './dataset/addComputedColumns.js';
 
-import { putJSON, loadScript } from './fetch.js';
+import { patchJSON, putJSON, loadScript } from './fetch.js';
 
 const storeChanges = _.debounce((chart, callback) => {
     const state = chart.serialize();
 
-    putJSON(
-        `/api/2/charts/${state.id}${chart.get().mode === 'print' ? '?mode=print' : ''}`,
+    patchJSON(
+        `//${dw.backend.__api_domain}/v3/charts/${state.id}${
+            chart.get().mode === 'print' ? '?mode=print' : ''
+        }`,
         JSON.stringify(state),
         () => {
             if (callback) callback();
