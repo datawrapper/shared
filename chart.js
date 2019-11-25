@@ -14,15 +14,9 @@ import { patchJSON, putJSON, loadScript } from './fetch.js';
 const storeChanges = _.debounce((chart, callback) => {
     const state = chart.serialize();
 
-    patchJSON(
-        `//${dw.backend.__api_domain}/v3/charts/${state.id}${
-            chart.get().mode === 'print' ? '?mode=print' : ''
-        }`,
-        JSON.stringify(state),
-        () => {
-            if (callback) callback();
-        }
-    );
+    patchJSON(`//${dw.backend.__api_domain}/v3/charts/${state.id}`, JSON.stringify(state), () => {
+        if (callback) callback();
+    });
 }, 1000);
 
 const storeData = _.debounce((chart, callback) => {
