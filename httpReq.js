@@ -35,8 +35,8 @@ httpReq.post = httpReqVerb('post');
 
 function httpReqVerb(method) {
     return (path, options) => {
-        if (options && options.method && options.method.toLowerCase() != method) {
-            throw new Error(`Invalid method "${options.method}" provided in ${method}() call`);
+        if (options && options.method) {
+            throw new Error(`Setting option.method is not allowed in ${method}()`);
          }
          return httpReq(path, {...options, method});
     };
