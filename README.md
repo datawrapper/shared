@@ -327,6 +327,10 @@ defaultColors({"colors": {"bgBlendRatios": {"gridline": 0.5,"tickText": {"primar
 ## ~~deleteJSON(url, callback) ⇒ <code>Promise</code>~~
 ***Deprecated***
 
+Download and parse a remote JSON endpoint via DELETE. credentials
+are included automatically
+Use [httpReq](#httpReq) or [delete](#httpReq.delete) instead.
+
 
 | Param | Type |
 | --- | --- |
@@ -400,6 +404,8 @@ const width = estimateTextWidth('my text', 12);
 ## ~~fetchJSON(url, method, credentials, body, callback) ⇒ <code>Promise</code>~~
 ***Deprecated***
 
+Download and parse a remote JSON document. Use [httpReq](#httpReq) instead
+
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -469,6 +475,9 @@ get(someObject, 'missing.key', false) // returns false
 
 ## ~~getJSON(url, credentials, callback) ⇒ <code>Promise</code>~~
 ***Deprecated***
+
+Download and parse a JSON document via GET.
+Use [httpReq](#httpReq) or [get](#httpReq.get) instead.
 
 
 | Param | Type | Description |
@@ -764,6 +773,10 @@ postEvent('bar:hover', {value: 123});
 ## ~~postJSON(url, body, callback) ⇒ <code>Promise</code>~~
 ***Deprecated***
 
+Download and parse a remote JSON endpoint via POST. credentials
+are included automatically.
+Use [httpReq](#httpReq) or [post](#httpReq.post) instead.
+
 
 | Param | Type |
 | --- | --- |
@@ -802,6 +815,10 @@ Remove all non-whitelisted html tags from the given string
 
 ## ~~putJSON(url, body, callback) ⇒ <code>Promise</code>~~
 ***Deprecated***
+
+Download and parse a remote JSON endpoint via PUT. credentials
+are included automatically
+Use [httpReq](#httpReq) or [put](#httpReq.put) instead.
 
 
 | Param | Type |
