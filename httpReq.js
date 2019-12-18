@@ -26,7 +26,7 @@
  */
 /* globals dw */
 export default function(method, path, options = {}) {
-    if (arguments.length === 2) {
+    if (arguments.length === 2 && typeof path !== 'string') {
         // support httpReq('/path', { method: 'get' }) syntax as well
         options = path;
         path = method;
