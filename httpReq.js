@@ -2,27 +2,31 @@
  * The response body is automatically parsed according
  * to the response content type.
  *
- * @param {string} method             - the http method, e.g. GET, PUT
+ * @exports httpReq
+ * @kind function
+ *
  * @param {string} path               - the url path that gets appended to baseUrl
- * @param {*} options.payload         - optional payload to be send with req
+ * @param {object} options.payload    - payload to be send with req
+ * @param {boolean} options.raw       - disable parsing of response body, returns raw response
  * @param {string} options.baseUrl    - base for url, defaults to dw api domain
- * @param {string} options.contentType - base for url, defaults to dw api domain
+ * @param {*} options                 - see documentation for window.fetch for additional options
  *
  * @returns {Promise} fetch promise to the parsed response body
  *
  * @example
- *  import httpRequest from '@datawrapper/shared/httpRequest';
- *  let res = await httpRequest('POST', '/v3/charts', {
+ *  import httpReq from '@datawrapper/shared/httpReq';
+ *  let res = await httpReq('/v3/charts', {
+        method: 'post',
         payload: {
             title: 'My new chart'
         }
-    })
-    res = await httpRequest('/v3/charts', {
-        method: 'POST',
+    });
+    import { post } from '@datawrapper/shared/httpReq';
+    res = await post('/v3/charts', {
         payload: {
             title: 'My new chart'
         }
-    })
+    });
  */
 /* globals dw */
 export default httpReq;
