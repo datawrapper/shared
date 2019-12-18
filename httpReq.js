@@ -50,10 +50,11 @@ function httpReq(path, options = {}) {
         baseUrl: `//${dw.backend.__api_domain}`,
         mode: 'cors',
         credentials: 'include',
+        ...options,
         headers: {
-            'Content-Type': 'application/json'
-        },
-        ...options
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
     };
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
     if (opts.method.toLowerCase() === 'get' && (payload || opts.body)) {
