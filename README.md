@@ -12,7 +12,7 @@ Import entire package:
 ```js
 import shared from '@datawrapper/shared';
 shared.purifyHtml();
-shared.fetchJSON();
+shared.httpReq();
 ```
 
 ## API reference
