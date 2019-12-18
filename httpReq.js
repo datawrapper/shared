@@ -37,8 +37,8 @@ function httpReqVerb(method) {
     return (path, options) => {
         if (options && options.method) {
             throw new Error(`Setting option.method is not allowed in ${method}()`);
-         }
-         return httpReq(path, {...options, method});
+        }
+        return httpReq(path, { ...options, method });
     };
 }
 
