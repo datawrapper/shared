@@ -33,24 +33,19 @@ shared.fetchJSON();
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
-* [deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
-* [fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
 * [get(object, key, _default)](#get) ⇒
-* [getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
+* [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
-* [patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
-* [postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
-* [putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>
 * [requireConfig()](#requireConfig) ⇒ <code>Object</code>
 * [round(value, decimals)](#round) ⇒ <code>number</code>
 * [set(object, key, value)](#set) ⇒
@@ -61,6 +56,12 @@ shared.fetchJSON();
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
 * [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
+* ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
+* ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
+* ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
+* ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
+* ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
+* ~~[putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>~~
 
 
 <a name="CodedError"></a>
@@ -318,9 +319,8 @@ defaultColors({"colors": {"bgBlendRatios": {"gridline": 0.5,"tickText": {"primar
 
 <a name="deleteJSON"></a>
 
-### deleteJSON(url, callback) ⇒ <code>Promise</code>
-Download and parse a remote JSON endpoint via DELETE. credentials
-are included automatically
+## ~~deleteJSON(url, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type |
@@ -392,8 +392,8 @@ const width = estimateTextWidth('my text', 12);
 
 <a name="fetchJSON"></a>
 
-### fetchJSON(url, method, credentials, body, callback) ⇒ <code>Promise</code>
-Download and parse a remote JSON document
+## ~~fetchJSON(url, method, credentials, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type | Description |
@@ -462,8 +462,8 @@ get(someObject, 'missing.key', false) // returns false
 
 <a name="getJSON"></a>
 
-### getJSON(url, credentials, callback) ⇒ <code>Promise</code>
-Download and parse a JSON document via GET
+## ~~getJSON(url, credentials, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type | Description |
@@ -512,6 +512,41 @@ const myTimer = highlightTimer(value => {
 
 lines.on('mouseenter', d => myTimer.set(d));
 chart.on('mouseleave', myTimer.clear);
+```
+
+* * *
+
+<a name="httpReq"></a>
+
+### httpReq(path, options) ⇒ <code>Promise</code>
+The response body is automatically parsed according
+to the response content type.
+
+**Returns**: <code>Promise</code> - promise of parsed response body or raw response  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>string</code> | the url path that gets appended to baseUrl |
+| options.payload | <code>object</code> | payload to be send with req |
+| options.raw | <code>boolean</code> | disable parsing of response body, returns raw response |
+| options.baseUrl | <code>string</code> | base for url, defaults to dw api domain |
+| options | <code>\*</code> | see documentation for window.fetch for additional options |
+
+**Example**  
+```js
+import httpReq from '@datawrapper/shared/httpReq';
+ let res = await httpReq('/v3/charts', {
+        method: 'post',
+        payload: {
+            title: 'My new chart'
+        }
+    });
+    import { post } from '@datawrapper/shared/httpReq';
+    res = await post('/v3/charts', {
+        payload: {
+            title: 'My new chart'
+        }
+    });
 ```
 
 * * *
@@ -614,9 +649,8 @@ specified in fontsJSON and typographyJSON have been loaded.
 
 <a name="patchJSON"></a>
 
-### patchJSON(url, body, callback) ⇒ <code>Promise</code>
-Download and parse a remote JSON endpoint via PATCH. credentials
-are included automatically
+## ~~patchJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type |
@@ -659,9 +693,8 @@ postEvent('bar:hover', {value: 123});
 
 <a name="postJSON"></a>
 
-### postJSON(url, body, callback) ⇒ <code>Promise</code>
-Download and parse a remote JSON endpoint via POST. credentials
-are included automatically
+## ~~postJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type |
@@ -699,9 +732,8 @@ Remove all non-whitelisted html tags from the given string
 
 <a name="putJSON"></a>
 
-### putJSON(url, body, callback) ⇒ <code>Promise</code>
-Download and parse a remote JSON endpoint via PUT. credentials
-are included automatically
+## ~~putJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
 
 
 | Param | Type |
