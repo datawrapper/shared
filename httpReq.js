@@ -16,17 +16,17 @@
  * @example
  *  import httpReq from '@datawrapper/shared/httpReq';
  *  let res = await httpReq('/v3/charts', {
-        method: 'post',
-        payload: {
-            title: 'My new chart'
-        }
-    });
-    import { post } from '@datawrapper/shared/httpReq';
-    res = await post('/v3/charts', {
-        payload: {
-            title: 'My new chart'
-        }
-    });
+ *      method: 'post',
+ *      payload: {
+ *          title: 'My new chart'
+ *      }
+ *  });
+ *  import { post } from '@datawrapper/shared/httpReq';
+ *  res = await post('/v3/charts', {
+ *      payload: {
+ *          title: 'My new chart'
+ *      }
+ *  });
  */
 export default function httpReq(path, options = {}) {
     /* globals dw */
@@ -65,11 +65,58 @@ export default function httpReq(path, options = {}) {
     });
 }
 
+/**
+ * Like `httpReq` but with fixed http method GET
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.get
+ * @kind function
+ */
 httpReq.get = httpReqVerb('get');
+
+/**
+ * Like `httpReq` but with fixed http method PATCH
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.patch
+ * @kind function
+ */
 httpReq.patch = httpReqVerb('patch');
+
+/**
+ * Like `httpReq` but with fixed http method DELETE
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.delete
+ * @kind function
+ */
 httpReq.delete = httpReqVerb('delete');
+
+/**
+ * Like `httpReq` but with fixed http method PUT
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.put
+ * @kind function
+ */
 httpReq.put = httpReqVerb('put');
+
+/**
+ * Like `httpReq` but with fixed http method POST
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.post
+ * @kind function
+ */
 httpReq.post = httpReqVerb('post');
+
+/**
+ * Like `httpReq` but with fixed http method HEAD
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.head
+ * @kind function
+ */
 httpReq.head = httpReqVerb('head');
 
 function httpReqVerb(method) {

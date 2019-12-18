@@ -17,7 +17,6 @@ shared.fetchJSON();
 
 ## API reference
 
-
 * [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
@@ -33,19 +32,31 @@ shared.fetchJSON();
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
+* ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
+* ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
 * [get(object, key, _default)](#get) ⇒
+* ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
+* [.delete()](#httpReq.delete)
+* [.get()](#httpReq.get)
+* [.head()](#httpReq.head)
+* [.patch()](#httpReq.patch)
+* [.post()](#httpReq.post)
+* [.put()](#httpReq.put)
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
+* ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
+* ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
+* ~~[putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>~~
 * [requireConfig()](#requireConfig) ⇒ <code>Object</code>
 * [round(value, decimals)](#round) ⇒ <code>number</code>
 * [set(object, key, value)](#set) ⇒
@@ -56,12 +67,6 @@ shared.fetchJSON();
 * [trackEvent(category, category, category, category)](#trackEvent)
 * [trackPageView(loadTime)](#trackPageView)
 * [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
-* ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
-* ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
-* ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
-* ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
-* ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
-* ~~[putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>~~
 
 
 <a name="CodedError"></a>
@@ -536,18 +541,81 @@ to the response content type.
 ```js
 import httpReq from '@datawrapper/shared/httpReq';
  let res = await httpReq('/v3/charts', {
-        method: 'post',
-        payload: {
-            title: 'My new chart'
-        }
-    });
-    import { post } from '@datawrapper/shared/httpReq';
-    res = await post('/v3/charts', {
-        payload: {
-            title: 'My new chart'
-        }
-    });
+     method: 'post',
+     payload: {
+         title: 'My new chart'
+     }
+ });
+ import { post } from '@datawrapper/shared/httpReq';
+ res = await post('/v3/charts', {
+     payload: {
+         title: 'My new chart'
+     }
+ });
 ```
+
+* [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
+    * [.get()](#httpReq.get)
+    * [.patch()](#httpReq.patch)
+    * [.delete()](#httpReq.delete)
+    * [.put()](#httpReq.put)
+    * [.post()](#httpReq.post)
+    * [.head()](#httpReq.head)
+
+
+* * *
+
+<a name="httpReq.delete"></a>
+
+#### httpReq.delete()
+Like `httpReq` but with fixed http method DELETE
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.get"></a>
+
+#### httpReq.get()
+Like `httpReq` but with fixed http method GET
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.head"></a>
+
+#### httpReq.head()
+Like `httpReq` but with fixed http method HEAD
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.patch"></a>
+
+#### httpReq.patch()
+Like `httpReq` but with fixed http method PATCH
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.post"></a>
+
+#### httpReq.post()
+Like `httpReq` but with fixed http method POST
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.put"></a>
+
+#### httpReq.put()
+Like `httpReq` but with fixed http method PUT
+
+**See**: [httpReq](#httpReq)  
 
 * * *
 
