@@ -41,12 +41,12 @@ shared.fetchJSON();
 * ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
-* [.delete()](#httpReq.delete)
-* [.get()](#httpReq.get)
-* [.head()](#httpReq.head)
-* [.patch()](#httpReq.patch)
-* [.post()](#httpReq.post)
-* [.put()](#httpReq.put)
+    * [.delete()](#httpReq.delete)
+    * [.get()](#httpReq.get)
+    * [.head()](#httpReq.head)
+    * [.patch()](#httpReq.patch)
+    * [.post()](#httpReq.post)
+    * [.put()](#httpReq.put)
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)

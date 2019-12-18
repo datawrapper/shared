@@ -13,7 +13,8 @@ const toc =
     parts2
         .shift()
         .trim()
-        .split(/\* +/)
+        .replace(/\n( +)\*/g, (s, i) => `${s} |${i}|`)
+        .split('* ')
         .filter(s => s)
         .map(s => ({
             t: s.trim() + '\n',
@@ -21,7 +22,8 @@ const toc =
         }))
         .sort((a, b) => (a.h > b.h ? 1 : -1))
         .map(s => s.t)
-        .join('* ') +
+        .join('* ')
+        .replace(/\* \|( +)\|/g, (s, i) => `${i}*`) +
     '\n\n';
 
 parts2 = parts2.sort();
