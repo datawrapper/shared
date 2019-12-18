@@ -1,4 +1,6 @@
 /**
+ * @deprecated use httpReq instead
+ *
  * Download and parse a remote JSON document
  *
  * @param {string} url
@@ -50,6 +52,8 @@ export function fetchJSON(url, method, credentials, body, callback) {
 }
 
 /**
+ * @deprecated use httpReq or httpReq.get instead
+ *
  * Download and parse a JSON document via GET
  *
  * @param {string} url
@@ -82,6 +86,8 @@ export function getJSON(url, credentials, callback) {
 }
 
 /**
+ * @deprecated use httpReq or httpReq.post instead
+ *
  * Download and parse a remote JSON endpoint via POST. credentials
  * are included automatically
  *
@@ -103,6 +109,8 @@ export function postJSON(url, body, callback) {
 }
 
 /**
+ * @deprecated use httpReq or httpReq.put instead
+ *
  * Download and parse a remote JSON endpoint via PUT. credentials
  * are included automatically
  *
@@ -124,6 +132,8 @@ export function putJSON(url, body, callback) {
 }
 
 /**
+ * @deprecated use httpReq or httpReq.patch instead
+ *
  * Download and parse a remote JSON endpoint via PATCH. credentials
  * are included automatically
  *
@@ -145,6 +155,8 @@ export function patchJSON(url, body, callback) {
 }
 
 /**
+ * @deprecated use httpReq or httpReq.delete instead
+ *
  * Download and parse a remote JSON endpoint via DELETE. credentials
  * are included automatically
  *
