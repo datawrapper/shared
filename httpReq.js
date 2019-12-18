@@ -36,6 +36,7 @@ httpReq.patch = httpReqVerb('patch');
 httpReq.delete = httpReqVerb('delete');
 httpReq.put = httpReqVerb('put');
 httpReq.post = httpReqVerb('post');
+httpReq.head = httpReqVerb('head');
 
 function httpReqVerb(method) {
     return (path, options) => {
