@@ -62,9 +62,6 @@ function httpReq(path, options = {}) {
         }
     };
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
-    if (opts.method.toLowerCase() === 'get' && (payload || opts.body)) {
-        throw new Error('GET requests do not support payloads');
-    }
     if (payload) {
         // overwrite body
         opts.body = JSON.stringify(payload);
