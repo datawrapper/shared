@@ -25,17 +25,28 @@
     })
  */
 /* globals dw */
-export default function(method, path, options = {}) {
-    if (arguments.length === 2 && typeof path !== 'string') {
-        // support httpReq('/path', { method: 'get' }) syntax as well
-        options = path;
-        path = method;
-        method = options.method;
-    }
+export default httpReq;
+
+httpReq.get = httpReqVerb('get');
+httpReq.patch = httpReqVerb('patch');
+httpReq.delete = httpReqVerb('delete');
+httpReq.put = httpReqVerb('put');
+httpReq.post = httpReqVerb('post');
+
+function httpReqVerb(method) {
+    return (path, options) => {
+        if (options && options.method.toLowerCase() != method) {
+            throw new Error(`Invalid method "${options.method}" provided in ${method}() call`);
+         }
+         return httpReq(path, {...options, method});
+    };
+}
+
+function httpReq(path, options = {}) {
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
         raw: false,
-        method: method || 'get',
+        method: 'get',
         baseUrl: `//${dw.backend.__api_domain}`,
         mode: 'cors',
         credentials: 'include',
