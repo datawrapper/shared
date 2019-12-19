@@ -1,4 +1,3 @@
-/* globals dw */
 import { Store } from 'svelte/store.js';
 import { observeDeep } from 'svelte-extras';
 import _ from 'underscore';
@@ -9,22 +8,36 @@ import reorderColumns from './dataset/reorderColumns.js';
 import applyChanges from './dataset/applyChanges.js';
 import addComputedColumns from './dataset/addComputedColumns.js';
 
-import { patchJSON, putJSON, loadScript } from './fetch.js';
+import { put, patch } from './httpreq';
+import { loadScript } from './fetch';
 
 const storeChanges = _.debounce((chart, callback) => {
     const state = chart.serialize();
 
-    patchJSON(`//${dw.backend.__api_domain}/v3/charts/${state.id}`, JSON.stringify(state), () => {
-        if (callback) callback();
-    });
+    patch(`/v3/charts/${state.id}`, { payload: state })
+        .then(() => {
+            if (callback) callback();
+        })
+        .catch(e => {
+            console.error('Could not store chart changes', e);
+        });
 }, 1000);
 
 const storeData = _.debounce((chart, callback) => {
     const data = chart.getMetadata('data.json') ? JSON.stringify(chart.dataset()) : chart.rawData();
     // const data = chart.rawData();
-    putJSON(`/api/2/charts/${chart.get().id}/data`, data, () => {
-        if (callback) callback();
-    });
+    put(`/2/charts/${chart.get().id}/data`, {
+        body: data,
+        headers: {
+            'Content-Type': 'text/csv'
+        }
+    })
+        .then(() => {
+            if (callback) callback();
+        })
+        .catch(e => {
+            console.error('Could not store chart data', e);
+        });
 }, 1000);
 
 class Chart extends Store {
