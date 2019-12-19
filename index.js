@@ -12,6 +12,7 @@ export { default as estimateTextWidth } from './estimateTextWidth.js';
 export { default as fetch } from './fetch.js';
 export { default as get } from './get.js';
 export { default as isValidUrl } from './isValidUrl.js';
+export { default as httpReq } from './httpReq.js';
 export { default as highlightTimer } from './highlightTimer.js';
 export { default as l10n } from './l10n.js';
 export { default as observeFonts } from './observeFonts.js';

@@ -9,14 +9,21 @@ const parts = md.split('## API reference');
 let parts2 = parts[1].split('<a name="');
 
 const toc =
-    '\n\n' +
+    '\n\n* ' +
     parts2
         .shift()
         .trim()
+        .replace(/\n( +)\*/g, (s, i) => `${s} |${i}|`)
         .split('* ')
-        .map(s => s.trim() + '\n')
-        .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
-        .join('* ') +
+        .filter(s => s)
+        .map(s => ({
+            t: s.trim() + '\n',
+            h: s.match(/\((?:#|docs\/)([^)]+)/)[1].toLowerCase()
+        }))
+        .sort((a, b) => (a.h > b.h ? 1 : -1))
+        .map(s => s.t)
+        .join('* ')
+        .replace(/\* \|( +)\|/g, (s, i) => `${i}*`) +
     '\n\n';
 
 parts2 = parts2.sort();
