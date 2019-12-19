@@ -566,10 +566,10 @@ import httpReq from '@datawrapper/shared/httpReq';
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
     * [.get()](#httpReq.get)
     * [.patch()](#httpReq.patch)
-    * [.delete()](#httpReq.delete)
     * [.put()](#httpReq.put)
     * [.post()](#httpReq.post)
     * [.head()](#httpReq.head)
+    * [.delete()](#httpReq.delete)
 
 
 * * *

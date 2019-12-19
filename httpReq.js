@@ -33,7 +33,7 @@ export default function httpReq(path, options = {}) {
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
         raw: false,
-        method: 'get',
+        method: 'GET',
         baseUrl: `//${dw.backend.__api_domain}`,
         mode: 'cors',
         credentials: 'include',
@@ -72,7 +72,7 @@ export default function httpReq(path, options = {}) {
  * @exports httpReq.get
  * @kind function
  */
-httpReq.get = httpReqVerb('get');
+export const get = (httpReq.get = httpReqVerb('GET'));
 
 /**
  * Like `httpReq` but with fixed http method PATCH
@@ -81,16 +81,7 @@ httpReq.get = httpReqVerb('get');
  * @exports httpReq.patch
  * @kind function
  */
-httpReq.patch = httpReqVerb('patch');
-
-/**
- * Like `httpReq` but with fixed http method DELETE
- * @see {@link httpReq}
- *
- * @exports httpReq.delete
- * @kind function
- */
-httpReq.delete = httpReqVerb('delete');
+export const patch = (httpReq.patch = httpReqVerb('PATCH'));
 
 /**
  * Like `httpReq` but with fixed http method PUT
@@ -99,7 +90,7 @@ httpReq.delete = httpReqVerb('delete');
  * @exports httpReq.put
  * @kind function
  */
-httpReq.put = httpReqVerb('put');
+export const put = (httpReq.put = httpReqVerb('PUT'));
 
 /**
  * Like `httpReq` but with fixed http method POST
@@ -108,7 +99,7 @@ httpReq.put = httpReqVerb('put');
  * @exports httpReq.post
  * @kind function
  */
-httpReq.post = httpReqVerb('post');
+export const post = (httpReq.post = httpReqVerb('POST'));
 
 /**
  * Like `httpReq` but with fixed http method HEAD
@@ -117,12 +108,23 @@ httpReq.post = httpReqVerb('post');
  * @exports httpReq.head
  * @kind function
  */
-httpReq.head = httpReqVerb('head');
+export const head = (httpReq.head = httpReqVerb('HEAD'));
+
+/**
+ * Like `httpReq` but with fixed http method DELETE
+ * @see {@link httpReq}
+ *
+ * @exports httpReq.delete
+ * @kind function
+ */
+httpReq.delete = httpReqVerb('DELETE');
 
 function httpReqVerb(method) {
     return (path, options) => {
         if (options && options.method) {
-            throw new Error(`Setting option.method is not allowed in ${method}()`);
+            throw new Error(
+                `Setting option.method is not allowed in httpReq.${method.toLowerCase()}()`
+            );
         }
         return httpReq(path, { ...options, method });
     };
