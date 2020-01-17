@@ -59,6 +59,13 @@ test('post request with csv body', async t => {
     t.falsy(res.json);
 });
 
+test('no content in 204 requests', async t => {
+    const res = await httpReq.get('/status/204', {
+        baseUrl
+    });
+    t.is(res, undefined);
+});
+
 test('throws nice HttpReqError errors', async t => {
     try {
         await httpReq.get('/status/404', {
