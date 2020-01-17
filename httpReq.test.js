@@ -58,3 +58,17 @@ test('post request with csv body', async t => {
     t.is(res.data, body);
     t.falsy(res.json);
 });
+
+test('throws nice HttpReqError errors', async t => {
+    try {
+        await httpReq.get('/status/404', {
+            baseUrl
+        });
+    } catch (err) {
+        t.is(err.name, 'HttpReqError');
+        t.is(err.status, 404);
+        t.is(err.statusText, 'NOT FOUND');
+        const body = await err.response.text();
+        t.is(body, '');
+    }
+});
