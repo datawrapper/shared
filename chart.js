@@ -26,7 +26,7 @@ const storeChanges = _.debounce((chart, callback) => {
 const storeData = _.debounce((chart, callback) => {
     const data = chart.getMetadata('data.json') ? JSON.stringify(chart.dataset()) : chart.rawData();
     // const data = chart.rawData();
-    put(`/2/charts/${chart.get().id}/data`, {
+    put(`/v3/charts/${chart.get().id}/data`, {
         body: data,
         headers: {
             'Content-Type': 'text/csv'
