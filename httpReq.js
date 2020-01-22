@@ -50,8 +50,8 @@ export default function httpReq(path, options = {}) {
     }
     return window.fetch(url, opts).then(res => {
         if (raw) return res;
-        if (!res.ok) throw new Error(`[${res.statusCode}] ${res.statusText}`);
-        if (res.statusCode === 204) return; // no content
+        if (!res.ok) throw new HttpReqError(res);
+        if (res.status === 204) return; // no content
         // trim away the ;charset=utf-8 from content-type
         const contentType = res.headers.get('content-type').split(';')[0];
         if (contentType === 'application/json') {
@@ -126,4 +126,15 @@ function httpReqVerb(method) {
         }
         return httpReq(path, { ...options, method });
     };
+}
+
+class HttpReqError extends Error {
+    constructor(res) {
+        super();
+        this.name = 'HttpReqError';
+        this.status = res.status;
+        this.statusText = res.statusText;
+        this.message = `[${res.status}] ${res.statusText}`;
+        this.response = res;
+    }
 }
