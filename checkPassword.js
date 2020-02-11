@@ -1,6 +1,7 @@
 /* global dw */
 const MIN_PASSWORD_LENGTH = 10;
 
+/** @deprecated */
 export default function(curPwd, pwd, pwd2) {
     var msg;
     if (curPwd === '') {
