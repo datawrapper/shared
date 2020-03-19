@@ -1,6 +1,6 @@
 const TAGS = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
 const COMMENTS_AND_PHP_TAGS = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-const defaultAllowed = '<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>';
+const defaultAllowed = '<a><span><b><br><br/><i><strong><sup><sub><strike><u><em><tt>';
 
 /**
  * Remove all non-whitelisted html tags from the given string
