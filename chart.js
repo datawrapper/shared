@@ -8,13 +8,13 @@ import reorderColumns from './dataset/reorderColumns.js';
 import applyChanges from './dataset/applyChanges.js';
 import addComputedColumns from './dataset/addComputedColumns.js';
 
-import { put, patch } from './httpReq';
+import { put } from './httpReq';
 import { loadScript } from './fetch';
 
 const storeChanges = _.debounce((chart, callback) => {
     const state = chart.serialize();
 
-    patch(`/v3/charts/${state.id}`, { payload: state })
+    put(`/v3/charts/${state.id}`, { payload: state })
         .then(() => {
             if (callback) callback();
         })
