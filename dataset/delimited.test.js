@@ -107,3 +107,23 @@ test('everything is quoted', async t => {
     // column count
     t.is(dataset.column(0).name(), 'Bezirk');
 });
+
+test.only('dataset with empty quotes', async t => {
+    const csv = `Year\tValue\tColumn2\tColumn3
+2011\t10\t15\t
+2012\t16\t13\t""
+2013\t15\t18\t
+2014\t15\t18\t10
+2015\t1000\t20\t10
+2016\t16\t""\t10
+2017\t12\t\t
+2018\t20\t\t
+2019\t10\t\t`;
+    const dataset = await delimited({ csv }).dataset();
+    // column count
+    t.is(dataset.column(0).name(), 'Year');
+    t.is(dataset.numColumns(), 4);
+    t.is(dataset.numRows(), 9);
+    t.deepEqual(dataset.column(2).values(), [15, 13, 18, 18, 20, null, null, null, null]);
+    t.deepEqual(dataset.column(3).values(), [null, null, null, 10, 10, 10, null, null, null]);
+});

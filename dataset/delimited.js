@@ -76,7 +76,7 @@ class DelimitedParser {
         const closure = opts.delimiter !== '|' ? '|' : '#';
         let arrData;
 
-        data = closure + '\n' + data.replace(/\s+$/g, '') + closure;
+        data = closure + '\n' + data.replace(/[ \r\n\f]+$/g, '') + closure;
 
         function parseCSV(delimiterPattern, strData, strDelimiter) {
             // implementation and regex borrowed from:
@@ -125,7 +125,9 @@ class DelimitedParser {
 
                 // Now that we have our value string, let's add
                 // it to the data array.
-                arrData[arrData.length - 1].push(strMatchedValue);
+                arrData[arrData.length - 1].push(
+                    strMatchedValue === undefined ? '' : strMatchedValue
+                );
             }
 
             // remove closure
