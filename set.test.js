@@ -41,3 +41,17 @@ test('set array elements', t => {
     t.is(thing.nested.array[2], 40);
     t.is(thing.nested.array[3], 8);
 });
+
+test('set returns true if something changed', t => {
+    const thing = {
+        answer: 42,
+        nested: {
+            bar: true
+        }
+    };
+    t.false(set(thing, 'answer', 42));
+    t.true(set(thing, 'answer', 43));
+    t.true(set(thing, 'nested.foo', 'bar'));
+    t.true(set(thing, 'nested.bar', false));
+    t.false(set(thing, 'nested.bar', false));
+});

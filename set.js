@@ -1,5 +1,3 @@
-import clone from './clone';
-
 /**
  * safely set object properties without throwing nasty
  * `cannot access X of undefined` errors if a property along the
@@ -28,8 +26,9 @@ export default function set(object, key, value) {
     });
 
     // check if new value is set
-    if (clone(pt[lastKey]) !== clone(value)) {
+    if (JSON.stringify(pt[lastKey]) !== JSON.stringify(value)) {
         pt[lastKey] = value;
+        return true;
     }
-    return object;
+    return false;
 }
