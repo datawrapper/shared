@@ -27,7 +27,7 @@ export default function(opts) {
             // }).then(function(raw) {
             //     return new DelimitedParser(opts).parse(raw);
             // });
-        } else if (opts.csv) {
+        } else if (opts.csv || opts.csv === '') {
             const dfd = new Promise(resolve => {
                 resolve(opts.csv);
             });
