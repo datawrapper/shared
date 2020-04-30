@@ -54,8 +54,23 @@ test('links with existing target _self dont get overwritten', t => {
     );
 });
 
-test.todo('test if styles are kept in');
+test('test if styles are kept in', t => {
+    t.is(
+        purifyHtml('this is <span style="color:red">red</span>!'),
+        'this is <span style="color:red">red</span>!'
+    );
+});
 
-test.todo('test if onclick handlers are removed');
+test('test if onclick handlers are removed', t => {
+    t.is(
+        purifyHtml('<a href="https://example.com" onclick="alert(42)">click me!</a>'),
+        '<a href="https://example.com" target="_blank" rel="nofollow noopener noreferrer">click me!</a>'
+    );
+});
 
-test.todo('test if javascript:... links are removed');
+test('test if javascript urls are removed', t => {
+    t.is(
+        purifyHtml('<a href="javascript:alert(42)">click me!</a>'),
+        '<a href="" target="_blank" rel="nofollow noopener noreferrer">click me!</a>'
+    );
+});

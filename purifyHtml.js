@@ -35,6 +35,16 @@ export default function purifyHTML(input, allowed) {
             // special treatment for <a> elements
             if (sel[i].getAttribute('target') !== '_self') sel[i].setAttribute('target', '_blank');
             sel[i].setAttribute('rel', 'nofollow noopener noreferrer');
+            if (
+                sel[i].getAttribute('href') &&
+                sel[i]
+                    .getAttribute('href')
+                    .trim()
+                    .startsWith('javascript:')
+            ) {
+                // remove entire href to be safe
+                sel[i].setAttribute('href', '');
+            }
         }
         for (var j = 0; j < sel[i].attributes.length; j++) {
             var attrib = sel[i].attributes[j];
