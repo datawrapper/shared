@@ -2,11 +2,11 @@ import { Store } from 'svelte/store.js';
 import { observeDeep } from 'svelte-extras';
 import _ from 'underscore';
 
-import delimited from './dataset/delimited.js';
-import json from './dataset/json.js';
-import reorderColumns from './dataset/reorderColumns.js';
-import applyChanges from './dataset/applyChanges.js';
-import addComputedColumns from './dataset/addComputedColumns.js';
+import delimited from '@datawrapper/chart-core/lib/dw/dataset/delimited';
+import json from '@datawrapper/chart-core/lib/dw/dataset/json';
+import reorderColumns from '@datawrapper/chart-core/lib/dw/dataset/reorderColumns';
+import applyChanges from '@datawrapper/chart-core/lib/dw/dataset/applyChanges';
+import addComputedColumns from '@datawrapper/chart-core/lib/dw/dataset/addComputedColumns';
 
 import { put } from './httpReq';
 import { loadScript } from './fetch';
