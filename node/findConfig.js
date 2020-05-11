@@ -43,7 +43,7 @@ function findConfigPath() {
 
 Please check if there is a \`config.js\` file in either
 
-\`/etc/datawrapper\` or \`${path.join(process.cwd(), 'config.js')}\`
+${paths.join('\n')}
 `);
     process.exit(1);
 }
