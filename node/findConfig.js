@@ -24,7 +24,11 @@ function findConfigPath() {
         ? path.resolve(process.env.DW_CONFIG_PATH)
         : undefined;
 
-    const paths = ['/etc/datawrapper/config.js', path.join(process.cwd(), 'config.js')];
+    const paths = [
+        '/etc/datawrapper/config.js',
+        path.join(process.cwd(), '../../', 'config.js'),
+        path.join(process.cwd(), 'config.js')
+    ];
 
     if (customPath) {
         paths.unshift(customPath);
