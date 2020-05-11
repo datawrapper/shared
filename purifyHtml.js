@@ -33,7 +33,8 @@ export default function purifyHTML(input, allowed) {
     for (var i = 0; i < sel.length; i++) {
         if (sel[i].nodeName.toLowerCase() === 'a') {
             // special treatment for <a> elements
-            if (sel[i].getAttribute('target') !== '_self') sel[i].setAttribute('target', '_blank');
+            if (['_self', '_parent'].indexOf(sel[i].getAttribute('target')) === -1)
+                sel[i].setAttribute('target', '_blank');
             sel[i].setAttribute('rel', 'nofollow noopener noreferrer');
             if (
                 sel[i].getAttribute('href') &&
