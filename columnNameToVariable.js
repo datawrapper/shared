@@ -25,5 +25,5 @@ export default function columnNameToVariable(name) {
         .replace(/^_+/, '') // Trim - from start of text
         .replace(/_+$/, '') // Trim - from end of text
         .replace(/^(\d)/, '_$1') // If first char is a number, prefix with _
-        .replace(/^(and|or|in)$/, '$1_'); // avoid reserved keywords
+        .replace(/^(and|or|in|true|false)$/, '$1_'); // avoid reserved keywords
 }
