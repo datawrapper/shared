@@ -51,7 +51,7 @@ export default function httpReq(path, options = {}) {
     return window.fetch(url, opts).then(res => {
         if (raw) return res;
         if (!res.ok) throw new HttpReqError(res);
-        if (res.status === 204 || !res.headers.get('content-type')) return; // no content
+        if (res.status === 204 || !res.headers.get('content-type')) return res; // no content
         // trim away the ;charset=utf-8 from content-type
         const contentType = res.headers.get('content-type').split(';')[0];
         if (contentType === 'application/json') {
