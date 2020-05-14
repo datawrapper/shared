@@ -63,7 +63,8 @@ test('no content in 204 requests', async t => {
     const res = await httpReq.get('/status/204', {
         baseUrl
     });
-    t.is(res, undefined);
+
+    t.is(res.headers.get('content-length'), null);
 });
 
 test('throws nice HttpReqError errors', async t => {
