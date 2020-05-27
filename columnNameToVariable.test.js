@@ -50,3 +50,19 @@ test('some real-world examples', t => {
     t.is(columnNameToVariable('GDP (per cap.)'), 'gdp_per_cap');
     t.is(columnNameToVariable('Unempl. in %'), 'unempl_in');
 });
+
+test('preserve keywords', t => {
+    t.is(columnNameToVariable('and'), 'and_');
+    t.is(columnNameToVariable('true'), 'true_');
+    t.is(columnNameToVariable('false'), 'false_');
+    t.is(columnNameToVariable('or'), 'or_');
+    t.is(columnNameToVariable('in'), 'in_');
+});
+
+test('JS keywords are now allowed as variables', t => {
+    t.is(columnNameToVariable('abstract'), 'abstract');
+    t.is(columnNameToVariable('Number'), 'number');
+    t.is(columnNameToVariable('class'), 'class');
+    t.is(columnNameToVariable('function'), 'function');
+    t.is(columnNameToVariable('const'), 'const');
+});
