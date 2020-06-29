@@ -1,4 +1,4 @@
-function checkURL(url) {
+function checkUrl(url) {
     if (url.indexOf('://unix:') > -1 || url.indexOf('unix:') === 0) {
         return false;
     }
@@ -6,4 +6,4 @@ function checkURL(url) {
     return true;
 }
 
-module.exports = checkURL;
+module.exports = checkUrl;
