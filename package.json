@@ -48,6 +48,9 @@
         "sinon": "^7.3.2",
         "underscore": "^1.9.1"
     },
+    "peerDependencies": {
+        "got": "^11.3.0"
+    },
     "lint-staged": {
         "*.js": [
             "prettier --write",
