@@ -46,8 +46,7 @@
         "d3-array": "^1.2.4",
         "lodash-es": "^4.17.15",
         "sinon": "^7.3.2",
-        "underscore": "^1.9.1",
-        "got": "^11.3.0"
+        "underscore": "^1.9.1"
     },
     "lint-staged": {
         "*.js": [
