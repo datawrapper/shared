@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 /**
  * The response body is automatically parsed according
  * to the response content type.
@@ -28,7 +30,13 @@
  *      }
  *  });
  */
-export default function httpReq(path, options = {}) {
+export default function httpReq(
+    path,
+    options = {},
+    csrfCookieName = 'crumb',
+    csrfTokenHeader = 'X-CSRF-Token',
+    csrfUnsafeMethods = ['POST', 'PUT', 'PATCH', 'DELETE']
+) {
     /* globals dw */
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
@@ -43,6 +51,9 @@ export default function httpReq(path, options = {}) {
             ...options.headers
         }
     };
+    if (csrfUnsafeMethods.includes(opts.method)) {
+        opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
+    }
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
     if (payload) {
         // overwrite body
