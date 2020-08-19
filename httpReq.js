@@ -35,7 +35,7 @@ export default function httpReq(
     options = {},
     csrfCookieName = 'crumb',
     csrfTokenHeader = 'X-CSRF-Token',
-    csrfUnsafeMethods = ['POST', 'PUT', 'PATCH', 'DELETE']
+    csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
 ) {
     /* globals dw */
     const { payload, baseUrl, raw, ...opts } = {
@@ -51,7 +51,7 @@ export default function httpReq(
             ...options.headers
         }
     };
-    if (csrfUnsafeMethods.includes(opts.method)) {
+    if (!csrfSafeMethods.has(opts.method.toLowerCase())) {
         opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
     }
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
