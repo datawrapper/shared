@@ -1,11 +1,12 @@
 import test from 'ava';
 import fetch from 'node-fetch';
 import httpReq from './httpReq';
+import { spy } from 'sinon';
 
 const baseUrl = 'https://httpbin.org';
 
 test.before(t => {
-    window.fetch = fetch;
+    window.fetch = spy(fetch);
     global.dw = { backend: { __api_domain: 'api.datawrapper.local' } };
 });
 
@@ -79,4 +80,18 @@ test('throws nice HttpReqError errors', async t => {
         const body = await err.response.text();
         t.is(body, '');
     }
+});
+
+test('sends CSRF header with an "unsafe" HTTP method', async t => {
+    document.cookie = 'crumb=abc';
+    const promise = httpReq.put('/put', { baseUrl });
+    t.is(window.fetch.lastCall.args[1].headers['X-CSRF-Token'], 'abc');
+    return promise;
+});
+
+test('doesn\'t send CSRF header with a "safe" HTTP method', async t => {
+    document.cookie = 'crumb=abc';
+    const promise = httpReq.get('/get', { baseUrl });
+    t.falsy(window.fetch.lastCall.args[1].headers['X-CSRF-Token']);
+    return promise;
 });
