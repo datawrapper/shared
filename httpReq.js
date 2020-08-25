@@ -37,11 +37,13 @@ export default function httpReq(
     csrfTokenHeader = 'X-CSRF-Token',
     csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
 ) {
+    /* globals dw */
     if (!options.baseUrl) {
-        if (!window.dw) {
+        try {
+            options.baseUrl = `//${dw.backend.__api_domain}`;
+        } catch (e) {
             throw new Error('Neither options.baseUrl nor global variable dw is defined.');
         }
-        options.baseUrl = `//${window.dw.backend.__api_domain}`;
     }
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
