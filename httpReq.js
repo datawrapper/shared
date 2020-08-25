@@ -37,15 +37,21 @@ export default function httpReq(
     csrfTokenHeader = 'X-CSRF-Token',
     csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
 ) {
-    /* globals dw */
-    if (!options.baseUrl) {
+    if (!options.fetch) {
         try {
-            options.baseUrl = `//${dw.backend.__api_domain}`;
+            options.fetch = window.fetch;
         } catch (e) {
-            throw new Error('Neither options.baseUrl nor global variable dw is defined.');
+            throw new Error('Neither options.fetch nor window.fetch is defined.');
         }
     }
-    const { payload, baseUrl, raw, ...opts } = {
+    if (!options.baseUrl) {
+        try {
+            options.baseUrl = `//${window.dw.backend.__api_domain}`;
+        } catch (e) {
+            throw new Error('Neither options.baseUrl nor window.dw is defined.');
+        }
+    }
+    const { payload, baseUrl, fetch, raw, ...opts } = {
         payload: null,
         raw: false,
         method: 'GET',
@@ -65,7 +71,7 @@ export default function httpReq(
         // overwrite body
         opts.body = JSON.stringify(payload);
     }
-    return window.fetch(url, opts).then(res => {
+    return fetch(url, opts).then(res => {
         if (raw) return res;
         if (!res.ok) throw new HttpReqError(res);
         if (res.status === 204 || !res.headers.get('content-type')) return res; // no content
