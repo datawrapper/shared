@@ -37,6 +37,12 @@ export default function httpReq(
     csrfTokenHeader = 'X-CSRF-Token',
     csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
 ) {
+    if (!options.baseUrl) {
+        if (!window.dw) {
+            throw new Error('Neither options.baseUrl nor global variable dw is defined.');
+        }
+        options.baseUrl = `//${window.dw.backend.__api_domain}`;
+    }
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
         raw: false,
@@ -49,12 +55,6 @@ export default function httpReq(
             ...options.headers
         }
     };
-    if (!opts.baseUrl) {
-        if (!window.dw) {
-            throw new Error('Neither opts.baseUrl nor global variable dw is defined.');
-        }
-        opts.baseUrl = `//${window.dw.backend.__api_domain}`;
-    }
     if (!csrfSafeMethods.has(opts.method.toLowerCase())) {
         opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
     }
