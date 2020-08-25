@@ -1,5 +1,3 @@
-/* global dw */
-
 import Cookies from 'js-cookie';
 
 /**
@@ -52,10 +50,10 @@ export default function httpReq(
         }
     };
     if (!opts.baseUrl) {
-        if (!dw) {
+        if (!window.dw) {
             throw new Error('Neither opts.baseUrl nor global variable dw is defined.');
         }
-        opts.baseUrl = `//${dw.backend.__api_domain}`;
+        opts.baseUrl = `//${window.dw.backend.__api_domain}`;
     }
     if (!csrfSafeMethods.has(opts.method.toLowerCase())) {
         opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
