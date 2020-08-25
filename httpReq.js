@@ -1,3 +1,5 @@
+/* global dw */
+
 import Cookies from 'js-cookie';
 
 /**
@@ -37,12 +39,10 @@ export default function httpReq(
     csrfTokenHeader = 'X-CSRF-Token',
     csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
 ) {
-    /* globals dw */
     const { payload, baseUrl, raw, ...opts } = {
         payload: null,
         raw: false,
         method: 'GET',
-        baseUrl: `//${dw.backend.__api_domain}`,
         mode: 'cors',
         credentials: 'include',
         ...options,
@@ -51,6 +51,12 @@ export default function httpReq(
             ...options.headers
         }
     };
+    if (!opts.baseUrl) {
+        if (!dw) {
+            throw new Error('Neither opts.baseUrl nor global variable dw is defined.');
+        }
+        opts.baseUrl = `//${dw.backend.__api_domain}`;
+    }
     if (!csrfSafeMethods.has(opts.method.toLowerCase())) {
         opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
     }
