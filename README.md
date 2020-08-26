@@ -23,14 +23,11 @@ shared.httpReq();
 * [autoTickFormat(column)](#autoTickFormat) ⇒ <code>string</code>
 * [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
 * [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
-* [Chart](docs/chart.md) ⇒ <code>class</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
-* [Column](docs/column.md) ⇒ <code>class</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
-* [Dataset](docs/dataset.md) ⇒ <code>class</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
