@@ -1,5 +1,9 @@
 import Cookies from 'js-cookie';
 
+const CSRF_COOKIE_NAME = 'crumb';
+const CSRF_TOKEN_HEADER = 'X-CSRF-Token';
+const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // according to RFC7231
+
 /**
  * The response body is automatically parsed according
  * to the response content type.
@@ -30,13 +34,7 @@ import Cookies from 'js-cookie';
  *      }
  *  });
  */
-export default function httpReq(
-    path,
-    options = {},
-    csrfCookieName = 'crumb',
-    csrfTokenHeader = 'X-CSRF-Token',
-    csrfSafeMethods = new Set(['get', 'head', 'options', 'trace']) // according to RFC7231
-) {
+export default function httpReq(path, options = {}) {
     if (!options.fetch) {
         try {
             options.fetch = window.fetch;
@@ -63,8 +61,8 @@ export default function httpReq(
             ...options.headers
         }
     };
-    if (!csrfSafeMethods.has(opts.method.toLowerCase())) {
-        opts.headers[csrfTokenHeader] = Cookies.get(csrfCookieName);
+    if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
+        opts.headers[CSRF_TOKEN_HEADER] = Cookies.get(CSRF_COOKIE_NAME);
     }
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
     if (payload) {
