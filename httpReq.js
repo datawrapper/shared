@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie';
-import { nanoid } from 'nanoid';
 
 const CSRF_COOKIE_NAME = 'crumb';
 const CSRF_TOKEN_HEADER = 'X-CSRF-Token';
@@ -35,7 +34,7 @@ const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // accor
  *      }
  *  });
  */
-export default function httpReq(path, options = {}) {
+export default async function httpReq(path, options = {}) {
     if (!options.fetch) {
         try {
             options.fetch = window.fetch;
@@ -62,19 +61,27 @@ export default function httpReq(path, options = {}) {
             ...options.headers
         }
     };
-    if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
-        let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
-        if (!csrfCookieValue) {
-            csrfCookieValue = `TEMP-${nanoid()}`;
-            Cookies.set(CSRF_COOKIE_NAME, csrfCookieValue);
-        }
-        opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
-    }
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
     if (payload) {
         // overwrite body
         opts.body = JSON.stringify(payload);
     }
+
+    if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
+        let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+        if (csrfCookieValue) {
+            opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+        } else {
+            await httpReq('/v3/me', { fetch, baseUrl }).then(() => {
+                var csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+                if (!csrfCookieValue) {
+                    throw new Error("Server didn't set the CSRF cookie.");
+                }
+                opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+            });
+        }
+    }
+
     return fetch(url, opts).then(res => {
         if (raw) return res;
         if (!res.ok) throw new HttpReqError(res);
