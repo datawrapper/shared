@@ -87,9 +87,9 @@ export default function httpReq(path, options = {}) {
     } else {
         promise = fetch(url, opts);
     }
-    // The variable `promise` and the repeated `fetch(url, opts)` could be resplaced with
-    // `await httpReq('/v3/me'...)`, but then we would need to configure babel to transform
-    // async/await for all repositories that use @datawrapper/shared.
+    // The variable `promise` and the repeated `fetch(url, opts)` could be replaced with `await
+    // httpReq('/v3/me'...)`, but then we would need to configure babel to transform async/await for
+    // all repositories that use @datawrapper/shared.
 
     return promise.then(res => {
         if (raw) return res;
