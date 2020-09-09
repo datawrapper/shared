@@ -19,6 +19,7 @@ test('simple get request', async t => {
 });
 
 test('simple put request', async t => {
+    document.cookie = 'crumb=abc';
     let res = await httpReq.put('/put', { baseUrl });
     t.is(res.url, `${baseUrl}/put`);
     t.is(res.headers['Content-Type'], `application/json`);
@@ -28,6 +29,7 @@ test('simple put request', async t => {
 });
 
 test('simple put request with json payload', async t => {
+    document.cookie = 'crumb=abc';
     const payload = { answer: 42 };
     let res = await httpReq.put('/put', { baseUrl, payload });
     t.deepEqual(res.json, payload);
@@ -38,6 +40,7 @@ test('simple put request with json payload', async t => {
 });
 
 test('post request with csv body', async t => {
+    document.cookie = 'crumb=abc';
     const body = 'foo, bar\n1, 2';
     // default content-type is application/json
     let res = await httpReq.put('/put', {
