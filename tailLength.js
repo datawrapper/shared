@@ -21,6 +21,7 @@ export default function tailLength(value) {
         0,
         String(value - Math.floor(value))
             .replace(/00000*[0-9]+$/, '')
+            .replace(/33333*[0-9]+$/, '')
             .replace(/99999*[0-9]+$/, '').length - 2
     );
 }
