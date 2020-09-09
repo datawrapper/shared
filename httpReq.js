@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { nanoid } from 'nanoid';
 
 const CSRF_COOKIE_NAME = 'crumb';
 const CSRF_TOKEN_HEADER = 'X-CSRF-Token';
@@ -62,7 +63,12 @@ export default function httpReq(path, options = {}) {
         }
     };
     if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
-        opts.headers[CSRF_TOKEN_HEADER] = Cookies.get(CSRF_COOKIE_NAME);
+        let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+        if (!csrfCookieValue) {
+            csrfCookieValue = `TEMP-${nanoid()}`;
+            Cookies.set(CSRF_COOKIE_NAME, csrfCookieValue);
+        }
+        opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
     }
     const url = `${baseUrl.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
     if (payload) {
