@@ -34,7 +34,7 @@ const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // accor
  *      }
  *  });
  */
-export default async function httpReq(path, options = {}) {
+export default function httpReq(path, options = {}) {
     if (!options.fetch) {
         try {
             options.fetch = window.fetch;
@@ -67,22 +67,31 @@ export default async function httpReq(path, options = {}) {
         opts.body = JSON.stringify(payload);
     }
 
+    let promise;
     if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
         let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
         if (csrfCookieValue) {
             opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+            promise = fetch(url, opts);
         } else {
-            await httpReq('/v3/me', { fetch, baseUrl }).then(() => {
-                var csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
-                if (!csrfCookieValue) {
-                    throw new Error("Server didn't set the CSRF cookie.");
-                }
-                opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
-            });
+            promise = httpReq('/v3/me', { fetch, baseUrl })
+                .then(() => {
+                    var csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+                    if (!csrfCookieValue) {
+                        throw new Error("Server didn't set the CSRF cookie.");
+                    }
+                    opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+                })
+                .then(() => fetch(url, opts));
         }
+    } else {
+        promise = fetch(url, opts);
     }
+    // The variable `promise` and the repeated `fetch(url, opts)` could be resplaced with
+    // `await httpReq('/v3/me'...)`, but then we would need to configure babel to transform
+    // async/await for all repositories that use @datawrapper/shared.
 
-    return fetch(url, opts).then(res => {
+    return promise.then(res => {
         if (raw) return res;
         if (!res.ok) throw new HttpReqError(res);
         if (res.status === 204 || !res.headers.get('content-type')) return res; // no content
