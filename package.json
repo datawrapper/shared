@@ -42,9 +42,12 @@
         "raf": "^3.4.1"
     },
     "dependencies": {
+        "@hapi/boom": "^9.1.0",
+        "bcryptjs": "^2.4.3",
         "chroma-js": "^2.0.3",
         "d3-array": "^1.2.4",
         "lodash-es": "^4.17.15",
+        "nanoid": "^2.1.11",
         "sinon": "^7.3.2",
         "underscore": "^1.9.1"
     },
