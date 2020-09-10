@@ -1,3 +1,9 @@
+import Cookies from 'js-cookie';
+
+const CSRF_COOKIE_NAME = 'crumb';
+const CSRF_TOKEN_HEADER = 'X-CSRF-Token';
+const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // according to RFC7231
+
 /**
  * The response body is automatically parsed according
  * to the response content type.
@@ -29,12 +35,24 @@
  *  });
  */
 export default function httpReq(path, options = {}) {
-    /* globals dw */
-    const { payload, baseUrl, raw, ...opts } = {
+    if (!options.fetch) {
+        try {
+            options.fetch = window.fetch;
+        } catch (e) {
+            throw new Error('Neither options.fetch nor window.fetch is defined.');
+        }
+    }
+    if (!options.baseUrl) {
+        try {
+            options.baseUrl = `//${window.dw.backend.__api_domain}`;
+        } catch (e) {
+            throw new Error('Neither options.baseUrl nor window.dw is defined.');
+        }
+    }
+    const { payload, baseUrl, fetch, raw, ...opts } = {
         payload: null,
         raw: false,
         method: 'GET',
-        baseUrl: `//${dw.backend.__api_domain}`,
         mode: 'cors',
         credentials: 'include',
         ...options,
@@ -48,7 +66,32 @@ export default function httpReq(path, options = {}) {
         // overwrite body
         opts.body = JSON.stringify(payload);
     }
-    return window.fetch(url, opts).then(res => {
+
+    let promise;
+    if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
+        let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+        if (csrfCookieValue) {
+            opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+            promise = fetch(url, opts);
+        } else {
+            promise = httpReq('/v3/me', { fetch, baseUrl })
+                .then(() => {
+                    var csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+                    if (!csrfCookieValue) {
+                        throw new Error("Server didn't set the CSRF cookie.");
+                    }
+                    opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
+                })
+                .then(() => fetch(url, opts));
+        }
+    } else {
+        promise = fetch(url, opts);
+    }
+    // The variable `promise` and the repeated `fetch(url, opts)` could be replaced with `await
+    // httpReq('/v3/me'...)`, but then we would need to configure babel to transform async/await for
+    // all repositories that use @datawrapper/shared.
+
+    return promise.then(res => {
         if (raw) return res;
         if (!res.ok) throw new HttpReqError(res);
         if (res.status === 204 || !res.headers.get('content-type')) return res; // no content
