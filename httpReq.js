@@ -77,7 +77,7 @@ export default function httpReq(path, options = {}) {
             promise = httpReq('/v3/me', { fetch, baseUrl })
                 .then(() => {
                     const csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
-                    if (!csrfCookieValue) {
+                    if (csrfCookieValue) {
                         opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
                     }
                 })
