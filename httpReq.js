@@ -76,12 +76,12 @@ export default function httpReq(path, options = {}) {
         } else {
             promise = httpReq('/v3/me', { fetch, baseUrl })
                 .then(() => {
-                    var csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+                    const csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
                     if (!csrfCookieValue) {
-                        throw new Error("Server didn't set the CSRF cookie.");
+                        opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
                     }
-                    opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
                 })
+                .catch(() => {}) // Ignore errors from /v3/me. It probably means the user is not logged in.
                 .then(() => fetch(url, opts));
         }
     } else {
