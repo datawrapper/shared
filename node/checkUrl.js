@@ -1,5 +1,5 @@
 function checkUrl(url) {
-    if (url.indexOf('://unix:') > -1 || url.indexOf('unix:') === 0) {
+    if (typeof url !== 'string' || url.indexOf('://unix:') > -1 || url.indexOf('unix:') === 0) {
         return false;
     }
 
