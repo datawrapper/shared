@@ -46,12 +46,14 @@ export default function purifyHTML(input, allowed) {
                 sel[i].setAttribute('href', '');
             }
         }
+        const removeAttrs = [];
         for (var j = 0; j < sel[i].attributes.length; j++) {
             var attrib = sel[i].attributes[j];
             if (attrib.specified) {
-                if (attrib.name.substr(0, 2) === 'on') sel[i].removeAttribute(attrib.name);
+                if (attrib.name.substr(0, 2) === 'on') removeAttrs.push(attrib.name);
             }
         }
+        removeAttrs.forEach(attr => sel[i].removeAttribute(attr));
     }
     return d.innerHTML;
 }
