@@ -74,3 +74,10 @@ test('test if javascript urls are removed', t => {
         '<a href="" target="_blank" rel="nofollow noopener noreferrer">click me!</a>'
     );
 });
+
+test('test if multiple on* handlers are removed', t => {
+    t.is(
+        purifyHtml('<span onmouseover="diversion" onclick="alert(document.domain)">span</span>'),
+        '<span>span</span>'
+    );
+});
