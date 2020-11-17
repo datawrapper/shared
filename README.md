@@ -34,6 +34,7 @@ shared.httpReq();
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
+* [formatNumber(value, options)](#formatNumber) ⇒ <code>string</code>
 * [get(object, key, _default)](#get) ⇒
 * ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
@@ -44,6 +45,7 @@ shared.httpReq();
     * [.patch()](#httpReq.patch)
     * [.post()](#httpReq.post)
     * [.put()](#httpReq.put)
+* [initNumeralLocale(locale)](#initNumeralLocale)
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
@@ -442,6 +444,32 @@ const path = findConfigPath()
 
 * * *
 
+<a name="formatNumber"></a>
+
+### formatNumber(value, options) ⇒ <code>string</code>
+special number formatting that can deal with microtypography
+and "prepend currencies" (e.g., −$1234.57)
+
+**Returns**: <code>string</code> - - the formatted number  
+
+| Param | Type |
+| --- | --- |
+| value | <code>number</code> | 
+| options | <code>object</code> | 
+
+**Example**  
+```js
+// returns '1234.57'
+formatNumber(1234.567)
+```
+**Example**  
+```js
+// returns '−$1234.57'
+formatNumber(-1234.567, { prepend: '$' })
+```
+
+* * *
+
 <a name="get"></a>
 
 ### get(object, key, _default) ⇒
@@ -622,6 +650,21 @@ Like `httpReq` but with fixed http method POST
 Like `httpReq` but with fixed http method PUT
 
 **See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="initNumeralLocale"></a>
+
+### initNumeralLocale(locale)
+in order to use [formatValue](formatValue) with custom locales
+and to avoid version conflicts with `numeral`, this method
+allows setting a locale.
+
+
+| Param | Type |
+| --- | --- |
+| locale | <code>object</code> | 
+
 
 * * *
 
