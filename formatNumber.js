@@ -33,7 +33,7 @@ export default function(value, options) {
     const fmt = numeral(Math.abs(value)).format(format);
     if (prepend && value < 0 && currencies.has(prepend.trim().toLowerCase())) {
         // pull minus sign to front
-        return `${minusChar}${prepend}${fmt}${append}`;
+        return `${minusChar}${prepend}${fmt.replace('+', '')}${append}`;
     } else if (
         prepend &&
         value >= 0 &&
@@ -41,9 +41,12 @@ export default function(value, options) {
         format.includes('+')
     ) {
         // pull plus sign to front
-        return `+${prepend}${fmt.replace('+', '')}${append}`;
-    } else if (value < 0) {
-        return `${prepend}${minusChar}${fmt}${append}`;
+        return `${value === 0 ? '±' : '+'}${prepend}${fmt.replace('+', '')}${append}`;
+    } else if (value === 0 && format.includes('+')) {
+        return `${prepend}${fmt.replace('+', '±')}${append}`;
+    }
+    if (value < 0) {
+        return `${prepend}${minusChar}${fmt.replace('+', '')}${append}`;
     }
     return `${prepend}${fmt}${append}`;
 }
