@@ -46,3 +46,7 @@ test('forced plus sign and prepend currencies', t => {
     t.is(formatNumber(1234.5678, { format: '+0.00', prepend: 'USD ' }), '+USD 1234.57');
     t.is(formatNumber(-1234.5678, { format: '+0.00', prepend: 'USD ' }), '−USD 1234.57');
 });
+
+test('percentages are not multiplied with 100', t => {
+    t.is(formatNumber(70, { format: '0%' }), '70%');
+});

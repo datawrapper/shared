@@ -29,7 +29,12 @@ export default function(value, options) {
         minusChar: '−',
         ...options
     };
-    const { format, prepend, append, minusChar } = options;
+    const { format, append, prepend, minusChar } = options;
+    if (format.includes('%') && Number.isFinite(value)) {
+        // numeraljs will multiply percentages with 100
+        // which we don't want to happen
+        value *= 0.01;
+    }
     const fmt = numeral(Math.abs(value)).format(format);
     if (prepend && value < 0 && currencies.has(prepend.trim().toLowerCase())) {
         // pull minus sign to front
