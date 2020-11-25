@@ -450,12 +450,19 @@ const path = findConfigPath()
 special number formatting that can deal with microtypography
 and "prepend currencies" (e.g., −$1234.57)
 
+Use [initNumeralLocale](#initNumeralLocale) to set a custom locale.
+
 **Returns**: <code>string</code> - - the formatted number  
 
-| Param | Type |
-| --- | --- |
-| value | <code>number</code> | 
-| options | <code>object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>number</code> | the number to format |
+| options | <code>object</code> | options, see below |
+| options.format | <code>string</code> | numeral.js compatible number format |
+| options.prepend | <code>string</code> | string to prepend to number |
+| options.append | <code>string</code> | string to append to number |
+| options.minusChar | <code>string</code> | custom character to use for minus |
+| options.multiply | <code>number</code> | multiply number before applying format |
 
 **Example**  
 ```js

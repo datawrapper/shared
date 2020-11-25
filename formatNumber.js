@@ -4,11 +4,18 @@ import numeral from 'numeral';
  * special number formatting that can deal with microtypography
  * and "prepend currencies" (e.g., −$1234.57)
  *
+ * Use {@link initNumeralLocale} to set a custom locale.
+ *
  * @exports formatNumber
  * @kind function
  *
- * @param {number} value
- * @param {object} options
+ * @param {number} value - the number to format
+ * @param {object} options - options, see below
+ * @param {string} options.format - numeral.js compatible number format
+ * @param {string} options.prepend - string to prepend to number
+ * @param {string} options.append - string to append to number
+ * @param {string} options.minusChar - custom character to use for minus
+ * @param {number} options.multiply - multiply number before applying format
  *
  * @example
  * // returns '1234.57'
@@ -27,14 +34,16 @@ export default function(value, options) {
         prepend: '',
         append: '',
         minusChar: '−',
+        multiply: 1,
         ...options
     };
-    const { format, append, prepend, minusChar } = options;
+    const { format, append, prepend, minusChar, multiply } = options;
     if (format.includes('%') && Number.isFinite(value)) {
         // numeraljs will multiply percentages with 100
         // which we don't want to happen
         value *= 0.01;
     }
+    value *= multiply;
     const fmt = numeral(Math.abs(value)).format(format);
     if (prepend && value < 0 && currencies.has(prepend.trim().toLowerCase())) {
         // pull minus sign to front

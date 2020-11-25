@@ -50,3 +50,7 @@ test('forced plus sign and prepend currencies', t => {
 test('percentages are not multiplied with 100', t => {
     t.is(formatNumber(70, { format: '0%' }), '70%');
 });
+
+test('allow multiplying numbers', t => {
+    t.is(formatNumber(70000, { multiply: 0.001 }), '70');
+});
