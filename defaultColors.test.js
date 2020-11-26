@@ -26,25 +26,18 @@ const tests = [
         theme: {
             colors: {
                 background: '#FCB716',
-                chartContentBaseColor: '#ffffff',
-                bgBlendRatios: {
-                    gridline: 0.5,
-                    tickText: {
-                        primary: 0,
-                        secondary: 0
-                    }
-                }
+                chartContentBaseColor: '#ffffff'
             }
         },
         expectedResult: {
             tickText: {
-                secondary: '#ffffff',
-                primary: '#ffffff'
+                secondary: '#fee5c6',
+                primary: '#fef2e4'
             },
             series: '#ffffff',
             value: '#fef2e4',
             axis: '#ffffff',
-            gridline: '#fedeb5',
+            gridline: '#fdc66e',
             fallbackBaseColor: '#ffffff'
         }
     }
