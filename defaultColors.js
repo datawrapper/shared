@@ -21,15 +21,20 @@ import get from './get';
  */
 
 export function defaultColors(theme) {
-    const fallback =
-        theme.colors.chartContentBaseColor ||
-        (chroma.contrast(theme.colors.background, '#000000') < 5.5 ? '#f1f1f1' : '#333333');
+    const baseColorSetting = get(theme, 'colors.chartContentBaseColor', 'auto');
+    const bgColor = get(theme, 'colors.background', '#ffffff');
 
-    const darkBG = chroma(theme.colors.background).luminance() < 0.5;
+    const baseColor =
+        baseColorSetting === 'auto'
+            ? chroma.contrast(bgColor, '#000000') < 5.5
+                ? '#ffffff'
+                : '#000000'
+            : baseColorSetting;
+
     const bgBlendRatios = {
         tickText: {
-            secondary: get(theme, 'colors.bgBlendRatios.tickText.secondary', darkBG ? 0.6 : 0.4),
-            primary: get(theme, 'colors.bgBlendRatios.tickText.primary', 0.2)
+            secondary: get(theme, 'colors.bgBlendRatios.tickText.secondary', 0.5),
+            primary: get(theme, 'colors.bgBlendRatios.tickText.primary', 0.1)
         },
         series: get(theme, 'colors.bgBlendRatios.series', 0),
         value: get(theme, 'colors.bgBlendRatios.value', 0.2),
@@ -40,21 +45,21 @@ export function defaultColors(theme) {
     return {
         tickText: {
             secondary: chroma
-                .mix(fallback, theme.colors.background, bgBlendRatios.tickText.secondary)
+                .mix(baseColor, theme.colors.background, bgBlendRatios.tickText.secondary)
                 .hex(),
             primary: chroma
-                .mix(fallback, theme.colors.background, bgBlendRatios.tickText.primary)
+                .mix(baseColor, theme.colors.background, bgBlendRatios.tickText.primary)
                 .hex()
         },
 
-        series: chroma.mix(fallback, theme.colors.background, bgBlendRatios.series).hex(),
+        series: chroma.mix(baseColor, theme.colors.background, bgBlendRatios.series).hex(),
 
-        value: chroma.mix(fallback, theme.colors.background, bgBlendRatios.value).hex(),
+        value: chroma.mix(baseColor, theme.colors.background, bgBlendRatios.value).hex(),
 
-        axis: chroma.mix(fallback, theme.colors.background, bgBlendRatios.axis).hex(),
+        axis: chroma.mix(baseColor, theme.colors.background, bgBlendRatios.axis).hex(),
 
-        gridline: chroma.mix(fallback, theme.colors.background, bgBlendRatios.gridline).hex(),
+        gridline: chroma.mix(baseColor, theme.colors.background, bgBlendRatios.gridline).hex(),
 
-        fallbackBaseColor: fallback
+        fallbackBaseColor: baseColor
     };
 }
