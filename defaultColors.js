@@ -21,15 +21,11 @@ import get from './get';
  */
 
 export function defaultColors(theme) {
-    const baseColorSetting = get(theme, 'colors.chartContentBaseColor', 'auto');
+    const baseColorSetting = get(theme, 'colors.chartContentBaseColor');
     const bgColor = get(theme, 'colors.background', '#ffffff');
 
     const baseColor =
-        baseColorSetting === 'auto'
-            ? chroma.contrast(bgColor, '#000000') < 5.5
-                ? '#ffffff'
-                : '#000000'
-            : baseColorSetting;
+        baseColorSetting || (chroma.contrast(bgColor, '#000000') < 5.5 ? '#ffffff' : '#000000');
 
     const bgBlendRatios = {
         tickText: {
