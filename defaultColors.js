@@ -30,10 +30,10 @@ export function defaultColors(theme) {
     const bgBlendRatios = {
         tickText: {
             secondary: get(theme, 'colors.bgBlendRatios.tickText.secondary', 0.5),
-            primary: get(theme, 'colors.bgBlendRatios.tickText.primary', 0.15)
+            primary: get(theme, 'colors.bgBlendRatios.tickText.primary', 0.12)
         },
         series: get(theme, 'colors.bgBlendRatios.series', 0),
-        value: get(theme, 'colors.bgBlendRatios.value', 0.15),
+        value: get(theme, 'colors.bgBlendRatios.value', 0.12),
         axis: get(theme, 'colors.bgBlendRatios.axis', 0),
         gridline: get(theme, 'colors.bgBlendRatios.gridline', 0.82)
     };
