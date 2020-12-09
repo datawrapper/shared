@@ -310,12 +310,12 @@ bar background etc. based on the theme background color, and some other optional
 
 **Example**  
 ```js
-// returns {"tickText":{"secondary":"#aeaeae","primary":"#dfdfdf"},"series":"#f1f1f1","value":"#dfdfdf","axis":"#f1f1f1","gridline":"#707070","fallbackBaseColor":"#f1f1f1"}
+// returns {"tickText":{"secondary":"#aeaeae","primary":"#e3e3e3"},"series":"#f1f1f1","value":"#e3e3e3","axis":"#f1f1f1","gridline":"#707070","fallbackBaseColor":"#f1f1f1"}
 defaultColors({"colors": {"background": "#333333"}});
 ```
 **Example**  
 ```js
-// returns {"tickText":{"secondary":"#ffffff","primary":"#ffffff"},"series":"#ffffff","value":"#fff6eb","axis":"#ffffff","gridline":"#fedeb5","fallbackBaseColor":"#ffffff"}
+// returns {"tickText":{"secondary":"#ffffff","primary":"#ffffff"},"series":"#ffffff","value":"#fff7ef","axis":"#ffffff","gridline":"#fedeb5","fallbackBaseColor":"#ffffff"}
 defaultColors({"colors": {"bgBlendRatios": {"gridline": 0.5,"tickText": {"primary": 0,"secondary": 0}},"chartContentBaseColor": "#ffffff","background": "#FCB716"}});
 ```
 
