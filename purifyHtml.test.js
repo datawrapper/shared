@@ -81,3 +81,12 @@ test('test if multiple on* handlers are removed', t => {
         '<span>span</span>'
     );
 });
+
+test('javascript link with special chars', t => {
+    t.is(
+        purifyHtml(
+            '<a href="ja&Tab;va&NewLine;script&colon;alert&lpar;document.domain&rpar;" target="_self">link</a>'
+        ),
+        '<a href="" target="_self" rel="nofollow noopener noreferrer">link</a>'
+    );
+});

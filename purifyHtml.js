@@ -40,6 +40,7 @@ export default function purifyHTML(input, allowed) {
                 sel[i]
                     .getAttribute('href')
                     .trim()
+                    .replace(/[^a-zA-Z0-9 -:]/g, '')
                     .startsWith('javascript:')
             ) {
                 // remove entire href to be safe
