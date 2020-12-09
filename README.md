@@ -310,7 +310,7 @@ bar background etc. based on the theme background color, and some other optional
 
 **Example**  
 ```js
-// returns {"tickText":{"secondary":"#b8b8b8","primary":"#ececec"},"series":"#ffffff","value":"#ececec","axis":"#ffffff","gridline":"#767676","fallbackBaseColor":"#ffffff"}
+// returns {"tickText":{"secondary":"#aeaeae","primary":"#dfdfdf"},"series":"#f1f1f1","value":"#dfdfdf","axis":"#f1f1f1","gridline":"#707070","fallbackBaseColor":"#f1f1f1"}
 defaultColors({"colors": {"background": "#333333"}});
 ```
 **Example**  

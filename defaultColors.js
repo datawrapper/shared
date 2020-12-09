@@ -9,7 +9,7 @@ import get from './get';
  * @kind function
  *
  * @example
- * // returns {"tickText":{"secondary":"#b8b8b8","primary":"#ececec"},"series":"#ffffff","value":"#ececec","axis":"#ffffff","gridline":"#767676","fallbackBaseColor":"#ffffff"}
+ * // returns {"tickText":{"secondary":"#aeaeae","primary":"#dfdfdf"},"series":"#f1f1f1","value":"#dfdfdf","axis":"#f1f1f1","gridline":"#707070","fallbackBaseColor":"#f1f1f1"}
  * defaultColors({"colors": {"background": "#333333"}});
  *
  * @example
@@ -25,7 +25,7 @@ export function defaultColors(theme) {
     const bgColor = get(theme, 'colors.background', '#ffffff');
 
     const baseColor =
-        baseColorSetting || (chroma.contrast(bgColor, '#000000') < 5.5 ? '#ffffff' : '#000000');
+        baseColorSetting || (chroma.contrast(bgColor, '#000000') < 5.5 ? '#f1f1f1' : '#333333');
 
     const bgBlendRatios = {
         tickText: {
