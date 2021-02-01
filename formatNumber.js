@@ -44,8 +44,14 @@ export default function(value, options) {
         value *= 0.01;
     }
     value *= multiply;
-    const fmt = numeral(Math.abs(value)).format(format);
-    if (prepend && value < 0 && currencies.has(prepend.trim().toLowerCase())) {
+    const parenthesesFormat = format.indexOf('(') > -1;
+    const fmt = numeral(parenthesesFormat ? value : Math.abs(value)).format(format);
+    if (
+        prepend &&
+        !parenthesesFormat &&
+        value < 0 &&
+        currencies.has(prepend.trim().toLowerCase())
+    ) {
         // pull minus sign to front
         return `${minusChar}${prepend}${fmt.replace('+', '')}${append}`;
     } else if (
@@ -59,7 +65,7 @@ export default function(value, options) {
     } else if (value === 0 && format.includes('+')) {
         return `${prepend}${fmt.replace('+', '±')}${append}`;
     }
-    if (value < 0) {
+    if (value < 0 && !parenthesesFormat) {
         return `${prepend}${minusChar}${fmt.replace('+', '')}${append}`;
     }
     return `${prepend}${fmt}${append}`;
