@@ -742,7 +742,7 @@ injects a `<link>` element to the page to load a new stylesheet
 
 | Param | Type |
 | --- | --- |
-| src | <code>string</code> | 
+| src | <code>string</code> \| <code>object</code> | 
 | callback | <code>function</code> | 
 
 **Example**  

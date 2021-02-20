@@ -209,7 +209,7 @@ export function loadScript(src, callback = null) {
 /**
  * injects a `<link>` element to the page to load a new stylesheet
  *
- * @param {string} src
+ * @param {string|object} src
  * @param {function} callback
  *
  * @example
@@ -219,16 +219,26 @@ export function loadScript(src, callback = null) {
  *     console.log('library styles are loaded');
  * })
  */
-export function loadStylesheet(src, callback = null) {
+export function loadStylesheet(opts, callback = null) {
+    if (typeof opts === 'string') {
+        opts = {
+            src: opts
+        };
+    }
+
+    if (!opts.parentElement || typeof opts.parentElement.appendChild !== 'function') {
+        opts.parentElement = document.head;
+    }
+
     return new Promise((resolve, reject) => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = src;
+        link.href = opts.src;
         link.onload = () => {
             if (callback) callback();
             resolve();
         };
         link.onerror = reject;
-        document.head.appendChild(link);
+        opts.parentElement.appendChild(link);
     });
 }
