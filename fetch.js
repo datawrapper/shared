@@ -207,9 +207,15 @@ export function loadScript(src, callback = null) {
 }
 
 /**
+ * @typedef {object} opts
+ * @property {string} src - stylesheet URL to load
+ * @property {DOMElement} parentElement - DOM element to append style tag to
+ */
+
+/**
  * injects a `<link>` element to the page to load a new stylesheet
  *
- * @param {string|object} src
+ * @param {string|opts} src
  * @param {function} callback
  *
  * @example
