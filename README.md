@@ -51,6 +51,7 @@ shared.httpReq();
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
+* [opts](#opts) : <code>object</code>
 * ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
 * ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
@@ -742,7 +743,7 @@ injects a `<link>` element to the page to load a new stylesheet
 
 | Param | Type |
 | --- | --- |
-| src | <code>string</code> | 
+| src | <code>string</code> \| [<code>opts</code>](#opts) | 
 | callback | <code>function</code> | 
 
 **Example**  
@@ -767,6 +768,19 @@ specified in fontsJSON and typographyJSON have been loaded.
 | --- | --- |
 | fontsJSON | <code>Object</code> \| <code>Array</code> | 
 | typographyJSON | <code>Object</code> | 
+
+
+* * *
+
+<a name="opts"></a>
+
+### opts : <code>object</code>
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> | stylesheet URL to load |
+| parentElement | <code>DOMElement</code> | DOM element to append style tag to |
 
 
 * * *
