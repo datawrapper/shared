@@ -37,6 +37,9 @@ export default function(value, options) {
         multiply: 1,
         ...options
     };
+    if (value === undefined || isNaN(value) || value === '' || value === null) {
+        return '';
+    }
     const { format, append, prepend, minusChar, multiply } = options;
     if (format.includes('%') && Number.isFinite(value)) {
         // numeraljs will multiply percentages with 100
