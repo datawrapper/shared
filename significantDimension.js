@@ -1,7 +1,7 @@
 import tailLength from './tailLength';
 import round from './round';
-import uniq from 'lodash-es/uniq';
-import _isFinite from 'lodash-es/isFinite';
+import uniq from 'underscore/modules/uniq';
+import _isFinite from 'underscore/modules/isFinite';
 
 /**
  * computes the significant dimension for a list of numbers
