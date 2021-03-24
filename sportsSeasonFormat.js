@@ -9,7 +9,7 @@ export default (o, c) => {
         const str = formatStr || FORMAT_DEFAULT;
         const separator = this.$locale().seasonSeparator || '-';
 
-        const result = str.replace(/(\[[^\]]+])|(?<!S)S{1,2}(?!S)/g, (match, a) => {
+        const result = str.replace(/(\[[^\]]+])|SS|S/g, (match, a) => {
             const year = this.$y;
             const nextYear = year + 1;
             const shortFmt = match === 'S';
