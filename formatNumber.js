@@ -34,10 +34,11 @@ export default function(value, options) {
         prepend: '',
         append: '',
         minusChar: '−',
+        plusMinusChar: '±',
         multiply: 1,
         ...options
     };
-    const { format, append, prepend, minusChar, multiply } = options;
+    const { format, append, prepend, minusChar, plusMinusChar, multiply } = options;
     if (format.includes('%') && Number.isFinite(value)) {
         // numeraljs will multiply percentages with 100
         // which we don't want to happen
@@ -61,7 +62,7 @@ export default function(value, options) {
         format.includes('+')
     ) {
         // pull plus sign to front
-        return `${value === 0 ? '±' : '+'}${prepend}${fmt.replace('+', '')}${append}`;
+        return `${value === 0 ? plusMinusChar : '+'}${prepend}${fmt.replace('+', '')}${append}`;
     } else if (value === 0 && format.includes('+')) {
         return `${prepend}${fmt.replace('+', '±')}${append}`;
     }
