@@ -12,7 +12,7 @@ export default (o, c) => {
         const result = str.replace(/(\[[^\]]+])|BB|B/g, (match, a) => {
             const year = this.$y;
             const nextYear = year + 1;
-            const shortFmt = match === 'S';
+            const shortFmt = match === 'B';
             const args1 = shortFmt ? [String(year).slice(-2), 2] : [year, 4];
             const args2 = [String(nextYear).slice(-2), 2];
             return (
