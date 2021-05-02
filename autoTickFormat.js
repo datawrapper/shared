@@ -40,7 +40,7 @@ export function autoTickFormatNumber(range) {
 export function autoTickFormatDate(range, precision = 'day') {
     const span = Math.abs(range[1].getTime() - range[0].getTime());
     if (precision === 'year')
-        return span > YEAR * 5 ? "'YY" : span > YEAR * 3 ? 'YYYY' : 'YYYY|MMM';
+        return span > YEAR * 5 ? "YYYY~~'YY" : span > YEAR * 3 ? 'YYYY' : 'YYYY|MMM';
     if (precision === 'quarter') return span > MONTH * 6 ? 'YYYY|[Q]Q' : 'YYYY [Q]Q|MMM';
     if (precision === 'week') return 'YYYY|[W]wo';
     if (span < MINUTE * 8) return 'LTS';
