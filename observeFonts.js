@@ -17,8 +17,11 @@ export default function observeFonts(fontsJSON, typographyJSON) {
 
     Object.keys(typographyJSON.fontFamilies || {}).forEach(fontFamily => {
         typographyJSON.fontFamilies[fontFamily].forEach(fontface => {
+            /* If this font is being used in a font family */
             if (fonts.has(fontface.name)) {
+                /* Remove it form the list of fonts to wait for */
                 fonts.delete(fontface.name);
+                /* And add it again with theme-defined weight and style */
                 fonts.add({
                     family: fontFamily,
                     props: {
