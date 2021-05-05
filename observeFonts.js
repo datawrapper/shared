@@ -13,20 +13,36 @@ import FontFaceObserver from 'fontfaceobserver';
  */
 export default function observeFonts(fontsJSON, typographyJSON) {
     /* Render vis again after fonts have been loaded */
-    const loadingFonts = Array.isArray(fontsJSON) ? [] : Object.keys(fontsJSON);
-    const fonts = new Set(loadingFonts);
+    let fonts = Array.isArray(fontsJSON)
+        ? []
+        : Object.keys(fontsJSON).map(font => {
+              return {
+                  family: font,
+                  props: {
+                      weight: 400,
+                      style: 'normal'
+                  }
+              };
+          });
 
-    Object.keys(typographyJSON).forEach(key => {
-        const typefaceKey = typographyJSON[key].typeface;
-        if (typefaceKey) {
-            const typeFaces = typefaceKey.split(',').map(t => t.trim());
-            typeFaces.forEach(face => fonts.add(face));
-        }
+    Object.keys(typographyJSON.fontFamilies || {}).forEach(fontFamily => {
+        typographyJSON.fontFamilies[fontFamily].forEach(fontface => {
+            if (fonts.map(f => f.family).includes(fontface.name)) {
+                fonts = fonts.filter(f => f.family !== fontface.name);
+                fonts.push({
+                    family: fontFamily,
+                    props: {
+                        weight: fontface.weight || 400,
+                        style: fontface.style || 'normal'
+                    }
+                });
+            }
+        });
     });
 
     const observers = [];
     fonts.forEach(font => {
-        const obs = new FontFaceObserver(font);
+        const obs = new FontFaceObserver(font.family, font.props);
         observers.push(obs.load(null, 5000));
     });
 
