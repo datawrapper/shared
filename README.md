@@ -490,7 +490,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | _default | <code>\*</code> | the fallback value to be returned if key doesn't exist |
 
 **Example**  
@@ -948,7 +948,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | value | <code>\*</code> | the value to be set |
 
 

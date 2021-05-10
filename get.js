@@ -8,7 +8,7 @@
  *
  *
  * @param object - the object which properties you want to acccess
- * @param {String} key - dot-separated keys aka "path" to the property
+ * @param {String|String[]} key - path to the property as a dot-separated string or array of strings
  * @param {*} _default - the fallback value to be returned if key doesn't exist
  *
  * @returns the value
@@ -22,8 +22,7 @@
  */
 export default function get(object, key = null, _default = null) {
     if (!key) return object;
-    // expand keys
-    const keys = key.split('.');
+    const keys = Array.isArray(key) ? key : key.split('.');
     let pt = object;
 
     for (let i = 0; i < keys.length; i++) {
