@@ -61,7 +61,6 @@ test('week', t => {
     };
 
     const formatter = dateFormatter(column);
-    t.is(formatter(dates[0]), '1999 W53');
     t.is(formatter(dates[1]), '2000 W13');
     t.is(formatter(dates[2]), '2001 W26');
 });
