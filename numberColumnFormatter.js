@@ -1,5 +1,5 @@
-import formatNumber from '../formatNumber.js';
-import equalish from '@datawrapper/shared/equalish';
+import formatNumber from './formatNumber.js';
+import equalish from './equalish';
 
 export default function(config) {
     let format = config['number-format'] || '-';
@@ -32,6 +32,10 @@ export default function(config) {
                 : equalish(val, Math.round(val * 100000) * 0.00001)
                 ? 5
                 : 6;
+        }
+
+        if (_fmt[0] === 'n') {
+            digits = Number(_fmt.substr(1, _fmt.length));
         }
 
         let numeralFormat = '0';

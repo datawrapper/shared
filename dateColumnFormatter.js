@@ -1,5 +1,7 @@
 import { isDate, identity } from 'underscore/modules';
 import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+dayjs.extend(localizedFormat);
 
 export default function(column) {
     const format = column.format();
@@ -20,7 +22,7 @@ export default function(column) {
             };
         case 'month':
             return function(d) {
-                return !isDate(d) ? d : dayjs.format(d, 'MMM YY');
+                return !isDate(d) ? d : dayjs(d).format('MMM YY');
             };
         case 'week':
             return function(d) {
@@ -32,19 +34,27 @@ export default function(column) {
             };
         case 'day':
             return function(d, verbose) {
-                return !isDate(d) ? d : dayjs.format(d, verbose ? 'dddd, MMMM DD, YYYY' : 'l');
+                return !isDate(d) ? d : dayjs(d).format(verbose ? 'dddd, MMMM DD, YYYY' : 'l');
             };
         case 'day-minutes':
             return function(d) {
                 return !isDate(d)
                     ? d
-                    : dayjs.format(d, 'MMM DD').replace(' ', '&nbsp;') +
+                    : dayjs(d)
+                          .format('MMM DD')
+                          .replace(' ', '&nbsp;') +
                           ' - ' +
-                          dayjs.format(d, 'LT').replace(' ', '&nbsp;');
+                          dayjs(d)
+                              .format('LT')
+                              .replace(' ', '&nbsp;');
             };
         case 'day-seconds':
             return function(d) {
-                return !isDate(d) ? d : dayjs.format(d, 'LTS').replace(' ', '&nbsp;');
+                return !isDate(d)
+                    ? d
+                    : dayjs(d)
+                          .format('LTS')
+                          .replace(' ', '&nbsp;');
             };
     }
 }
