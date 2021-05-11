@@ -1,6 +1,22 @@
 import formatNumber from './formatNumber.js';
 import equalish from './equalish';
 
+/**
+ * Creates a number formatter based on a number column configuration
+ *
+ * @exports numberColumnFormatter
+ * @kind function
+ *
+ * @description
+ * This function returns a number formatting function based on a
+ * column configuration object stored in metadata.data.column-format.
+ * The implementation is backwards-compatible with our old
+ * Globalize-based number formatting, but uses numeral under the hood.
+ *
+ * @param {object} config - the column configuration from metadata
+ * @returns {function}
+ */
+
 export default function(config) {
     let format = config['number-format'] || '-';
     let div = Number(config['number-divisor'] || 0);

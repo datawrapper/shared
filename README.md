@@ -28,6 +28,7 @@ shared.httpReq();
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
+* [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
@@ -50,6 +51,7 @@ shared.httpReq();
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
+* [numberColumnFormatter(config)](#numberColumnFormatter) ⇒ <code>function</code>
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [opts](#opts) : <code>object</code>
 * ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
@@ -294,6 +296,22 @@ combinations(['a', 'b']);
 // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
 combinations([1,2,3])
 ```
+
+* * *
+
+<a name="dateColumnFormatter"></a>
+
+### dateColumnFormatter(column) ⇒ <code>function</code>
+This function returns a date formatting function based on a
+dw column object. The implementation is backwards-compatible with
+our old Globalize-based date formatting, but uses dayjs under the
+hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+
 
 * * *
 
@@ -754,6 +772,22 @@ loadStylesheet('/static/css/library.css', () => {
     console.log('library styles are loaded');
 })
 ```
+
+* * *
+
+<a name="numberColumnFormatter"></a>
+
+### numberColumnFormatter(config) ⇒ <code>function</code>
+This function returns a number formatting function based on a
+column configuration object stored in metadata.data.column-format.
+The implementation is backwards-compatible with our old
+Globalize-based number formatting, but uses numeral under the hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>object</code> | the column configuration from metadata |
+
 
 * * *
 

@@ -3,6 +3,22 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 dayjs.extend(localizedFormat);
 
+/**
+ * Creates a date formatter based on a dw date column object
+ *
+ * @exports dateColumnFormatter
+ * @kind function
+ *
+ * @description
+ * This function returns a date formatting function based on a
+ * dw column object. The implementation is backwards-compatible with
+ * our old Globalize-based date formatting, but uses dayjs under the
+ * hood.
+ *
+ * @param {object} column - the date column object
+ * @returns {function}
+ */
+
 export default function(column) {
     const format = column.format();
     if (!format) return identity;
