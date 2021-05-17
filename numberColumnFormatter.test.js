@@ -49,3 +49,30 @@ test('autoformat number with prepend & append', t => {
     t.is(formatter(3.145675, true), 'ca. 3.145675 US$'.replace(/ /g, '\u00A0'));
     t.is(formatter(122445.56, true), 'ca. 122,445.56 US$'.replace(/ /g, '\u00A0'));
 });
+
+test('autoformat number with division', t => {
+    const formatter = numberFormatter({
+        'number-format': 'n3',
+        'number-divisor': 3,
+        'number-prepend': '',
+        'number-append': ''
+    });
+
+    t.is(formatter(1, true), '0.001');
+    t.is(formatter(1000, true), '1.000');
+    t.is(formatter(12223, true), '12.223');
+    t.is(formatter(12223621, true), '12,223.621');
+});
+
+test('autoformat number with multiplication', t => {
+    const formatter = numberFormatter({
+        'number-format': '-',
+        'number-divisor': -2,
+        'number-prepend': '',
+        'number-append': ''
+    });
+
+    t.is(formatter(1, true), '100');
+    t.is(formatter(1000, true), '100,000');
+    t.is(formatter(12223, true), '1,222,300');
+});

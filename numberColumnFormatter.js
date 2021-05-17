@@ -64,7 +64,7 @@ export default function(config) {
             format: numeralFormat,
             prepend: full ? prepend : '',
             append: full ? append : '',
-            multiply: Math.pow(10, div)
+            multiply: Math.pow(10, div * -1)
         });
     };
 }
