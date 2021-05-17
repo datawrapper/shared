@@ -27,7 +27,6 @@
         "url": "git+ssh://git@github.com/datawrapper/shared.git"
     },
     "devDependencies": {
-        "@datawrapper/chart-core": "8.30",
         "ava": "3.8.1",
         "babel-eslint": "^10.0.1",
         "browser-env": "^3.2.6",
