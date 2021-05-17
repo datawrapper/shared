@@ -26,6 +26,7 @@ shared.httpReq();
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
+* [columnFormatter(column, metadata, axis)](#columnFormatter) ⇒ <code>function</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
@@ -250,6 +251,22 @@ To use this function, you have to manually install chroma-js using
 import colorLightness from '@datawrapper/shared/colorLightness';
 colorLightness('#ff3399') // 57.9
 ```
+
+* * *
+
+<a name="columnFormatter"></a>
+
+### columnFormatter(column, metadata, axis) ⇒ <code>function</code>
+This function returns a formatting function based, given a column object,
+a metadata object and the axis column name.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+| metadata | <code>object</code> | the full metadata object |
+| axis | <code>string</code> | the column name of the axis |
+
 
 * * *
 
