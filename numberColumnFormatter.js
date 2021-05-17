@@ -54,7 +54,7 @@ export default function(config) {
             digits = Number(_fmt.substr(1, _fmt.length));
         }
 
-        let numeralFormat = '0';
+        let numeralFormat = '0,0';
         for (var i = 0; i < digits; i++) {
             if (i === 0) numeralFormat += '.';
             numeralFormat += '0';
