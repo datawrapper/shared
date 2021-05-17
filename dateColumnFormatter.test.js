@@ -1,5 +1,8 @@
 import test from 'ava';
 import dateFormatter from './dateColumnFormatter';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+dayjs.extend(localizedFormat);
 
 const dates = [
     new Date(2000, 0, 1),

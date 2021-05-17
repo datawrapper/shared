@@ -1,7 +1,5 @@
 import { isDate, identity } from 'underscore/modules';
 import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-dayjs.extend(localizedFormat);
 
 /**
  * Creates a date formatter based on a dw date column object
