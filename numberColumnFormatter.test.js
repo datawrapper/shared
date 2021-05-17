@@ -33,7 +33,7 @@ test('format number with significant digits', t => {
     t.is(formatter(1), '1.000');
     t.is(formatter(3.14), '3.14');
     t.is(formatter(3.145675), '3.15');
-    t.is(formatter(122445.56), '122446');
+    t.is(formatter(122445.56), '122,446');
 });
 
 test('autoformat number with prepend & append', t => {
@@ -47,5 +47,5 @@ test('autoformat number with prepend & append', t => {
     t.is(formatter(1, true), 'ca. 1 US$'.replace(/ /g, '\u00A0'));
     t.is(formatter(3.14, true), 'ca. 3.14 US$'.replace(/ /g, '\u00A0'));
     t.is(formatter(3.145675, true), 'ca. 3.145675 US$'.replace(/ /g, '\u00A0'));
-    t.is(formatter(122445.56, true), 'ca. 122445.56 US$'.replace(/ /g, '\u00A0'));
+    t.is(formatter(122445.56, true), 'ca. 122,445.56 US$'.replace(/ /g, '\u00A0'));
 });
