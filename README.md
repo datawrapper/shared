@@ -33,6 +33,7 @@ shared.httpReq();
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [escapeHtml(unsafe)](#escapeHtml) ⇒ <code>string</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
@@ -404,6 +405,19 @@ equalish(0.333333, 1/3)
 // returns false
 equalish(0.333, 1/3)
 ```
+
+* * *
+
+<a name="escapeHtml"></a>
+
+### escapeHtml(unsafe) ⇒ <code>string</code>
+returns escaped HTML that can be used to display untrusted content
+
+
+| Param | Type |
+| --- | --- |
+| unsafe | <code>string</code> | 
+
 
 * * *
 
