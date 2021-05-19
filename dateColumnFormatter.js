@@ -1,4 +1,4 @@
-import { isDate, identity } from 'underscore/modules';
+import { isDate, identity } from 'underscore';
 import dayjs from 'dayjs';
 
 /**
