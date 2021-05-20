@@ -90,3 +90,15 @@ test('javascript link with special chars', t => {
         '<a href="" target="_self" rel="nofollow noopener noreferrer">link</a>'
     );
 });
+
+test('prevent unclosed tag exploit', t => {
+    const el = document.createElement('p');
+    const purified = purifyHtml('<img src=x onerror=alert(1);"" onload="a="');
+    el.innerHTML = `<span>${purified}</span>`;
+
+    t.is(el.childNodes[0].tagName, 'SPAN');
+    t.is(el.childNodes[0].innerHTML, '<img src="x" <="" span="">');
+    t.is(el.childNodes[0].childNodes[0].tagName, 'IMG');
+    t.is(el.childNodes[0].childNodes[0].getAttribute('onerror'), null);
+    t.is(el.childNodes[0].childNodes[0].getAttribute('onload'), null);
+});
