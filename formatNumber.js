@@ -64,7 +64,7 @@ export default function(value, options) {
         // pull plus sign to front
         return `${value === 0 ? plusMinusChar : '+'}${prepend}${fmt.replace('+', '')}${append}`;
     } else if (value === 0 && format.includes('+')) {
-        return `${prepend}${fmt.replace('+', '±')}${append}`;
+        return `${prepend}${fmt.replace('+', plusMinusChar)}${append}`;
     }
     if (value < 0 && !parenthesesFormat) {
         return `${prepend}${minusChar}${fmt.replace('+', '')}${append}`;
