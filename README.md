@@ -26,11 +26,14 @@ shared.httpReq();
 * [clone(object)](#clone) ⇒ <code>\*</code>
 * [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
+* [columnFormatter(column, metadata, axis)](#columnFormatter) ⇒ <code>function</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
+* [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [escapeHtml(unsafe)](#escapeHtml) ⇒ <code>string</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
@@ -50,6 +53,7 @@ shared.httpReq();
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
+* [numberColumnFormatter(config)](#numberColumnFormatter) ⇒ <code>function</code>
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
 * [opts](#opts) : <code>object</code>
 * ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
@@ -251,6 +255,22 @@ colorLightness('#ff3399') // 57.9
 
 * * *
 
+<a name="columnFormatter"></a>
+
+### columnFormatter(column, metadata, axis) ⇒ <code>function</code>
+This function returns a formatting function based, given a column object,
+a metadata object and the axis column name.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+| metadata | <code>object</code> | the full metadata object |
+| axis | <code>string</code> | the column name of the axis |
+
+
+* * *
+
 <a name="columnNameToVariable"></a>
 
 ### columnNameToVariable(name) ⇒ <code>string</code>
@@ -294,6 +314,22 @@ combinations(['a', 'b']);
 // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
 combinations([1,2,3])
 ```
+
+* * *
+
+<a name="dateColumnFormatter"></a>
+
+### dateColumnFormatter(column) ⇒ <code>function</code>
+This function returns a date formatting function based on a
+dw column object. The implementation is backwards-compatible with
+our old Globalize-based date formatting, but uses dayjs under the
+hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+
 
 * * *
 
@@ -369,6 +405,19 @@ equalish(0.333333, 1/3)
 // returns false
 equalish(0.333, 1/3)
 ```
+
+* * *
+
+<a name="escapeHtml"></a>
+
+### escapeHtml(unsafe) ⇒ <code>string</code>
+returns escaped HTML that can be used to display untrusted content
+
+
+| Param | Type |
+| --- | --- |
+| unsafe | <code>string</code> | 
+
 
 * * *
 
@@ -490,7 +539,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | _default | <code>\*</code> | the fallback value to be returned if key doesn't exist |
 
 **Example**  
@@ -757,6 +806,22 @@ loadStylesheet('/static/css/library.css', () => {
 
 * * *
 
+<a name="numberColumnFormatter"></a>
+
+### numberColumnFormatter(config) ⇒ <code>function</code>
+This function returns a number formatting function based on a
+column configuration object stored in metadata.data.column-format.
+The implementation is backwards-compatible with our old
+Globalize-based number formatting, but uses numeral under the hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>object</code> | the column configuration from metadata |
+
+
+* * *
+
 <a name="observeFonts"></a>
 
 ### observeFonts(fontsJSON, typographyJSON) ⇒ <code>Promise</code>
@@ -948,7 +1013,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | value | <code>\*</code> | the value to be set |
 
 

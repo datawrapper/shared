@@ -7,13 +7,13 @@
  * @kind function
  *
  * @param object - the object which properties you want to acccess
- * @param {String} key - dot-separated keys aka "path" to the property
+ * @param {String|String[]} key - path to the property as a dot-separated string or array of strings
  * @param {*} value - the value to be set
  *
  * @returns the value
  */
 export default function set(object, key, value) {
-    const keys = key.split('.');
+    const keys = Array.isArray(key) ? key : key.split('.');
     const lastKey = keys.pop();
     let pt = object;
 
