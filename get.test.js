@@ -9,7 +9,8 @@ const thing = {
         array: [1, 2, 4, 8],
         nested: {
             foo: 12
-        }
+        },
+        'sp.am': 'spam'
     }
 };
 
@@ -42,4 +43,8 @@ test('get array elements', t => {
 
 test('get array elements fallback', t => {
     t.is(get(thing, 'nested.array.4', 'unknown'), 'unknown');
+});
+
+test('get using a key as array', t => {
+    t.is(get(thing, ['nested', 'sp.am']), 'spam');
 });

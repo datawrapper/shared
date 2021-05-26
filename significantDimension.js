@@ -1,7 +1,6 @@
 import tailLength from './tailLength';
 import round from './round';
-import uniq from 'underscore/modules/uniq';
-import _isFinite from 'underscore/modules/isFinite';
+import { uniq, isFinite } from 'underscore';
 
 /**
  * computes the significant dimension for a list of numbers
@@ -22,7 +21,7 @@ import _isFinite from 'underscore/modules/isFinite';
 export default function significantDimension(values, tolerance = 0.1) {
     let result = [];
     let decimals = 0;
-    const uniqValues = uniq(values.filter(_isFinite));
+    const uniqValues = uniq(values.filter(isFinite));
     const totalUniq = uniqValues.length;
     let check, diff;
 
