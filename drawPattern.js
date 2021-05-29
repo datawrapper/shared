@@ -27,7 +27,7 @@ export default function drawPattern({
     const patternWidth = (lineGap + strokeWidth) * scale;
     let rot = patternRotation[patternType] || 0;
     if (flipV) {
-        rot = 180 - rotation;
+        rot = 180 - rot;
     }
     defs.append('pattern')
         .attr('id', id)
