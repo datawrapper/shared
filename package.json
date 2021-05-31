@@ -95,11 +95,6 @@
             ]
         }
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged && npm run docs && git add README.md"
-        }
-    },
     "ava": {
         "require": [
             "esm",
