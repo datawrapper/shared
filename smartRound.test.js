@@ -1,5 +1,5 @@
 import test from 'ava';
-import smartRound from './smartRound';
+import smartRound from './smartRound.js';
 
 test('simple', t => {
     const topic = [9, 10.571428, 12.1428571, 13.7142857, 15.2857142, 16.8571428, 18.428571];

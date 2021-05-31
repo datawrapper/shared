@@ -1,5 +1,5 @@
 import test from 'ava';
-import numberFormatter from './numberColumnFormatter';
+import numberFormatter from './numberColumnFormatter.js';
 
 test('format number with empty config', t => {
     const formatter = numberFormatter({});

@@ -1,5 +1,5 @@
-import tailLength from './tailLength';
-import round from './round';
+import tailLength from './tailLength.js';
+import round from './round.js';
 import { uniq, isFinite } from 'underscore';
 
 /**

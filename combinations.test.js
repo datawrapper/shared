@@ -1,5 +1,5 @@
 import test from 'ava';
-import combinations from './combinations';
+import combinations from './combinations.js';
 
 test('just one element', t => {
     t.deepEqual(combinations([1]), [[1]]);

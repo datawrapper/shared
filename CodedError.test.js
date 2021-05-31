@@ -1,5 +1,5 @@
 import test from 'ava';
-import CodedError from './CodedError';
+import CodedError from './CodedError.js';
 
 test('CodedError preserves code', t => {
     const error = new CodedError('notFound', 'the chart was not found');

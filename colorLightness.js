@@ -1,5 +1,5 @@
-import hex2rgb from 'chroma-js/src/io/hex/hex2rgb';
-import rgb2lab from 'chroma-js/src/io/lab/rgb2lab';
+import hex2rgb from 'chroma-js/src/io/hex/hex2rgb.js';
+import rgb2lab from 'chroma-js/src/io/lab/rgb2lab.js';
 
 /**
  * Returns the Lab lightness value of a given hexidecimal

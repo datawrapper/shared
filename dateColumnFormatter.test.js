@@ -1,7 +1,7 @@
 import test from 'ava';
-import dateFormatter from './dateColumnFormatter';
+import dateFormatter from './dateColumnFormatter.js';
 import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import localizedFormat from 'dayjs/plugin/localizedFormat.js';
 dayjs.extend(localizedFormat);
 
 const dates = [

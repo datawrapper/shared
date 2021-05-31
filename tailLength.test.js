@@ -1,5 +1,5 @@
 import test from 'ava';
-import tailLength from './tailLength';
+import tailLength from './tailLength.js';
 
 test('tailLength on decimal numbers with tail length equal to number of decimal places', t => {
     t.is(tailLength(3.123), 3);

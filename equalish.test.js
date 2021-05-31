@@ -1,5 +1,5 @@
 import test from 'ava';
-import equalish from './equalish';
+import equalish from './equalish.js';
 
 test('obviously equal', t => {
     t.true(equalish(1, 1));
