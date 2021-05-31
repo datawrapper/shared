@@ -18,10 +18,10 @@ import equalish from './equalish.js';
  */
 
 export default function(config) {
-    let format = config['number-format'] || '-';
-    let div = Number(config['number-divisor'] || 0);
-    let append = (config['number-append'] || '').replace(/ /g, '\u00A0');
-    let prepend = (config['number-prepend'] || '').replace(/ /g, '\u00A0');
+    const format = config['number-format'] || '-';
+    const div = Number(config['number-divisor'] || 0);
+    const append = (config['number-append'] || '').replace(/ /g, '\u00A0');
+    const prepend = (config['number-prepend'] || '').replace(/ /g, '\u00A0');
 
     return function(val, full, round) {
         if (isNaN(val)) return val;
