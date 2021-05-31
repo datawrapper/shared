@@ -1,5 +1,5 @@
 import test from 'ava';
-import get from './get';
+import get from './get.js';
 
 const thing = {
     answer: 42,

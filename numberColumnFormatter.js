@@ -1,5 +1,5 @@
 import formatNumber from './formatNumber.js';
-import equalish from './equalish';
+import equalish from './equalish.js';
 
 /**
  * Creates a number formatter based on a number column configuration

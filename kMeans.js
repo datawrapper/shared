@@ -1,4 +1,4 @@
-import equalish from './equalish';
+import equalish from './equalish.js';
 
 /**
  * Performs one-dimensional k-means clustering on an array of

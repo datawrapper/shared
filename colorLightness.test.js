@@ -1,5 +1,5 @@
 import test from 'ava';
-import colorLightness from './colorLightness';
+import colorLightness from './colorLightness.js';
 
 test('white lightness is 100', t => {
     t.is(Math.round(colorLightness('#ffffff')), 100);

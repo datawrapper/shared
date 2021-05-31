@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { fetchJSON, getJSON, patchJSON, postJSON, putJSON, deleteJSON } from './fetch';
+import { fetchJSON, getJSON, patchJSON, postJSON, putJSON, deleteJSON } from './fetch.js';
 
 const POSITIVE_RESPONSE = {
     status: 200,

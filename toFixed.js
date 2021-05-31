@@ -1,4 +1,4 @@
-import tailLength from './tailLength';
+import tailLength from './tailLength.js';
 
 /**
  * Automatically converts a numeric value to a string. this is better

@@ -1,5 +1,5 @@
 import test from 'ava';
-import isValidUrl from './isValidUrl';
+import isValidUrl from './isValidUrl.js';
 
 test('some valid urls', t => {
     t.true(isValidUrl('https://www.datawrapper.de'));

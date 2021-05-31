@@ -1,6 +1,6 @@
 import test from 'ava';
 import fetch from 'node-fetch';
-import httpReq from './httpReq';
+import httpReq from './httpReq.js';
 import sinon from 'sinon';
 
 const baseUrl = 'https://httpbin.org';

@@ -1,5 +1,5 @@
-import significantDimension from './significantDimension';
-import round from './round';
+import significantDimension from './significantDimension.js';
+import round from './round.js';
 
 /**
  * rounds an array of numbers to the least number of decimals

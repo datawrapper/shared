@@ -1,5 +1,5 @@
 import test from 'ava';
-import estimateTextWidth from './estimateTextWidth';
+import estimateTextWidth from './estimateTextWidth.js';
 
 test('test a few simple strings', t => {
     t.is(estimateTextWidth('a'), 9);

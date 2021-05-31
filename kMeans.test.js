@@ -1,5 +1,5 @@
 import test from 'ava';
-import kMeans from './kMeans';
+import kMeans from './kMeans.js';
 
 const values = [1, 1.1, 1.2, 2.1, 3, 3.1, 3.2, 3.3, 7, 7.1, 10];
 const cluster2 = [[1, 1.1, 1.2, 2.1, 3, 3.1, 3.2, 3.3], [7, 7.1, 10]];

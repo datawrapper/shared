@@ -1,5 +1,5 @@
 import test from 'ava';
-import purifyHtml from './purifyHtml';
+import purifyHtml from './purifyHtml.js';
 
 test('purifyHtml return same string if no tags present', t => {
     t.is(purifyHtml('Hello world'), 'Hello world');

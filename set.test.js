@@ -1,5 +1,5 @@
 import test from 'ava';
-import set from './set';
+import set from './set.js';
 
 const thing = {
     answer: 42,

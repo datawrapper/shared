@@ -31,4 +31,4 @@ class CodedError extends Error {
     }
 }
 
-module.exports = CodedError;
+export default CodedError;

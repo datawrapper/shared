@@ -1,5 +1,5 @@
 import test from 'ava';
-import { autoTickFormatDate, autoTickFormatNumber } from './autoTickFormat';
+import { autoTickFormatDate, autoTickFormatNumber } from './autoTickFormat.js';
 
 test('auto-tick format for number columns', t => {
     t.is(autoTickFormatNumber([0, 0.5]), '0,0.00[0]');

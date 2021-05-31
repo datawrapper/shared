@@ -1,7 +1,7 @@
 import test from 'ava';
 import { range, uniq } from 'underscore';
-import round from './round';
-import significantDimension from './significantDimension';
+import round from './round.js';
+import significantDimension from './significantDimension.js';
 
 const tests = [
     { values: range(10), dim: 0 },
