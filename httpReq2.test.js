@@ -5,7 +5,7 @@ import sinon from 'sinon';
 
 const baseUrl = 'https://httpbin.org';
 
-test.before(t => {
+test.before(() => {
     window.fetch = sinon.spy(fetch);
     global.dw = { backend: { __api_domain: 'api.datawrapper.local' } };
 });

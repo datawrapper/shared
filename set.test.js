@@ -58,5 +58,5 @@ test('set returns true if something changed', t => {
 
 test('set using a key as array', t => {
     set(thing, ['nested', 'sp.am'], 'spam');
-    t.is(thing['nested']['sp.am'], 'spam');
+    t.is(thing.nested['sp.am'], 'spam');
 });

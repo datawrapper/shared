@@ -34,6 +34,7 @@ function findConfigPath() {
         paths.unshift(customPath);
     }
 
+    // eslint-disable-next-line
     for (const path of paths) {
         if (fs.existsSync(path)) return path;
     }

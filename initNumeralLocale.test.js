@@ -18,7 +18,7 @@ test('German number format', t => {
             billion: ' Mrd.',
             trillion: ' Bio.'
         },
-        ordinal: function(number) {
+        ordinal: function() {
             return '.';
         },
         currency: {

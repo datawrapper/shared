@@ -19,8 +19,8 @@ import equalish from './equalish.js';
  * @returns {array.<number[]>} - array of clusters
  */
 export default function kMeans(values, numClusters) {
-    let clusters = [];
-    let centroids = [];
+    const clusters = [];
+    const centroids = [];
     let oldCentroids = [];
     let changed = false;
 
@@ -30,7 +30,7 @@ export default function kMeans(values, numClusters) {
     }
 
     // pick initial centroids at evenly distributed values
-    let initialCentroids = Math.round(values.length / (numClusters + 1));
+    const initialCentroids = Math.round(values.length / (numClusters + 1));
     for (let i = 0; i < numClusters; i++) {
         centroids[i] = values[initialCentroids * (i + 1)];
     }
@@ -52,7 +52,7 @@ export default function kMeans(values, numClusters) {
             // compute distances to centroid for each cluster
             // to find the "nearest" cluster for this value
             for (let j = 0; j < numClusters; j++) {
-                let distance = Math.abs(centroids[j] - values[i]);
+                const distance = Math.abs(centroids[j] - values[i]);
 
                 if (minDistance === -1 || distance <= minDistance) {
                     minDistance = distance;

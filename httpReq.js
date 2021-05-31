@@ -69,7 +69,7 @@ export default function httpReq(path, options = {}) {
 
     let promise;
     if (!CSRF_SAFE_METHODS.has(opts.method.toLowerCase())) {
-        let csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
+        const csrfCookieValue = Cookies.get(CSRF_COOKIE_NAME);
         if (csrfCookieValue) {
             opts.headers[CSRF_TOKEN_HEADER] = csrfCookieValue;
             promise = fetch(url, opts);
