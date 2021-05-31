@@ -1,12 +1,12 @@
 import test from 'ava';
 import fetch from 'node-fetch';
 import httpReq from './httpReq';
-import { spy } from 'sinon';
+import sinon from 'sinon';
 
 const baseUrl = 'https://httpbin.org';
 
 test.before(t => {
-    window.fetch = spy(fetch);
+    window.fetch = sinon.spy(fetch);
     global.dw = { backend: { __api_domain: 'api.datawrapper.local' } };
 });
 
