@@ -32,6 +32,7 @@ shared.httpReq();
 * [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
+* [drawPattern(parameters)](#drawPattern)
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [escapeHtml(unsafe)](#escapeHtml) ⇒ <code>string</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
@@ -381,6 +382,19 @@ deleteJSON('http://api.example.org/chart/123').then(() => {
     console.log('deleted!')
 });
 ```
+
+* * *
+
+<a name="drawPattern"></a>
+
+### drawPattern(parameters)
+draws a configurable pattern into an svg pattern def, so that it can be used as a fill
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parameters | <code>\*</code> | - style parameters for the pattern |
+
 
 * * *
 
