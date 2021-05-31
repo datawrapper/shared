@@ -1,6 +1,6 @@
 {
     "name": "@datawrapper/shared",
-    "version": "0.32.10",
+    "version": "0.34.0",
     "description": "shared functions used throughout datawrapper",
     "keywords": [
         "js",
@@ -102,5 +102,8 @@
             "esm",
             "./test/helpers/setup-browser-env.cjs"
         ]
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
