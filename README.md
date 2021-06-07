@@ -17,64 +17,62 @@ shared.httpReq();
 
 ## API reference
 
-
-* [CodedError([string], [string])](#CodedError)
-* [trackEvent(category, category, category, category)](#trackEvent)
-* [trackPageView(loadTime)](#trackPageView)
+* [__(key, scope)](#__) ⇒ <code>string</code>
 * [area(vertices)](#area) ⇒ <code>number</code>
 * [arrayToObject(o)](#arrayToObject) ⇒ <code>object</code>
-* [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
-* [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
 * [autoTickFormat(column)](#autoTickFormat) ⇒ <code>string</code>
+* [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
+* [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
+* [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [columnFormatter(column, metadata, axis)](#columnFormatter) ⇒ <code>function</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
 * [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
+* ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
 * [drawPattern(parameters)](#drawPattern)
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
 * [escapeHtml(unsafe)](#escapeHtml) ⇒ <code>string</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
-* ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
-* ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
-* ~~[putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>~~
-* ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
-* ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
-* [loadScript(src, callback)](#loadScript)
-* [loadStylesheet(src, callback)](#loadStylesheet)
+* [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
 * [formatNumber(value, options)](#formatNumber) ⇒ <code>string</code>
 * [get(object, key, _default)](#get) ⇒
+* ~~[getJSON(url, credentials, callback)](#getJSON) ⇒ <code>Promise</code>~~
 * [highlightTimer(action, delay)](#highlightTimer) ⇒ <code>object</code>
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
-    * [.get()](#httpReq.get)
-    * [.patch()](#httpReq.patch)
-    * [.put()](#httpReq.put)
-    * [.post()](#httpReq.post)
-    * [.head()](#httpReq.head)
     * [.delete()](#httpReq.delete)
+    * [.get()](#httpReq.get)
+    * [.head()](#httpReq.head)
+    * [.patch()](#httpReq.patch)
+    * [.post()](#httpReq.post)
+    * [.put()](#httpReq.put)
 * [initNumeralLocale(locale)](#initNumeralLocale)
 * [isValidUrl(input)](#isValidUrl) ⇒ <code>boolean</code>
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
-* [__(key, scope)](#__) ⇒ <code>string</code>
+* [loadScript(src, callback)](#loadScript)
+* [loadStylesheet(src, callback)](#loadStylesheet)
 * [numberColumnFormatter(config)](#numberColumnFormatter) ⇒ <code>function</code>
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
+* [opts](#opts) : <code>object</code>
+* ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
+* ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
 * [purifyHTML(input, allowed)](#purifyHTML) ⇒ <code>string</code>
+* ~~[putJSON(url, body, callback)](#putJSON) ⇒ <code>Promise</code>~~
+* [requireConfig()](#requireConfig) ⇒ <code>Object</code>
 * [round(value, decimals)](#round) ⇒ <code>number</code>
 * [set(object, key, value)](#set) ⇒
 * [significantDimension(values, tolerance)](#significantDimension) ⇒ <code>number</code>
 * [smartRound(values, addPrecision, tolerance)](#smartRound) ⇒
 * [tailLength(value)](#tailLength) ⇒ <code>number</code>
 * [toFixed(value)](#toFixed) ⇒ <code>string</code>
+* [trackEvent(category, category, category, category)](#trackEvent)
+* [trackPageView(loadTime)](#trackPageView)
 * [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
-* [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
-* [requireConfig()](#requireConfig) ⇒ <code>Object</code>
 
-
-* [opts](#opts) : <code>object</code>
 
 <a name="CodedError"></a>
 
@@ -98,33 +96,24 @@ throw new CodedError('notFound', 'the chart was not found');
 
 * * *
 
-<a name="trackEvent"></a>
+<a name="__"></a>
 
-### trackEvent(category, category, category, category)
-tracks a custom event in Matomo
+## \_\_(key, scope) ⇒ <code>string</code>
+translates a message key. translations are originally stored in a
+Google spreadsheet that we're pulling into Datawrapper using the
+`scripts/update-translations` script, which stores them as `:locale.json`
+files in the /locale folders (both in core as well as inside plugin folders)
 
+for the client-side translation to work we are also storing the translations
+in the global `window.dw.backend.__messages` object. plugins that need
+client-side translations must set `"svelte": true` in their plugin.json
 
-| Param | Type | Description |
-| --- | --- | --- |
-| category | <code>string</code> | the event category |
-| category | <code>string</code> | the event action |
-| category | <code>string</code> | the event name |
-| category | <code>string</code> \| <code>number</code> | the event value, optional |
+**Returns**: <code>string</code> - -- the translated text  
 
-
-* * *
-
-<a name="trackPageView"></a>
-
-### trackPageView(loadTime)
-tracks a custom page view in Matomo. Useful for single page
-apps in Datawrapper, such as the locator maps UI. The page title
-and URL are automatically detected using the window object.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| loadTime | <code>number</code> | optional page load time, has to be measured    manually |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| key | <code>string</code> |  | - the key to be translated, e.g. "signup / hed" |
+| scope | <code>string</code> | <code>&quot;core&quot;</code> | - the translation scope, e.g. "core" or a plugin name |
 
 
 * * *
@@ -172,24 +161,18 @@ Object { foo: "bar" }
 
 * * *
 
-<a name="autoTickFormatNumber"></a>
+<a name="autoTickFormat"></a>
 
-### autoTickFormatNumber(range) ⇒ <code>string</code>
-auto-detects a nice default axis tick format for numeric
-columns based on the input range
+### autoTickFormat(column) ⇒ <code>string</code>
+Convenient wrapper around autoTickFormatNumber and autoTickFormatDate.
+Returns either a numeral.js or day.js format, depending on the column type.
 
-**Returns**: <code>string</code> - - numeral.js compatible format string  
+**Returns**: <code>string</code> - -- a numeral|dayjs format string  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| range | <code>array</code> | [min, max] of the data |
+| column | <code>object</code> | - dw.column instance that is displayed on the axis |
 
-**Example**  
-```js
-import {autoTickFormatNumber} from '@datawrapper/shared/autoTickFormat';
-autoTickFormatNumber([0,100]); // '0,0.[00]'
-autoTickFormatNumber([0.2,0.7]); // '0,0.00[00]'
-```
 
 * * *
 
@@ -214,18 +197,24 @@ autoTickFormatDate([new Date(2000,0,1), new Date(2002,0,1)], 'quarter'); // 'YYY
 
 * * *
 
-<a name="autoTickFormat"></a>
+<a name="autoTickFormatNumber"></a>
 
-### autoTickFormat(column) ⇒ <code>string</code>
-Convenient wrapper around autoTickFormatNumber and autoTickFormatDate.
-Returns either a numeral.js or day.js format, depending on the column type.
+### autoTickFormatNumber(range) ⇒ <code>string</code>
+auto-detects a nice default axis tick format for numeric
+columns based on the input range
 
-**Returns**: <code>string</code> - -- a numeral|dayjs format string  
+**Returns**: <code>string</code> - - numeral.js compatible format string  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| column | <code>object</code> | - dw.column instance that is displayed on the axis |
+| range | <code>array</code> | [min, max] of the data |
 
+**Example**  
+```js
+import {autoTickFormatNumber} from '@datawrapper/shared/autoTickFormat';
+autoTickFormatNumber([0,100]); // '0,0.[00]'
+autoTickFormatNumber([0.2,0.7]); // '0,0.00[00]'
+```
 
 * * *
 
@@ -370,6 +359,32 @@ defaultColors({"colors": {"bgBlendRatios": {"gridline": 0.5,"tickText": {"primar
 
 * * *
 
+<a name="deleteJSON"></a>
+
+## ~~deleteJSON(url, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
+
+Download and parse a remote JSON endpoint via DELETE. credentials
+are included automatically
+Use [httpReq](#httpReq) or [delete](#httpReq.delete) instead.
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| callback | <code>function</code> | 
+
+**Example**  
+```js
+import { deleteJSON } from '@datawrapper/shared/fetch';
+
+deleteJSON('http://api.example.org/chart/123').then(() => {
+    console.log('deleted!')
+});
+```
+
+* * *
+
 <a name="drawPattern"></a>
 
 ### drawPattern(parameters)
@@ -471,183 +486,24 @@ fetchJSON('http://api.example.org', 'GET', 'include');
 
 * * *
 
-<a name="getJSON"></a>
+<a name="findConfigPath"></a>
 
-## ~~getJSON(url, credentials, callback) ⇒ <code>Promise</code>~~
-***Deprecated***
+### findConfigPath() ⇒ <code>String</code>
+Function to find a Datawrapper config file (`config.js`).
+It looks in the current working directory and in `/etc/datawrapper/`.
+If no config is found, the process will exit with a non zero exit code.
 
-Download and parse a JSON document via GET.
-Use [httpReq](#httpReq) or [get](#httpReq.get) instead.
+It is possible to overwrite the config path with the env variable `DW_CONFIG_PATH`.
+Useful for tests!
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| url | <code>string</code> |  |
-| credentials | <code>string</code> \| <code>undefined</code> | optional, set to undefined to disable credentials |
-| callback | <code>function</code> |  |
+**This is a Node module, that will probably not work in a browser environment.**
 
 **Example**  
 ```js
-import { getJSON } from '@datawrapper/shared/fetch';
-// use it callback style
-getJSON('http://api.example.org', 'include', function(data) {
-    console.log(data);
-});
-// or promise-style
-getJSON('http://api.example.org')
-  .then(data => {
-     console.log(data);
-  });
-```
+const { findConfigPath } = require('@datawrapper/shared/node/findConfig')
 
-* * *
-
-<a name="postJSON"></a>
-
-## ~~postJSON(url, body, callback) ⇒ <code>Promise</code>~~
-***Deprecated***
-
-Download and parse a remote JSON endpoint via POST. credentials
-are included automatically.
-Use [httpReq](#httpReq) or [post](#httpReq.post) instead.
-
-
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> | 
-| body | <code>string</code> | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { postJSON } from '@datawrapper/shared/fetch';
-
-postJSON('http://api.example.org', JSON.stringify({
-   query: 'foo',
-   page: 12
-}));
-```
-
-* * *
-
-<a name="putJSON"></a>
-
-## ~~putJSON(url, body, callback) ⇒ <code>Promise</code>~~
-***Deprecated***
-
-Download and parse a remote JSON endpoint via PUT. credentials
-are included automatically
-Use [httpReq](#httpReq) or [put](#httpReq.put) instead.
-
-
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> | 
-| body | <code>string</code> | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { putJSON } from '@datawrapper/shared/fetch';
-
-putJSON('http://api.example.org', JSON.stringify({
-   query: 'foo',
-   page: 12
-}));
-```
-
-* * *
-
-<a name="patchJSON"></a>
-
-## ~~patchJSON(url, body, callback) ⇒ <code>Promise</code>~~
-***Deprecated***
-
-
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> | 
-| body | <code>string</code> | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { patchJSON } from '@datawrapper/shared/fetch';
-
-patchJSON('http://api.example.org', JSON.stringify({
-   query: 'foo',
-   page: 12
-}));
-```
-
-* * *
-
-<a name="deleteJSON"></a>
-
-## ~~deleteJSON(url, callback) ⇒ <code>Promise</code>~~
-***Deprecated***
-
-Download and parse a remote JSON endpoint via DELETE. credentials
-are included automatically
-Use [httpReq](#httpReq) or [delete](#httpReq.delete) instead.
-
-
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { deleteJSON } from '@datawrapper/shared/fetch';
-
-deleteJSON('http://api.example.org/chart/123').then(() => {
-    console.log('deleted!')
-});
-```
-
-* * *
-
-<a name="loadScript"></a>
-
-### loadScript(src, callback)
-injects a `<script>` element to the page to load a new JS script
-
-
-| Param | Type |
-| --- | --- |
-| src | <code>string</code> | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { loadScript } from '@datawrapper/shared/fetch';
-
-loadScript('/static/js/library.js', () => {
-    console.log('library is loaded');
-})
-```
-
-* * *
-
-<a name="loadStylesheet"></a>
-
-### loadStylesheet(src, callback)
-injects a `<link>` element to the page to load a new stylesheet
-
-
-| Param | Type |
-| --- | --- |
-| src | <code>string</code> \| [<code>opts</code>](#opts) | 
-| callback | <code>function</code> | 
-
-**Example**  
-```js
-import { loadStylesheet } from '@datawrapper/shared/fetch';
-
-loadStylesheet('/static/css/library.css', () => {
-    console.log('library styles are loaded');
-})
+const path = findConfigPath()
+// -> /etc/datawrapper/config.js
 ```
 
 * * *
@@ -707,6 +563,37 @@ const someObject = { key: { list: ['a', 'b', 'c']}};
 get(someObject, 'key.list[2]') // returns 'c'
 get(someObject, 'missing.key') // returns undefined
 get(someObject, 'missing.key', false) // returns false
+```
+
+* * *
+
+<a name="getJSON"></a>
+
+## ~~getJSON(url, credentials, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
+
+Download and parse a JSON document via GET.
+Use [httpReq](#httpReq) or [get](#httpReq.get) instead.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> |  |
+| credentials | <code>string</code> \| <code>undefined</code> | optional, set to undefined to disable credentials |
+| callback | <code>function</code> |  |
+
+**Example**  
+```js
+import { getJSON } from '@datawrapper/shared/fetch';
+// use it callback style
+getJSON('http://api.example.org', 'include', function(data) {
+    console.log(data);
+});
+// or promise-style
+getJSON('http://api.example.org')
+  .then(data => {
+     console.log(data);
+  });
 ```
 
 * * *
@@ -783,37 +670,19 @@ import httpReq from '@datawrapper/shared/httpReq';
 
 * * *
 
+<a name="httpReq.delete"></a>
+
+#### httpReq.delete()
+Like `httpReq` but with fixed http method DELETE
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
 <a name="httpReq.get"></a>
 
 #### httpReq.get()
 Like `httpReq` but with fixed http method GET
-
-**See**: [httpReq](#httpReq)  
-
-* * *
-
-<a name="httpReq.patch"></a>
-
-#### httpReq.patch()
-Like `httpReq` but with fixed http method PATCH
-
-**See**: [httpReq](#httpReq)  
-
-* * *
-
-<a name="httpReq.put"></a>
-
-#### httpReq.put()
-Like `httpReq` but with fixed http method PUT
-
-**See**: [httpReq](#httpReq)  
-
-* * *
-
-<a name="httpReq.post"></a>
-
-#### httpReq.post()
-Like `httpReq` but with fixed http method POST
 
 **See**: [httpReq](#httpReq)  
 
@@ -828,10 +697,28 @@ Like `httpReq` but with fixed http method HEAD
 
 * * *
 
-<a name="httpReq.delete"></a>
+<a name="httpReq.patch"></a>
 
-#### httpReq.delete()
-Like `httpReq` but with fixed http method DELETE
+#### httpReq.patch()
+Like `httpReq` but with fixed http method PATCH
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.post"></a>
+
+#### httpReq.post()
+Like `httpReq` but with fixed http method POST
+
+**See**: [httpReq](#httpReq)  
+
+* * *
+
+<a name="httpReq.put"></a>
+
+#### httpReq.put()
+Like `httpReq` but with fixed http method PUT
 
 **See**: [httpReq](#httpReq)  
 
@@ -889,25 +776,47 @@ kMeans(values, 3)
 
 * * *
 
-<a name="__"></a>
+<a name="loadScript"></a>
 
-## \_\_(key, scope) ⇒ <code>string</code>
-translates a message key. translations are originally stored in a
-Google spreadsheet that we're pulling into Datawrapper using the
-`scripts/update-translations` script, which stores them as `:locale.json`
-files in the /locale folders (both in core as well as inside plugin folders)
+### loadScript(src, callback)
+injects a `<script>` element to the page to load a new JS script
 
-for the client-side translation to work we are also storing the translations
-in the global `window.dw.backend.__messages` object. plugins that need
-client-side translations must set `"svelte": true` in their plugin.json
 
-**Returns**: <code>string</code> - -- the translated text  
+| Param | Type |
+| --- | --- |
+| src | <code>string</code> | 
+| callback | <code>function</code> | 
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| key | <code>string</code> |  | - the key to be translated, e.g. "signup / hed" |
-| scope | <code>string</code> | <code>&quot;core&quot;</code> | - the translation scope, e.g. "core" or a plugin name |
+**Example**  
+```js
+import { loadScript } from '@datawrapper/shared/fetch';
 
+loadScript('/static/js/library.js', () => {
+    console.log('library is loaded');
+})
+```
+
+* * *
+
+<a name="loadStylesheet"></a>
+
+### loadStylesheet(src, callback)
+injects a `<link>` element to the page to load a new stylesheet
+
+
+| Param | Type |
+| --- | --- |
+| src | <code>string</code> \| [<code>opts</code>](#opts) | 
+| callback | <code>function</code> | 
+
+**Example**  
+```js
+import { loadStylesheet } from '@datawrapper/shared/fetch';
+
+loadStylesheet('/static/css/library.css', () => {
+    console.log('library styles are loaded');
+})
+```
 
 * * *
 
@@ -942,6 +851,43 @@ specified in fontsJSON and typographyJSON have been loaded.
 
 * * *
 
+<a name="opts"></a>
+
+### opts : <code>object</code>
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> | stylesheet URL to load |
+| parentElement | <code>DOMElement</code> | DOM element to append style tag to |
+
+
+* * *
+
+<a name="patchJSON"></a>
+
+## ~~patchJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
+
+**Example**  
+```js
+import { patchJSON } from '@datawrapper/shared/fetch';
+
+patchJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
+
+* * *
+
 <a name="postEvent"></a>
 
 ### postEvent(chartId) ⇒ <code>function</code>
@@ -962,6 +908,34 @@ postEvent('bar:hover', {value: 123});
 
 * * *
 
+<a name="postJSON"></a>
+
+## ~~postJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
+
+Download and parse a remote JSON endpoint via POST. credentials
+are included automatically.
+Use [httpReq](#httpReq) or [post](#httpReq.post) instead.
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
+
+**Example**  
+```js
+import { postJSON } from '@datawrapper/shared/fetch';
+
+postJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
+
+* * *
+
 <a name="purifyHTML"></a>
 
 ### purifyHTML(input, allowed) ⇒ <code>string</code>
@@ -974,6 +948,48 @@ Remove all non-whitelisted html tags from the given string
 | input | <code>string</code> | dirty html input |
 | allowed | <code>string</code> | list of allowed tags, defaults to `<a><b><br><br/><i><strong><sup><sub><strike><u><em><tt>` |
 
+
+* * *
+
+<a name="putJSON"></a>
+
+## ~~putJSON(url, body, callback) ⇒ <code>Promise</code>~~
+***Deprecated***
+
+Download and parse a remote JSON endpoint via PUT. credentials
+are included automatically
+Use [httpReq](#httpReq) or [put](#httpReq.put) instead.
+
+
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> | 
+| body | <code>string</code> | 
+| callback | <code>function</code> | 
+
+**Example**  
+```js
+import { putJSON } from '@datawrapper/shared/fetch';
+
+putJSON('http://api.example.org', JSON.stringify({
+   query: 'foo',
+   page: 12
+}));
+```
+
+* * *
+
+<a name="requireConfig"></a>
+
+### requireConfig() ⇒ <code>Object</code>
+Tiny wrapper around `findConfigPath` that directly `require`s the found config.
+
+**Example**  
+```js
+const { requireConfig } = require('@datawrapper/shared/node/findConfig')
+
+const config = requireConfig()
+```
 
 * * *
 
@@ -1107,6 +1123,37 @@ toFixed(3.100001)
 
 * * *
 
+<a name="trackEvent"></a>
+
+### trackEvent(category, category, category, category)
+tracks a custom event in Matomo
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| category | <code>string</code> | the event category |
+| category | <code>string</code> | the event action |
+| category | <code>string</code> | the event name |
+| category | <code>string</code> \| <code>number</code> | the event value, optional |
+
+
+* * *
+
+<a name="trackPageView"></a>
+
+### trackPageView(loadTime)
+tracks a custom page view in Matomo. Useful for single page
+apps in Datawrapper, such as the locator maps UI. The page title
+and URL are automatically detected using the window object.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| loadTime | <code>number</code> | optional page load time, has to be measured    manually |
+
+
+* * *
+
 <a name="truncate"></a>
 
 ### truncate(str, start, end) ⇒ <code>string</code>
@@ -1125,55 +1172,6 @@ import truncate from '@datawrapper/shared/truncate';
 // returns 'This is a…tring'
 truncate('This is a very very long string')
 ```
-
-* * *
-
-<a name="findConfigPath"></a>
-
-### findConfigPath() ⇒ <code>String</code>
-Function to find a Datawrapper config file (`config.js`).
-It looks in the current working directory and in `/etc/datawrapper/`.
-If no config is found, the process will exit with a non zero exit code.
-
-It is possible to overwrite the config path with the env variable `DW_CONFIG_PATH`.
-Useful for tests!
-
-**This is a Node module, that will probably not work in a browser environment.**
-
-**Example**  
-```js
-const { findConfigPath } = require('@datawrapper/shared/node/findConfig')
-
-const path = findConfigPath()
-// -> /etc/datawrapper/config.js
-```
-
-* * *
-
-<a name="requireConfig"></a>
-
-### requireConfig() ⇒ <code>Object</code>
-Tiny wrapper around `findConfigPath` that directly `require`s the found config.
-
-**Example**  
-```js
-const { requireConfig } = require('@datawrapper/shared/node/findConfig')
-
-const config = requireConfig()
-```
-
-* * *
-
-<a name="opts"></a>
-
-### opts : <code>object</code>
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| src | <code>string</code> | stylesheet URL to load |
-| parentElement | <code>DOMElement</code> | DOM element to append style tag to |
-
 
 * * *
 
