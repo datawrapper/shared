@@ -16,7 +16,7 @@
  * @returns {array[]} -- array of combinations
  */
 export default function combinations(input) {
-    var fn = function(active, rest, a) {
+    var fn = function (active, rest, a) {
         if (!active.length && !rest.length) return;
         if (!rest.length) {
             a.push(active);

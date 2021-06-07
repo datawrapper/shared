@@ -30,7 +30,7 @@ export default function significantDimension(values, tolerance = 0.1) {
     if (uniqValues.length < 3) {
         // special case if there are only 2 unique values
         return Math.round(
-            uniqValues.reduce(function(acc, cur) {
+            uniqValues.reduce(function (acc, cur) {
                 if (!cur) return acc;
                 const exp = Math.log(Math.abs(cur)) / Math.LN10;
                 if (exp < 8 && exp > -3) {
@@ -45,14 +45,14 @@ export default function significantDimension(values, tolerance = 0.1) {
 
     if (uniq(uniqValues.map(currentRound)).length > accepted) {
         // we seem to have enough precision, but maybe it's too much?
-        check = function() {
+        check = function () {
             return uniq(result).length === totalUniq;
         };
         diff = -1;
     } else {
         // if we end up here it means we're loosing too much information
         // due to rounding, we need to increase precision
-        check = function() {
+        check = function () {
             return uniq(result).length <= accepted;
         };
         diff = +1;

@@ -17,58 +17,46 @@ import dayjs from 'dayjs';
  * @returns {function}
  */
 
-export default function(column) {
+export default function dateColumnFormatter(column) {
     const format = column.format();
     if (!format) return identity;
 
     switch (column.precision()) {
         case 'year':
-            return function(d) {
+            return function (d) {
                 return !isDate(d) ? d : d.getFullYear();
             };
         case 'half':
-            return function(d) {
+            return function (d) {
                 return !isDate(d) ? d : d.getFullYear() + ' H' + (d.getMonth() / 6 + 1);
             };
         case 'quarter':
-            return function(d) {
+            return function (d) {
                 return !isDate(d) ? d : d.getFullYear() + ' Q' + (d.getMonth() / 3 + 1);
             };
         case 'month':
-            return function(d) {
+            return function (d) {
                 return !isDate(d) ? d : dayjs(d).format('MMM YY');
             };
         case 'week':
-            return function(d) {
-                return !isDate(d)
-                    ? d
-                    : dateToIsoWeek(d)
-                          .slice(0, 2)
-                          .join(' W');
+            return function (d) {
+                return !isDate(d) ? d : dateToIsoWeek(d).slice(0, 2).join(' W');
             };
         case 'day':
-            return function(d, verbose) {
+            return function (d, verbose) {
                 return !isDate(d) ? d : dayjs(d).format(verbose ? 'dddd, MMMM DD, YYYY' : 'l');
             };
         case 'day-minutes':
-            return function(d) {
+            return function (d) {
                 return !isDate(d)
                     ? d
-                    : dayjs(d)
-                          .format('MMM DD')
-                          .replace(' ', '&nbsp;') +
+                    : dayjs(d).format('MMM DD').replace(' ', '&nbsp;') +
                           ' - ' +
-                          dayjs(d)
-                              .format('LT')
-                              .replace(' ', '&nbsp;');
+                          dayjs(d).format('LT').replace(' ', '&nbsp;');
             };
         case 'day-seconds':
-            return function(d) {
-                return !isDate(d)
-                    ? d
-                    : dayjs(d)
-                          .format('LTS')
-                          .replace(' ', '&nbsp;');
+            return function (d) {
+                return !isDate(d) ? d : dayjs(d).format('LTS').replace(' ', '&nbsp;');
             };
     }
 }

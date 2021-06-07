@@ -43,9 +43,9 @@
         "healthier": "^4.0.0",
         "husky": "^6.0.0",
         "jsdoc-to-markdown": "^7.0.1",
-        "lint-staged": "^8.1.5",
+        "lint-staged": "^11.0.0",
         "node-fetch": "^2.6.0",
-        "prettier": "^1.16.4",
+        "prettier": "^2.3.1",
         "raf": "^3.4.1"
     },
     "dependencies": {
