@@ -28,7 +28,7 @@ import numeral from 'numeral';
  * @export
  * @returns {string} - the formatted number
  */
-export default function(value, options) {
+export default function formatNumber(value, options) {
     options = {
         format: '0.[00]',
         prepend: '',

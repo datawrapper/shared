@@ -50,7 +50,7 @@ const tests = [
     }
 ];
 
-tests.forEach(function(testData) {
+tests.forEach(function (testData) {
     test(testData.testName, t => {
         t.deepEqual(defaultColors(testData.theme), testData.expectedResult);
     });

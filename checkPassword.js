@@ -2,7 +2,7 @@
 const MIN_PASSWORD_LENGTH = 10;
 
 /** @deprecated */
-export default function(curPwd, pwd, pwd2) {
+export default function checkPassword(curPwd, pwd, pwd2) {
     var msg;
     if (curPwd === '') {
         msg = dw.backend.messages.provideCurPwd;
