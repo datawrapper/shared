@@ -1,6 +1,6 @@
-import dateColumnFormatter from './dateColumnFormatter';
-import numberColumnFormatter from './numberColumnFormatter';
-import get from './get';
+import dateColumnFormatter from './dateColumnFormatter.js';
+import numberColumnFormatter from './numberColumnFormatter.js';
+import get from './get.js';
 
 const identity = d => d;
 
