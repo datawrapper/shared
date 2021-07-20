@@ -24,7 +24,6 @@ shared.httpReq();
 * [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
 * [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
-* [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
 * [columnFormatter(column, metadata, axis)](#columnFormatter) ⇒ <code>function</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
@@ -73,28 +72,6 @@ shared.httpReq();
 * [trackPageView(loadTime)](#trackPageView)
 * [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
 
-
-<a name="CodedError"></a>
-
-## CodedError([string], [string])
-A custom Error object that allows for storing both an error
-code and an error message (the standard JS error only stores
-a message). Feel free to use this error whenever you need to
-cleanly separate error code from error message.
-
-
-| Param | Description |
-| --- | --- |
-| [string] | code    a valid error code (depends on where it's being used). e.g. "notFound" |
-| [string] | message  an optional plain english message with more details |
-
-**Example**  
-```js
-import { CodedError } from '@datawrapper/shared';
-throw new CodedError('notFound', 'the chart was not found');
-```
-
-* * *
 
 <a name="__"></a>
 
