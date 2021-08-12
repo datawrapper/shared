@@ -13,8 +13,11 @@ import FontFaceObserver from 'fontfaceobserver';
  */
 export default function observeFonts(fontsJSON, typographyJSON) {
     /* Render vis again after fonts have been loaded */
-    const fonts = new Set(Array.isArray(fontsJSON) ? [] : Object.keys(fontsJSON));
-
+    const fonts = new Set(
+        Array.isArray(fontsJSON)
+            ? []
+            : Object.keys(fontsJSON).filter(key => fontsJSON[key].type === 'font')
+    );
     Object.keys(typographyJSON.fontFamilies || {}).forEach(fontFamily => {
         typographyJSON.fontFamilies[fontFamily].forEach(fontface => {
             /* If this font is being used in a font family */
