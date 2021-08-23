@@ -12,7 +12,8 @@ const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // accor
  * @kind function
  *
  * @param {string} path               - the url path that gets appended to baseUrl
- * @param {object} options.payload    - payload to be send with req
+ * @param {object} options.body       - raw body to be send with req
+ * @param {object} options.payload    - raw JSON payload to be send with req (will overwrite options.body)
  * @param {boolean} options.raw       - disable parsing of response body, returns raw response
  * @param {string} options.baseUrl    - base for url, defaults to dw api domain
  * @param {*} options                 - see documentation for window.fetch for additional options
@@ -33,6 +34,13 @@ const CSRF_SAFE_METHODS = new Set(['get', 'head', 'options', 'trace']); // accor
  *          title: 'My new chart'
  *      }
  *  });
+ *  // send raw csv
+ *  await httpReq.put(`/v3/charts/${chartId}/data`, {
+ *       body: csvData,
+ *       headers: {
+ *           'Content-Type': 'text/csv'
+ *       }
+ *   });
  */
 export default function httpReq(path, options = {}) {
     if (!options.fetch) {

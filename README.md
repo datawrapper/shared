@@ -614,7 +614,8 @@ to the response content type.
 | Param | Type | Description |
 | --- | --- | --- |
 | path | <code>string</code> | the url path that gets appended to baseUrl |
-| options.payload | <code>object</code> | payload to be send with req |
+| options.body | <code>object</code> | raw body to be send with req |
+| options.payload | <code>object</code> | raw JSON payload to be send with req (will overwrite options.body) |
 | options.raw | <code>boolean</code> | disable parsing of response body, returns raw response |
 | options.baseUrl | <code>string</code> | base for url, defaults to dw api domain |
 | options | <code>\*</code> | see documentation for window.fetch for additional options |
@@ -634,6 +635,13 @@ import httpReq from '@datawrapper/shared/httpReq';
          title: 'My new chart'
      }
  });
+ // send raw csv
+ await httpReq.put(`/v3/charts/${chartId}/data`, {
+      body: csvData,
+      headers: {
+          'Content-Type': 'text/csv'
+      }
+  });
 ```
 
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
