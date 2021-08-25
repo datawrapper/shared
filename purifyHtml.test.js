@@ -93,7 +93,15 @@ test('javascript link with special chars', t => {
 
 test('prevent unclosed tag exploit', t => {
     const el = document.createElement('p');
-    const purified = purifyHtml('<img src=x onerror=alert(1);"" onload="a="');
+    // img tag not allowed
+    let purified = purifyHtml('<img src=x onerror=alert(1);"" onload="a="');
+    el.innerHTML = `<span>${purified}</span>`;
+
+    t.is(el.childNodes[0].tagName, 'SPAN');
+    t.is(el.childNodes[0].innerHTML, '');
+
+    // img tag allowed, but event handlers removed
+    purified = purifyHtml('<img src=x onerror=alert(1);"" onload="a="', '<img>');
     el.innerHTML = `<span>${purified}</span>`;
 
     t.is(el.childNodes[0].tagName, 'SPAN');
@@ -101,4 +109,10 @@ test('prevent unclosed tag exploit', t => {
     t.is(el.childNodes[0].childNodes[0].tagName, 'IMG');
     t.is(el.childNodes[0].childNodes[0].getAttribute('onerror'), null);
     t.is(el.childNodes[0].childNodes[0].getAttribute('onload'), null);
+
+    // iframe definitely not allowed
+    purified = purifyHtml('<iframe src=1 blub=1');
+    el.innerHTML = `<span>${purified}</span>`;
+
+    t.is(el.childNodes[0].innerHTML, '');
 });
