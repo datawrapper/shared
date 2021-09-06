@@ -11,11 +11,11 @@ const tests = [
         },
         expectedResult: {
             tickText: {
-                secondary: '#9d9d9d',
-                primary: '#d9d9d9'
+                secondary: '#aeaeae',
+                primary: '#e3e3e3'
             },
             series: '#f1f1f1',
-            value: '#d9d9d9',
+            value: '#e3e3e3',
             axis: '#f1f1f1',
             gridline: '#707070',
             fallbackBaseColor: '#f1f1f1'
@@ -42,7 +42,7 @@ const tests = [
                 primary: '#ffffff'
             },
             series: '#ffffff',
-            value: '#fef2e4',
+            value: '#fff7ef',
             axis: '#ffffff',
             gridline: '#fedeb5',
             fallbackBaseColor: '#ffffff'
