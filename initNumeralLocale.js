@@ -12,7 +12,7 @@ import numeral from 'numeral';
  *
  * @export
  */
-export default function(locale) {
+export default function initNumeralLocale(locale) {
     if (isInitialized) return;
     numeral.register('locale', 'dw', locale);
     numeral.locale('dw');

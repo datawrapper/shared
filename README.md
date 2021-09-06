@@ -24,13 +24,16 @@ shared.httpReq();
 * [autoTickFormatDate(range, precision)](#autoTickFormatDate) ⇒ <code>string</code>
 * [autoTickFormatNumber(range)](#autoTickFormatNumber) ⇒ <code>string</code>
 * [clone(object)](#clone) ⇒ <code>\*</code>
-* [CodedError([string], [string])](#CodedError)
 * [colorLightness(hexColor)](#colorLightness) ⇒ <code>number</code>
+* [columnFormatter(column, metadata, axis)](#columnFormatter) ⇒ <code>function</code>
 * [columnNameToVariable(name)](#columnNameToVariable) ⇒ <code>string</code>
 * [combinations(input)](#combinations) ⇒ <code>Array.&lt;array&gt;</code>
+* [dateColumnFormatter(column)](#dateColumnFormatter) ⇒ <code>function</code>
 * [defaultColors(theme)](#defaultColors) ⇒ <code>\*</code>
 * ~~[deleteJSON(url, callback)](#deleteJSON) ⇒ <code>Promise</code>~~
+* [drawPattern(parameters)](#drawPattern)
 * [equalish(a, b)](#equalish) ⇒ <code>boolean</code>
+* [escapeHtml(unsafe)](#escapeHtml) ⇒ <code>string</code>
 * [estimateTextWidth(text, fontSize)](#estimateTextWidth) ⇒ <code>number</code>
 * ~~[fetchJSON(url, method, credentials, body, callback)](#fetchJSON) ⇒ <code>Promise</code>~~
 * [findConfigPath()](#findConfigPath) ⇒ <code>String</code>
@@ -50,7 +53,9 @@ shared.httpReq();
 * [kMeans(values, numCluster)](#kMeans) ⇒ <code>array.&lt;Array.&lt;number&gt;&gt;</code>
 * [loadScript(src, callback)](#loadScript)
 * [loadStylesheet(src, callback)](#loadStylesheet)
+* [numberColumnFormatter(config)](#numberColumnFormatter) ⇒ <code>function</code>
 * [observeFonts(fontsJSON, typographyJSON)](#observeFonts) ⇒ <code>Promise</code>
+* [opts](#opts) : <code>object</code>
 * ~~[patchJSON(url, body, callback)](#patchJSON) ⇒ <code>Promise</code>~~
 * [postEvent(chartId)](#postEvent) ⇒ <code>function</code>
 * ~~[postJSON(url, body, callback)](#postJSON) ⇒ <code>Promise</code>~~
@@ -67,28 +72,6 @@ shared.httpReq();
 * [trackPageView(loadTime)](#trackPageView)
 * [truncate(str, start, end)](#truncate) ⇒ <code>string</code>
 
-
-<a name="CodedError"></a>
-
-## CodedError([string], [string])
-A custom Error object that allows for storing both an error
-code and an error message (the standard JS error only stores
-a message). Feel free to use this error whenever you need to
-cleanly separate error code from error message.
-
-
-| Param | Description |
-| --- | --- |
-| [string] | code    a valid error code (depends on where it's being used). e.g. "notFound" |
-| [string] | message  an optional plain english message with more details |
-
-**Example**  
-```js
-import { CodedError } from '@datawrapper/shared';
-throw new CodedError('notFound', 'the chart was not found');
-```
-
-* * *
 
 <a name="__"></a>
 
@@ -250,6 +233,22 @@ colorLightness('#ff3399') // 57.9
 
 * * *
 
+<a name="columnFormatter"></a>
+
+### columnFormatter(column, metadata, axis) ⇒ <code>function</code>
+This function returns a formatting function based, given a column object,
+a metadata object and the axis column name.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+| metadata | <code>object</code> | the full metadata object |
+| axis | <code>string</code> | the column name of the axis |
+
+
+* * *
+
 <a name="columnNameToVariable"></a>
 
 ### columnNameToVariable(name) ⇒ <code>string</code>
@@ -293,6 +292,22 @@ combinations(['a', 'b']);
 // returns [[1,2,3], [1,2], [1,3], [1], [2,3], [2], [3]]
 combinations([1,2,3])
 ```
+
+* * *
+
+<a name="dateColumnFormatter"></a>
+
+### dateColumnFormatter(column) ⇒ <code>function</code>
+This function returns a date formatting function based on a
+dw column object. The implementation is backwards-compatible with
+our old Globalize-based date formatting, but uses dayjs under the
+hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| column | <code>object</code> | the date column object |
+
 
 * * *
 
@@ -347,6 +362,19 @@ deleteJSON('http://api.example.org/chart/123').then(() => {
 
 * * *
 
+<a name="drawPattern"></a>
+
+### drawPattern(parameters)
+draws a configurable pattern into an svg pattern def, so that it can be used as a fill
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parameters | <code>\*</code> | - style parameters for the pattern |
+
+
+* * *
+
 <a name="equalish"></a>
 
 ### equalish(a, b) ⇒ <code>boolean</code>
@@ -368,6 +396,19 @@ equalish(0.333333, 1/3)
 // returns false
 equalish(0.333, 1/3)
 ```
+
+* * *
+
+<a name="escapeHtml"></a>
+
+### escapeHtml(unsafe) ⇒ <code>string</code>
+returns escaped HTML that can be used to display untrusted content
+
+
+| Param | Type |
+| --- | --- |
+| unsafe | <code>string</code> | 
+
 
 * * *
 
@@ -489,7 +530,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | _default | <code>\*</code> | the fallback value to be returned if key doesn't exist |
 
 **Example**  
@@ -573,7 +614,8 @@ to the response content type.
 | Param | Type | Description |
 | --- | --- | --- |
 | path | <code>string</code> | the url path that gets appended to baseUrl |
-| options.payload | <code>object</code> | payload to be send with req |
+| options.body | <code>object</code> | raw body to be send with req |
+| options.payload | <code>object</code> | raw JSON payload to be send with req (will overwrite options.body) |
 | options.raw | <code>boolean</code> | disable parsing of response body, returns raw response |
 | options.baseUrl | <code>string</code> | base for url, defaults to dw api domain |
 | options | <code>\*</code> | see documentation for window.fetch for additional options |
@@ -593,6 +635,13 @@ import httpReq from '@datawrapper/shared/httpReq';
          title: 'My new chart'
      }
  });
+ // send raw csv
+ await httpReq.put(`/v3/charts/${chartId}/data`, {
+      body: csvData,
+      headers: {
+          'Content-Type': 'text/csv'
+      }
+  });
 ```
 
 * [httpReq(path, options)](#httpReq) ⇒ <code>Promise</code>
@@ -742,7 +791,7 @@ injects a `<link>` element to the page to load a new stylesheet
 
 | Param | Type |
 | --- | --- |
-| src | <code>string</code> | 
+| src | <code>string</code> \| [<code>opts</code>](#opts) | 
 | callback | <code>function</code> | 
 
 **Example**  
@@ -753,6 +802,22 @@ loadStylesheet('/static/css/library.css', () => {
     console.log('library styles are loaded');
 })
 ```
+
+* * *
+
+<a name="numberColumnFormatter"></a>
+
+### numberColumnFormatter(config) ⇒ <code>function</code>
+This function returns a number formatting function based on a
+column configuration object stored in metadata.data.column-format.
+The implementation is backwards-compatible with our old
+Globalize-based number formatting, but uses numeral under the hood.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>object</code> | the column configuration from metadata |
+
 
 * * *
 
@@ -767,6 +832,19 @@ specified in fontsJSON and typographyJSON have been loaded.
 | --- | --- |
 | fontsJSON | <code>Object</code> \| <code>Array</code> | 
 | typographyJSON | <code>Object</code> | 
+
+
+* * *
+
+<a name="opts"></a>
+
+### opts : <code>object</code>
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> | stylesheet URL to load |
+| parentElement | <code>DOMElement</code> | DOM element to append style tag to |
 
 
 * * *
@@ -934,7 +1012,7 @@ way doesn't exist.
 | Param | Type | Description |
 | --- | --- | --- |
 | object |  | the object which properties you want to acccess |
-| key | <code>String</code> | dot-separated keys aka "path" to the property |
+| key | <code>String</code> \| <code>Array.&lt;String&gt;</code> | path to the property as a dot-separated string or array of strings |
 | value | <code>\*</code> | the value to be set |
 
 

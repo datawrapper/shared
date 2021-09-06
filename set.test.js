@@ -1,5 +1,5 @@
 import test from 'ava';
-import set from './set';
+import set from './set.js';
 
 const thing = {
     answer: 42,
@@ -54,4 +54,9 @@ test('set returns true if something changed', t => {
     t.true(set(thing, 'nested.foo', 'bar'));
     t.true(set(thing, 'nested.bar', false));
     t.false(set(thing, 'nested.bar', false));
+});
+
+test('set using a key as array', t => {
+    set(thing, ['nested', 'sp.am'], 'spam');
+    t.is(thing.nested['sp.am'], 'spam');
 });

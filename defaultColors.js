@@ -1,5 +1,5 @@
 import chroma from 'chroma-js';
-import get from './get';
+import get from './get.js';
 
 /**
  * defines colors for the various chart elements like axis text, gridlines,

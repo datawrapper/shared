@@ -14,7 +14,7 @@
  * postEvent('bar:hover', {value: 123});
  */
 export default function postEvent(chartId) {
-    return function(event, data) {
+    return function (event, data) {
         if (window.parent && window.parent.postMessage) {
             const evt = {
                 source: 'datawrapper',

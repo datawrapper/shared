@@ -1,7 +1,6 @@
-import tailLength from './tailLength';
-import round from './round';
-import uniq from 'lodash-es/uniq';
-import _isFinite from 'lodash-es/isFinite';
+import tailLength from './tailLength.js';
+import round from './round.js';
+import { uniq, isFinite } from 'underscore';
 
 /**
  * computes the significant dimension for a list of numbers
@@ -22,7 +21,7 @@ import _isFinite from 'lodash-es/isFinite';
 export default function significantDimension(values, tolerance = 0.1) {
     let result = [];
     let decimals = 0;
-    const uniqValues = uniq(values.filter(_isFinite));
+    const uniqValues = uniq(values.filter(isFinite));
     const totalUniq = uniqValues.length;
     let check, diff;
 
@@ -31,7 +30,7 @@ export default function significantDimension(values, tolerance = 0.1) {
     if (uniqValues.length < 3) {
         // special case if there are only 2 unique values
         return Math.round(
-            uniqValues.reduce(function(acc, cur) {
+            uniqValues.reduce(function (acc, cur) {
                 if (!cur) return acc;
                 const exp = Math.log(Math.abs(cur)) / Math.LN10;
                 if (exp < 8 && exp > -3) {
@@ -46,14 +45,14 @@ export default function significantDimension(values, tolerance = 0.1) {
 
     if (uniq(uniqValues.map(currentRound)).length > accepted) {
         // we seem to have enough precision, but maybe it's too much?
-        check = function() {
+        check = function () {
             return uniq(result).length === totalUniq;
         };
         diff = -1;
     } else {
         // if we end up here it means we're loosing too much information
         // due to rounding, we need to increase precision
-        check = function() {
+        check = function () {
             return uniq(result).length <= accepted;
         };
         diff = +1;

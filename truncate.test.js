@@ -1,5 +1,5 @@
 import test from 'ava';
-import truncate from './truncate';
+import truncate from './truncate.js';
 
 test('truncate very long string', t => {
     t.is(truncate('This is a very very long string'), 'This is a v…string');

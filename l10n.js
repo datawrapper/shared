@@ -1,6 +1,6 @@
 /* globals dw */
 
-let __messages = {};
+const __messages = {};
 
 function initMessages(scope = 'core') {
     // let's check if we're in a chart

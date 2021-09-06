@@ -1,5 +1,5 @@
 import test from 'ava';
-import columnNameToVariable from './columnNameToVariable';
+import columnNameToVariable from './columnNameToVariable.js';
 
 test('simple case, already a valid variable', t => {
     t.is(columnNameToVariable('foo'), 'foo');

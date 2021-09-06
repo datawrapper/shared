@@ -1,7 +1,7 @@
 import test from 'ava';
 import { range, uniq } from 'underscore';
-import round from './round';
-import significantDimension from './significantDimension';
+import round from './round.js';
+import significantDimension from './significantDimension.js';
 
 const tests = [
     { values: range(10), dim: 0 },
@@ -14,30 +14,8 @@ const tests = [
     { values: [13000, 18000, 9000, 17000, 20000, 11000, 10000, 12000, 14000], dim: -3 },
     {
         values: [
-            13000,
-            18000,
-            9000,
-            13000,
-            17000,
-            18000,
-            20000,
-            20000,
-            13000,
-            18000,
-            11000,
-            20000,
-            20000,
-            13000,
-            13000,
-            13000,
-            10000,
-            11000,
-            12000,
-            12000,
-            12000,
-            13000,
-            12000,
-            14000,
+            13000, 18000, 9000, 13000, 17000, 18000, 20000, 20000, 13000, 18000, 11000, 20000,
+            20000, 13000, 13000, 13000, 10000, 11000, 12000, 12000, 12000, 13000, 12000, 14000,
             10000
         ],
         dim: -3

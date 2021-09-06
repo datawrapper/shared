@@ -1,5 +1,5 @@
 import test from 'ava';
-import toFixed from './toFixed';
+import toFixed from './toFixed.js';
 
 test('toFixed on whole numbers', t => {
     t.is(toFixed(42), '42');

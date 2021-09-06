@@ -1,5 +1,5 @@
 import test from 'ava';
-import { autoTickFormatDate, autoTickFormatNumber } from './autoTickFormat';
+import { autoTickFormatDate, autoTickFormatNumber } from './autoTickFormat.js';
 
 test('auto-tick format for number columns', t => {
     t.is(autoTickFormatNumber([0, 0.5]), '0,0.00[0]');
@@ -26,7 +26,7 @@ test('auto-tick format for date columns (default precision)', t => {
 
 test('auto-tick format for date columns (precision year)', t => {
     const d0 = date(2000);
-    t.is(autoTickFormatDate([d0, date(2010)], 'year'), "'YY");
+    t.is(autoTickFormatDate([d0, date(2010)], 'year'), "YYYY~~'YY");
     t.is(autoTickFormatDate([d0, date(2004)], 'year'), 'YYYY');
     t.is(autoTickFormatDate([d0, date(2002)], 'year'), 'YYYY|MMM');
 });

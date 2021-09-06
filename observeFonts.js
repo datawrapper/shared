@@ -13,20 +13,35 @@ import FontFaceObserver from 'fontfaceobserver';
  */
 export default function observeFonts(fontsJSON, typographyJSON) {
     /* Render vis again after fonts have been loaded */
-    const loadingFonts = Array.isArray(fontsJSON) ? [] : Object.keys(fontsJSON);
-    const fonts = new Set(loadingFonts);
-
-    Object.keys(typographyJSON).forEach(key => {
-        const typefaceKey = typographyJSON[key].typeface;
-        if (typefaceKey) {
-            const typeFaces = typefaceKey.split(',').map(t => t.trim());
-            typeFaces.forEach(face => fonts.add(face));
-        }
+    const fonts = new Set(
+        Array.isArray(fontsJSON)
+            ? []
+            : Object.keys(fontsJSON).filter(key => fontsJSON[key].type === 'font')
+    );
+    Object.keys(typographyJSON.fontFamilies || {}).forEach(fontFamily => {
+        typographyJSON.fontFamilies[fontFamily].forEach(fontface => {
+            /* If this font is being used in a font family */
+            if (fonts.has(fontface.name)) {
+                /* Remove it form the list of fonts to wait for */
+                fonts.delete(fontface.name);
+                /* And add it again with theme-defined weight and style */
+                fonts.add({
+                    family: fontFamily,
+                    props: {
+                        weight: fontface.weight || 400,
+                        style: fontface.style || 'normal'
+                    }
+                });
+            }
+        });
     });
 
     const observers = [];
     fonts.forEach(font => {
-        const obs = new FontFaceObserver(font);
+        const obs =
+            typeof font === 'string'
+                ? new FontFaceObserver(font)
+                : new FontFaceObserver(font.family, font.props);
         observers.push(obs.load(null, 5000));
     });
 

@@ -1,5 +1,5 @@
 import test from 'ava';
-import formatNumber from './formatNumber';
+import formatNumber from './formatNumber.js';
 
 test('simple number', t => {
     t.is(formatNumber(1234.5678), '1234.57');

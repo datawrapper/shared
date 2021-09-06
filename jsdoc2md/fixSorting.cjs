@@ -4,7 +4,7 @@ const path = require('path');
 const readme = path.resolve(__dirname, '../README.md');
 const md = fs.readFileSync(readme, 'utf-8');
 
-const parts = md.split('## API reference');
+const parts = md.replace('## Typedefs\n', '').replace('## Functions\n', '').split('## API reference');
 
 let parts2 = parts[1].split('<a name="');
 

@@ -1,5 +1,5 @@
 import test from 'ava';
-import { defaultColors } from './defaultColors';
+import { defaultColors } from './defaultColors.js';
 
 const tests = [
     {
@@ -50,7 +50,7 @@ const tests = [
     }
 ];
 
-tests.forEach(function(testData) {
+tests.forEach(function (testData) {
     test(testData.testName, t => {
         t.deepEqual(defaultColors(testData.theme), testData.expectedResult);
     });

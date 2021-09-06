@@ -1,5 +1,5 @@
 import test from 'ava';
-import round from './round';
+import round from './round.js';
 
 test('round to zero decimals', t => {
     t.is(round(1.2345), 1);

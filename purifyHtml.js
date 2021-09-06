@@ -20,16 +20,16 @@ export default function purifyHTML(input, allowed) {
     if (input === null) return null;
     if (input === undefined) return undefined;
     input = String(input);
-    // strip tags
-    if (input.indexOf('<') < 0 || input.indexOf('>') < 0) {
+    // pass if neither < or > exist in string
+    if (input.indexOf('<') < 0 && input.indexOf('>') < 0) {
         return input;
     }
     input = stripTags(input, allowed);
     // remove all event attributes
     if (typeof document === 'undefined') return input;
     var d = document.createElement('div');
-    d.innerHTML = input;
-    var sel = d.querySelectorAll('*');
+    d.innerHTML = `<span>${input}</span>`;
+    var sel = d.childNodes[0].querySelectorAll('*');
     for (var i = 0; i < sel.length; i++) {
         if (sel[i].nodeName.toLowerCase() === 'a') {
             // special treatment for <a> elements
@@ -56,7 +56,7 @@ export default function purifyHTML(input, allowed) {
         }
         removeAttrs.forEach(attr => sel[i].removeAttribute(attr));
     }
-    return d.innerHTML;
+    return d.childNodes[0].innerHTML;
 }
 
 function stripTags(input, allowed) {
@@ -72,7 +72,7 @@ function stripTags(input, allowed) {
     // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
     while (true) {
         before = after;
-        after = before.replace(COMMENTS_AND_PHP_TAGS, '').replace(TAGS, function($0, $1) {
+        after = before.replace(COMMENTS_AND_PHP_TAGS, '').replace(TAGS, function ($0, $1) {
             return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
         });
         // return once no more tags are removed
